@@ -1,0 +1,49 @@
+name: Build Blog
+
+# Triggers:
+# 1. Automatically every 6 hours (so posts published in Sanity appear within 6 hrs)
+# 2. Manually from GitHub Actions tab (for immediate publish)
+# 3. On any push to main (keeps blog in sync after code changes)
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate blog pages from Sanity
+        env:
+          SANITY_PROJECT_ID: 0n060c2j
+          SANITY_DATASET: production
+          SANITY_TOKEN: ${{ secrets.SANITY_TOKEN }}
+        run: node scripts/build-blog.js
+
+      - name: Commit and push generated blog pages
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add blog/
+          # Only commit if there are actual changes
+          git diff --staged --quiet && echo "No blog changes." || (
+            git commit -m "Auto: rebuild blog from Sanity [skip ci]"
+            git push
+          )
