@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why RyanFulfil | Reliable Sourcing &amp; Fulfilment from China</title>
+  <meta name="description" content="Why hundreds of dropshippers choose RyanFulfil over AliExpress. Faster shipping, factory-direct pricing, and a team that responds same day." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS Custom Properties ─────────────────────────────── */
+    :root {
+      --navy:    #0D1F3C;
+      --accent:  #2AAEF5;
+      --white:   #FFFFFF;
+      --surface: #F0F7FF;
+      --text:    #111827;
+      --muted:   #64748B;
+      --border:  #E2E8F0;
+      --red:     #EF4444;
+      --green:   #16A34A;
+    }
+
+    /* ── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Typography ───────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.25rem); font-weight: 700; }
+    h3 { font-size: 1.15rem; font-weight: 700; }
+    p  { color: var(--text); }
+
+    /* ── Layout helpers ───────────────────────────────────── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 80px 0; }
+    .section--surface { background: var(--surface); }
+    .section--navy    { background: var(--navy); color: var(--white); }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav__logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.2rem;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav__logo span { color: var(--accent); }
+    .nav__links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav__links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav__links a:hover,
+    .nav__links a.active { color: var(--white); }
+    .nav__cta {
+      background: var(--accent); color: var(--white) !important;
+      padding: 8px 20px; border-radius: 6px;
+      font-weight: 600 !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav__cta:hover { opacity: 0.9; }
+    .nav__hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .nav__hamburger span {
+      width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    @media (max-width: 768px) {
+      .nav__hamburger { display: flex; }
+      .nav__links {
+        display: none; position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--navy);
+        flex-direction: column; align-items: flex-start;
+        padding: 16px 24px 24px; gap: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      .nav__links.open { display: flex; }
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 80px 0 72px;
+      text-align: center;
+    }
+    .hero__label {
+      display: inline-block;
+      background: rgba(42,174,245,0.15);
+      color: var(--accent);
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 { color: var(--white); margin-bottom: 20px; }
+    .hero__sub {
+      color: rgba(255,255,255,0.7);
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      max-width: 640px; margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── 7 REASONS SECTION ────────────────────────────────── */
+    .reasons { background: var(--navy); padding: 0 0 88px; }
+    .reasons__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .reasons__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .reasons__grid { grid-template-columns: 1fr; }
+    }
+    .reason-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 28px;
+      transition: background 0.2s;
+    }
+    .reason-card:hover { background: rgba(255,255,255,0.08); }
+    .reason-card__num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      color: var(--accent);
+      opacity: 0.8;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .reason-card h3 {
+      color: var(--white);
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+    .reason-card p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* ── MEET RYAN ────────────────────────────────────────── */
+    .meet-ryan {
+      background: var(--surface);
+      padding: 80px 0;
+    }
+    .meet-ryan__grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .meet-ryan__grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+    .meet-ryan__photo-wrap {
+      position: relative;
+    }
+    .meet-ryan__photo {
+      width: 280px; height: 320px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 32px rgba(13,31,60,0.15);
+    }
+    .meet-ryan__photo-fallback {
+      width: 280px; height: 320px;
+      border-radius: 12px;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 5rem; font-weight: 800;
+      color: var(--accent);
+      box-shadow: 0 8px 32px rgba(13,31,60,0.15);
+    }
+    @media (max-width: 768px) {
+      .meet-ryan__photo,
+      .meet-ryan__photo-fallback {
+        width: 200px; height: 240px;
+      }
+    }
+    .meet-ryan__badge {
+      position: absolute;
+      bottom: -14px; left: 20px;
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.8rem;
+      padding: 6px 14px; border-radius: 20px;
+      white-space: nowrap;
+    }
+    .meet-ryan__section-label {
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .meet-ryan h2 {
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .meet-ryan__bio p {
+      color: var(--muted);
+      font-size: 1rem; line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .meet-ryan__bio p:last-child { margin-bottom: 0; }
+    .meet-ryan__bio strong { color: var(--text); font-weight: 600; }
+
+    /* ── WHO WE'RE BUILT FOR ──────────────────────────────── */
+    .built-for {
+      background: var(--white);
+      padding: 80px 0;
+    }
+    .built-for__intro {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 52px;
+    }
+    .built-for__intro h2 { color: var(--navy); margin-bottom: 12px; }
+    .built-for__intro p { color: var(--muted); font-size: 1rem; }
+    .built-for__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .built-for__grid { grid-template-columns: 1fr; }
+    }
+    .fit-card {
+      border-radius: 12px;
+      padding: 36px 32px;
+    }
+    .fit-card--good {
+      background: var(--white);
+      border: 2px solid var(--border);
+    }
+    .fit-card--notfit {
+      background: #F8FAFC;
+      border: 2px solid var(--border);
+    }
+    .fit-card__icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+    .fit-card--good .fit-card__icon {
+      background: rgba(22,163,74,0.1);
+    }
+    .fit-card--notfit .fit-card__icon {
+      background: rgba(100,116,139,0.1);
+    }
+    .fit-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .fit-card--good h3 { color: var(--navy); }
+    .fit-card--notfit h3 { color: var(--muted); }
+    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .fit-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; line-height: 1.5;
+    }
+    .fit-card--good .fit-list li { color: var(--text); }
+    .fit-card--notfit .fit-list li { color: var(--muted); }
+    .fit-list__dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700;
+    }
+    .fit-card--good .fit-list__dot {
+      background: rgba(22,163,74,0.12);
+      color: var(--green);
+    }
+    .fit-card--notfit .fit-list__dot {
+      background: rgba(100,116,139,0.12);
+      color: var(--muted);
+    }
+
+    /* ── BOTTOM CTA ───────────────────────────────────────── */
+    .bottom-cta {
+      background: var(--navy);
+      padding: 80px 0;
+      text-align: center;
+    }
+    .bottom-cta h2 { color: var(--white); margin-bottom: 12px; }
+    .bottom-cta__sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem; margin-bottom: 36px;
+      max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .bottom-cta__actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.2s; cursor: pointer;
+      text-decoration: none; border: none;
+    }
+    .btn--primary { background: var(--accent); color: var(--white); }
+    .btn--primary:hover { background: #1a9fe0; }
+    .btn--ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn--ghost:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: var(--white);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .footer {
+      background: #0A1829;
+      padding: 48px 0 32px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .footer__grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+    .footer__brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.1rem;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .footer__brand-name span { color: var(--accent); }
+    .footer__tagline {
+      font-size: 0.85rem; line-height: 1.6;
+      max-width: 260px;
+    }
+    .footer__col h4 {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 14px;
+    }
+    .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer__col li a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer__col li a:hover { color: var(--white); }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 0.8rem;
+    }
+    .footer__bottom a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+    .footer__bottom a:hover { color: var(--white); }
+
+    /* ── NAV LOGO IMAGE ──────────────────────────────────────── */
+    .nav__logo-wrap {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav__logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.95);
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+    .nav__logo-fallback {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.2rem;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav__logo-fallback span { color: var(--accent); }
+    /* ── FOOTER LOGO IMAGE ────────────────────────────────────── */
+    .footer__logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.9);
+      border-radius: 5px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo-wrap"><img src="assets/logo.png" alt="RyanFulfil" class="nav__logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" /><span class="nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span></a>
+      <button class="nav__hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks" role="list">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why-ryanfulfil.html" class="active">Why RyanFulfil</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="games.html">Games</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="contact.html" class="nav__cta">Get a Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero__label">Why RyanFulfil</div>
+      <h1>Why sellers who switch from AliExpress tend to stay.</h1>
+      <p class="hero__sub">There are hundreds of dropshipping agents. Most do roughly the same thing. Here is what makes RyanFulfil different.</p>
+    </div>
+  </header>
+
+  <!-- 7 REASONS -->
+  <section class="reasons" aria-label="Seven reasons to choose RyanFulfil">
+    <div class="container">
+      <div class="reasons__grid">
+
+        <div class="reason-card">
+          <div class="reason-card__num">01</div>
+          <h3>We have been doing this since 2018.</h3>
+          <p>RyanFulfil has operated as a dropshipping fulfilment partner since 2018. Before that, our team sourced and sold products on AliExpress and Amazon. We understand your business from the seller's side, not just the logistics side. We have seen product trends, shipping disruptions, tariff changes, and peak season crunches. Our processes are built around them.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-card__num">02</div>
+          <h3>We are cheaper than AliExpress.</h3>
+          <p>When you order through AliExpress, you pay the platform's commission baked into the product price. We source factory-direct, with no platform in the middle. This typically makes our all-in quote cheaper than the equivalent AliExpress listing, even after our margin. We also negotiate with factories directly. AliExpress has fixed listings. We do not.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-card__num">03</div>
+          <h3>Your brand, not ours.</h3>
+          <p>AliExpress ships in AliExpress packaging. Every order we send goes out in plain packaging by default: no logos, no Chinese text, no giveaways that you are drop-shipping. When you are ready to brand up, we add your inserts, stickers, or custom box.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-card__num">04</div>
+          <h3>We are on WhatsApp. Real people, same day.</h3>
+          <p>When there is an issue, you message us on WhatsApp and a real person responds. No ticketing system. No 72-hour SLA. Our team works across China time. For most European and US sellers, your questions get answered while you sleep and resolved by the time you start your day.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-card__num">05</div>
+          <h3>We tell you the truth about your product.</h3>
+          <p>If we cannot find what you want, we say so. If availability is limited, we tell you before you run ads. If we think a product has a quality risk, we will flag it. We would rather give you honest advice and build a long relationship than ship one bad order and lose you.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-card__num">06</div>
+          <h3>We adapt as you scale.</h3>
+          <p>Starting out? No MOQ, no setup fee. Scaling up? We can pre-stock your product, arrange custom packaging, source alternative suppliers, and bundle multiple products into a single kit shipment. The team handling your first ten orders is the same team handling your first thousand.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-card__num">07</div>
+          <h3>We ship everywhere.</h3>
+          <p>Core markets: US, UK, and Europe. We have fulfilled to Australia, Israel, UAE, Canada, Japan, Southeast Asia, and more. We also stay ahead of shipping disruptions including tariff changes, carrier delays, and peak season surges. If something affects your shipping, we will tell you before it becomes your customer's problem.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET RYAN -->
+  <section class="meet-ryan section" aria-label="Meet Ryan">
+    <div class="container">
+      <div class="meet-ryan__grid">
+        <div class="meet-ryan__photo-wrap">
+          <img
+            src="assets/ryan.jpg"
+            alt="Ryan, founder of RyanFulfil"
+            class="meet-ryan__photo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="meet-ryan__photo-fallback" style="display:none;">R</div>
+          <div class="meet-ryan__badge">Founder since 2018</div>
+        </div>
+        <div class="meet-ryan__content">
+          <div class="meet-ryan__section-label">Meet the founder</div>
+          <h2>Built by someone who has been on your side of the screen.</h2>
+          <div class="meet-ryan__bio">
+            <p>Ryan started RyanFulfil in 2018 after years of running his own dropshipping stores. He knew the frustration of slow shipping, inconsistent product quality, and agents who went quiet when things went wrong.</p>
+            <p>RyanFulfil was built to fix that: <strong>a China-based fulfilment partner that works the way sellers actually need.</strong> Fast communication, honest sourcing, and a team that treats your business as if it were their own.</p>
+            <p>Today, RyanFulfil handles fulfilment for sellers across Europe, North America, and Australia. The same values that shaped the business in 2018 still shape how it operates now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE'RE BUILT FOR -->
+  <section class="built-for" aria-label="Who RyanFulfil is built for">
+    <div class="container">
+      <div class="built-for__intro">
+        <h2>Who we are built for.</h2>
+        <p>RyanFulfil works best for a specific type of seller. Here is an honest look at who we are a good match for, and who we are probably not.</p>
+      </div>
+      <div class="built-for__grid">
+        <!-- Good fit -->
+        <div class="fit-card fit-card--good">
+          <div class="fit-card__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 10L9 12L13 8M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>You are a good fit if...</h3>
+          <ul class="fit-list">
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
+              You are running a Shopify, WooCommerce, TikTok Shop, or eBay dropshipping store
+            </li>
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
+              You sell to US, European, or global markets
+            </li>
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
+              You want to move away from AliExpress direct fulfilment
+            </li>
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
+              You want cleaner branding and packaging as you grow
+            </li>
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
+              You value responsiveness and honest communication over sales talk
+            </li>
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
+              You are testing new products and need fast, flexible sourcing
+            </li>
+          </ul>
+        </div>
+
+        <!-- Not a fit -->
+        <div class="fit-card fit-card--notfit">
+          <div class="fit-card__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8L8 12M8 8L12 12M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>We are probably not the right fit if...</h3>
+          <ul class="fit-list">
+            <li>
+              <span class="fit-list__dot" style="font-size:0.8rem;">&#8722;</span>
+              You need a fully managed e-commerce operation with marketing and ad management included
+            </li>
+            <li>
+              <span class="fit-list__dot" style="font-size:0.8rem;">&#8722;</span>
+              You are sourcing regulated goods, hazardous materials, or products that infringe on trademarks
+            </li>
+            <li>
+              <span class="fit-list__dot" style="font-size:0.8rem;">&#8722;</span>
+              You need guaranteed next-day domestic delivery inside the US or EU
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta" aria-label="Call to action">
+    <div class="container">
+      <h2>See for yourself.</h2>
+      <p class="bottom-cta__sub">Send us your first product link. Get a quote in 24 hours. Judge us on the experience, not the pitch.</p>
+      <div class="bottom-cta__actions">
+        <a href="https://wa.me/8617846669989" target="_blank" rel="noopener" class="btn btn--primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.522 5.849L.054 23.454a.75.75 0 0 0 .917.917l5.605-1.468A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22.5a10.44 10.44 0 0 1-5.45-1.526l-.39-.232-4.044 1.06 1.08-3.938-.254-.404A10.44 10.44 0 0 1 1.5 12C1.5 6.201 6.201 1.5 12 1.5S22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/></svg>
+          Get a Quote on WhatsApp
+        </a>
+        <a href="how-it-works.html" class="btn btn--ghost">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name"><img src="assets/logo.png" alt="RyanFulfil" class="footer__logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" /><span style="display:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);">Ryan<span style="color:var(--accent)">Fulfil</span></span></div>
+          <p class="footer__tagline">Reliable Sourcing. Responsive Service. Reach Worldwide.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/8617846669989" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="contact.html">Get a Quote</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2025 RyanFulfil. All rights reserved.</span>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  </script>
+
+</body>
+</html>

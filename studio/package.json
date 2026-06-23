@@ -1,0 +1,20 @@
+{
+  "name": "ryanfulfil-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
+  },
+  "dependencies": {
+    "@sanity/vision": "^3.65.0",
+    "sanity": "^3.65.0"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^4.0.0",
+    "eslint": "^8.57.0",
+    "typescript": "5.6.3"
+  }
+}

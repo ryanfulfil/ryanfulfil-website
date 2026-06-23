@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calm Puzzles</title>
+</head>
+<body>
+<div class="calm-puz-wrap" id="calm-puz-standalone" data-calm-root>
+  <p class="calm-puz-eyebrow">A quiet break</p>
+  <p class="calm-puz-agelabel">Ages 4-7 and up</p>
+
+  <div class="calm-puz-card">
+    <div class="calm-puz-header">
+      <button type="button" class="calm-puz-nav" data-calm-prev aria-label="Previous puzzle">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="calm-puz-title-block">
+        <p class="calm-puz-title" data-calm-title></p>
+        <p class="calm-puz-hint" data-calm-hint></p>
+      </div>
+      <button type="button" class="calm-puz-nav" data-calm-next aria-label="Next puzzle">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="calm-puz-stage" data-calm-stage></div>
+
+    <div class="calm-puz-dots" data-calm-dots></div>
+
+    <div class="calm-puz-done" data-calm-done>
+      <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:10px"><path d="M20 6L9 17l-5-5"/></svg>
+      <p class="calm-puz-done-text">All done</p>
+      <button type="button" class="calm-puz-again" data-calm-another>Try another</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #calm-puz-standalone {
+    --calm-accent: #1D9E75;
+    --calm-accent-soft: #9FE1CB;
+    --calm-warm: #D4537E;
+    --calm-purple: #7F77DD;
+    --calm-blue: #378ADD;
+    --calm-bg: #F1EFE8;
+    --calm-surface: #FFFFFF;
+    --calm-border: rgba(40,40,35,0.14);
+    --calm-text: #2C2C2A;
+    --calm-text-soft: #5F5E5A;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 32px 16px 32px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box;
+  }
+  #calm-puz-standalone * { box-sizing: border-box; }
+  #calm-puz-standalone .calm-puz-eyebrow {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--calm-text-soft);
+    margin: 0 0 4px;
+  }
+  #calm-puz-standalone .calm-puz-agelabel {
+    text-align: center;
+    font-size: 13px;
+    color: var(--calm-text-soft);
+    background: var(--calm-accent-soft);
+    color: #085041;
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    margin: 0 auto 18px;
+    width: max-content;
+  }
+  #calm-puz-standalone .calm-puz-card {
+    background: var(--calm-surface);
+    border: 1px solid var(--calm-border);
+    border-radius: 20px;
+    padding: 18px;
+  }
+  #calm-puz-standalone .calm-puz-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  #calm-puz-standalone .calm-puz-title-block {
+    flex: 1;
+    text-align: center;
+  }
+  #calm-puz-standalone .calm-puz-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--calm-text);
+  }
+  #calm-puz-standalone .calm-puz-hint {
+    margin: 3px 0 0;
+    font-size: 13px;
+    color: var(--calm-text-soft);
+  }
+  #calm-puz-standalone .calm-puz-nav {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--calm-border);
+    background: var(--calm-surface);
+    color: var(--calm-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  #calm-puz-standalone .calm-puz-nav:hover { background: var(--calm-bg); }
+  #calm-puz-standalone .calm-puz-nav:active { transform: scale(0.96); }
+  #calm-puz-standalone .calm-puz-stage {
+    background: var(--calm-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    touch-action: none;
+  }
+  #calm-puz-standalone .calm-puz-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  #calm-puz-standalone .calm-puz-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: var(--calm-border);
+    cursor: pointer;
+    padding: 0;
+  }
+  #calm-puz-standalone .calm-puz-dot.is-active {
+    background: var(--calm-accent);
+    width: 20px;
+    border-radius: 5px;
+  }
+  #calm-puz-standalone .calm-puz-done {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    background: var(--calm-bg);
+    border-radius: 16px;
+    text-align: center;
+    padding: 24px;
+  }
+  #calm-puz-standalone .calm-puz-done-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--calm-text);
+    margin: 0 0 16px;
+  }
+  #calm-puz-standalone .calm-puz-again {
+    border: 1px solid var(--calm-border);
+    background: var(--calm-surface);
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--calm-text);
+    cursor: pointer;
+  }
+  #calm-puz-standalone .calm-puz-again:hover { background: var(--calm-bg); }
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  function initCalmPuzzles(rootId) {
+    var root = document.getElementById(rootId);
+    if (!root || root.dataset.calmInit) return;
+    root.dataset.calmInit = '1';
+
+    var COLORS = {
+      accent: '#1D9E75',
+      accentSoft: '#9FE1CB',
+      warm: '#D4537E',
+      neutral1: '#7F77DD',
+      neutral2: '#378ADD',
+      surface: '#FFFFFF',
+      border: 'rgba(40,40,35,0.18)',
+      text: '#2C2C2A',
+      textSoft: '#5F5E5A'
+    };
+    /* Plain hex, not a CSS var reference — SVG presentation attributes
+       set via setAttribute do not reliably resolve custom properties
+       across browsers, so this is passed in as a literal string. */
+    var stageBg = '#F1EFE8';
+    var NS = 'http://www.w3.org/2000/svg';
+
+    function el(tag, attrs, parent) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (parent) parent.appendChild(e);
+      return e;
+    }
+    function rand(min, max) { return min + Math.random() * (max - min); }
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+    /* Larger touch targets throughout this build (radius/hitboxes bumped
+       up versus the desktop prototype) since younger players have less
+       precise fine motor control. */
+
+    function Untangle(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 400', width: '100%', height: '100%' }, host);
+      var N = 5;
+      var points = [];
+      var cx = 200, cy = 200, r = 125;
+      var slots = shuffle([0,1,2,3,4]);
+      points = slots.map(function(slot) {
+        var a = (slot / N) * Math.PI * 2 - Math.PI / 2;
+        return { x: cx + r * Math.cos(a) * rand(0.6, 0.9), y: cy + r * Math.sin(a) * rand(0.6, 0.9) };
+      });
+      var dragIdx = null, solved = false;
+      function ccw(a,b,c){ return (c.y-a.y)*(b.x-a.x) - (b.y-a.y)*(c.x-a.x); }
+      function segInt(p1,p2,p3,p4) {
+        var d1=ccw(p3,p4,p1), d2=ccw(p3,p4,p2), d3=ccw(p1,p2,p3), d4=ccw(p1,p2,p4);
+        return ((d1>0&&d2<0)||(d1<0&&d2>0)) && ((d3>0&&d4<0)||(d3<0&&d4>0));
+      }
+      function crossings() {
+        var c = 0;
+        var edges = points.map(function(p,i){ return [p, points[(i+1)%N]]; });
+        for (var i = 0; i < edges.length; i++)
+          for (var j = i+1; j < edges.length; j++) {
+            if (Math.abs(i-j) === 1 || Math.abs(i-j) === N-1) continue;
+            if (segInt(edges[i][0], edges[i][1], edges[j][0], edges[j][1])) c++;
+          }
+        return c;
+      }
+      function render() {
+        svg.innerHTML = '';
+        var c = crossings();
+        for (var i = 0; i < N; i++) {
+          var a = points[i], b = points[(i+1)%N];
+          el('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, stroke: c === 0 ? COLORS.accent : COLORS.warm,
+            'stroke-width': 5, 'stroke-linecap': 'round', opacity: 0.9 }, svg);
+        }
+        points.forEach(function(p, i) {
+          var circ = el('circle', { cx: p.x, cy: p.y, r: 18, fill: c === 0 ? COLORS.accent : COLORS.neutral1,
+            stroke: COLORS.surface, 'stroke-width': 3 }, svg);
+          circ.style.cursor = 'grab';
+          circ.addEventListener('pointerdown', function(e) {
+            if (solved) return;
+            dragIdx = i;
+            try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+          });
+        });
+        if (c === 0 && !solved) { solved = true; setTimeout(onSolved, 600); }
+      }
+      function move(e) {
+        if (dragIdx === null || solved) return;
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) / rect.height * 400;
+        points[dragIdx] = { x: Math.max(25, Math.min(375, x)), y: Math.max(25, Math.min(375, y)) };
+        render();
+      }
+      function up() { dragIdx = null; }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Trace(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 400', width: '100%', height: '100%' }, host);
+      var cols = 5, rows = 5, cell = 400 / cols;
+      var grid = [];
+      for (var y = 0; y < rows; y++) { grid.push([]); for (var x = 0; x < cols; x++) grid[y].push({ r: true, b: true }); }
+      function carve(x, y, visited) {
+        visited[y][x] = true;
+        var dirs = shuffle([[1,0],[-1,0],[0,1],[0,-1]]);
+        for (var i = 0; i < dirs.length; i++) {
+          var dx = dirs[i][0], dy = dirs[i][1];
+          var nx = x + dx, ny = y + dy;
+          if (nx >= 0 && nx < cols && ny >= 0 && ny < rows && !visited[ny][nx]) {
+            if (dx === 1) grid[y][x].r = false;
+            if (dx === -1) grid[ny][nx].r = false;
+            if (dy === 1) grid[y][x].b = false;
+            if (dy === -1) grid[ny][nx].b = false;
+            carve(nx, ny, visited);
+          }
+        }
+      }
+      var visited = []; for (var i = 0; i < rows; i++) visited.push(new Array(cols).fill(false));
+      carve(0, 0, visited);
+      var start = { x: 0, y: 0 }, end = { x: cols-1, y: rows-1 };
+      var path = [start], dragging = false, solved = false;
+      function canMove(a, b) {
+        var dx = b.x - a.x, dy = b.y - a.y;
+        if (Math.abs(dx) + Math.abs(dy) !== 1) return false;
+        if (dx === 1) return !grid[a.y][a.x].r;
+        if (dx === -1) return !grid[b.y][b.x].r;
+        if (dy === 1) return !grid[a.y][a.x].b;
+        if (dy === -1) return !grid[b.y][b.x].b;
+        return false;
+      }
+      function center(c) { return { x: c.x * cell + cell/2, y: c.y * cell + cell/2 }; }
+      function render() {
+        svg.innerHTML = '';
+        for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
+          if (grid[y][x].r && x < cols - 1) el('line', { x1: (x+1)*cell, y1: y*cell, x2: (x+1)*cell, y2: (y+1)*cell, stroke: COLORS.border, 'stroke-width': 3 }, svg);
+          if (grid[y][x].b && y < rows - 1) el('line', { x1: x*cell, y1: (y+1)*cell, x2: (x+1)*cell, y2: (y+1)*cell, stroke: COLORS.border, 'stroke-width': 3 }, svg);
+        }
+        el('rect', { x: 1, y: 1, width: cols*cell-2, height: rows*cell-2, fill: 'none', stroke: COLORS.border, 'stroke-width': 3 }, svg);
+        if (path.length > 1) {
+          var pts = path.map(center).map(function(p){ return p.x + ',' + p.y; }).join(' ');
+          el('polyline', { points: pts, fill: 'none', stroke: solved ? COLORS.accent : COLORS.neutral1, 'stroke-width': 10, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.9 }, svg);
+        }
+        [[start, COLORS.accent], [end, COLORS.warm]].forEach(function(pair) {
+          var p = center(pair[0]);
+          el('circle', { cx: p.x, cy: p.y, r: 14, fill: pair[1] }, svg);
+        });
+        var last = path[path.length - 1];
+        if (last.x === end.x && last.y === end.y && !solved) { solved = true; setTimeout(onSolved, 600); }
+      }
+      function cellFromEvent(e) {
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) / rect.height * 400;
+        return { x: Math.floor(x / cell), y: Math.floor(y / cell) };
+      }
+      function down(e) {
+        if (solved) return;
+        var c = cellFromEvent(e);
+        var last = path[path.length - 1];
+        if (c.x === last.x && c.y === last.y) { dragging = true; }
+        else {
+          var idx = path.findIndex(function(p){ return p.x === c.x && p.y === c.y; });
+          if (idx !== -1) { path = path.slice(0, idx + 1); dragging = true; render(); }
+        }
+      }
+      function move(e) {
+        if (!dragging || solved) return;
+        var c = cellFromEvent(e);
+        if (c.x < 0 || c.x >= cols || c.y < 0 || c.y >= rows) return;
+        var last = path[path.length - 1];
+        if (c.x === last.x && c.y === last.y) return;
+        if (canMove(last, c)) {
+          var already = path.findIndex(function(p){ return p.x === c.x && p.y === c.y; });
+          if (already !== -1) path = path.slice(0, already + 1);
+          else path.push(c);
+          render();
+        }
+      }
+      function up() { dragging = false; }
+      svg.addEventListener('pointerdown', down);
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointerdown', down);
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Assemble(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 480', width: '100%', height: '100%' }, host);
+      var cols = 2, rows = 2, size = 320, cell = size / cols, margin = 40;
+      /* Four clearly distinct colours, not near-identical pastels, so
+         each tile is easy to tell apart and to match to its slot. */
+      var palette = [COLORS.neutral1, COLORS.accent, COLORS.warm, COLORS.neutral2];
+      var pieces = [];
+      for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) pieces.push({ row: r, col: c, color: palette[r*cols+c], placed: false, w: cell-10, h: cell-10 });
+      var trayTileSize = 70, trayGap = 16;
+      var trayY = margin + size + 36;
+      var totalW = 4 * trayTileSize + 3 * trayGap;
+      var startX = (400 - totalW) / 2;
+      var scatter = pieces.map(function(_, i) { return { x: startX + i * (trayTileSize + trayGap), y: trayY }; });
+      pieces.forEach(function(p, i) { p.x = scatter[i].x; p.y = scatter[i].y; p.w = trayTileSize; p.h = trayTileSize; });
+      pieces = shuffle(pieces);
+      var dragIdx = null, solved = false;
+      function target(p) { return { x: margin + p.col * cell, y: margin + p.row * cell }; }
+      function render() {
+        svg.innerHTML = '';
+        var label = el('text', { x: 200, y: margin - 14, 'text-anchor': 'middle', 'font-size': 13, fill: COLORS.textSoft }, svg);
+        label.textContent = 'Each square shows its matching colour';
+        el('rect', { x: margin-2, y: margin-2, width: size+4, height: size+4, fill: 'none', stroke: COLORS.border, 'stroke-width': 3 }, svg);
+        /* Faint coloured outline in every empty slot, in the exact
+           colour of the tile that belongs there — the answer key,
+           visible before any piece is placed. */
+        pieces.forEach(function(p) {
+          if (p.placed) return;
+          var t = target(p);
+          var slotSize = cell - 10;
+          el('rect', { x: t.x, y: t.y, width: slotSize, height: slotSize, fill: 'none', stroke: p.color, 'stroke-width': 2, 'stroke-dasharray': '5 4', rx: 8, opacity: 0.6 }, svg);
+        });
+        pieces.forEach(function(p, i) {
+          var rect = el('rect', { x: p.x, y: p.y, width: p.w, height: p.h, fill: p.color,
+            stroke: p.placed ? COLORS.accent : COLORS.border, 'stroke-width': p.placed ? 3 : 2, rx: 8 }, svg);
+          rect.style.cursor = p.placed ? 'default' : 'grab';
+          rect.addEventListener('pointerdown', function(e) {
+            if (solved || p.placed) return;
+            dragIdx = i;
+            try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+          });
+        });
+        if (!solved && pieces.every(function(p){ return p.placed; })) { solved = true; setTimeout(onSolved, 600); }
+      }
+      function move(e) {
+        if (dragIdx === null || solved) return;
+        var rect = svg.getBoundingClientRect();
+        var scaleY = 480 / rect.height;
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) * scaleY;
+        var p = pieces[dragIdx];
+        p.x = x - p.w/2;
+        p.y = y - p.h/2;
+        render();
+      }
+      function up() {
+        if (dragIdx === null) return;
+        var p = pieces[dragIdx], t = target(p);
+        var cx = p.x + p.w/2, cy = p.y + p.h/2;
+        var slotSize = cell - 10;
+        var tcx = t.x + slotSize/2, tcy = t.y + slotSize/2;
+        if (Math.hypot(cx-tcx, cy-tcy) < cell*0.5) {
+          p.x = t.x; p.y = t.y; p.w = slotSize; p.h = slotSize; p.placed = true;
+        }
+        dragIdx = null;
+        render();
+      }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Balance(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 320', width: '100%', height: '100%' }, host);
+      var fulcrum = { x: 200, y: 220 };
+      var beamLen = 280;
+      var weights = shuffle([2, 1, 1, 2]).map(function(v) { return { value: v, used: false }; });
+      var placed = {};
+      var dragVal = null, dragOrigin = null, dragPos = null, solved = false;
+      function angle() {
+        var torque = 0;
+        for (var slot in placed) torque += parseInt(slot,10) * placed[slot];
+        return Math.max(-18, Math.min(18, torque * 3));
+      }
+      function beamPoint(t) {
+        var a = angle() * Math.PI / 180;
+        var hx = Math.cos(a), hy = Math.sin(a);
+        return { x: fulcrum.x + hx * t * (beamLen/4), y: fulcrum.y - 60 - hy * t * (beamLen/4) };
+      }
+      function render() {
+        svg.innerHTML = '';
+        var a = angle();
+        el('rect', { x: fulcrum.x-30, y: fulcrum.y, width: 60, height: 80, fill: stageBg, stroke: COLORS.border, 'stroke-width': 1 }, svg);
+        var p1 = beamPoint(-4), p2 = beamPoint(4);
+        el('line', { x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y, stroke: Math.abs(a) < 1 ? COLORS.accent : COLORS.neutral1, 'stroke-width': 10, 'stroke-linecap': 'round' }, svg);
+        el('polygon', { points: (fulcrum.x-14)+','+(fulcrum.y+2)+' '+(fulcrum.x+14)+','+(fulcrum.y+2)+' '+fulcrum.x+','+(fulcrum.y-20), fill: COLORS.textSoft }, svg);
+        [-2,-1,1,2].forEach(function(slot) {
+          var p = beamPoint(slot);
+          el('circle', { cx: p.x, cy: p.y, r: 5, fill: 'none', stroke: COLORS.border, 'stroke-width': 1 }, svg);
+        });
+        for (var slot in placed) {
+          var p = beamPoint(parseInt(slot,10));
+          var w = placed[slot];
+          var rad = 14 + w * 6;
+          var g = el('g', {}, svg);
+          el('circle', { cx: p.x, cy: p.y - rad, r: rad, fill: COLORS.accentSoft, stroke: COLORS.accent, 'stroke-width': 2 }, g);
+        }
+        var trayY = 270;
+        weights.forEach(function(wObj, i) {
+          if (wObj.used) return;
+          var x = 60 + i * 90;
+          var rad = 14 + wObj.value * 6;
+          var circ = el('circle', { cx: x, cy: trayY, r: rad, fill: COLORS.accentSoft, stroke: COLORS.accent, 'stroke-width': 2 }, svg);
+          circ.style.cursor = 'grab';
+          circ.addEventListener('pointerdown', function(idx, val) {
+            return function(e) {
+              if (solved) return;
+              dragVal = val; dragOrigin = idx;
+              dragPos = { x: x, y: trayY };
+              try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+            };
+          }(i, wObj.value));
+        });
+        if (Math.abs(a) < 1 && weights.every(function(wObj){ return wObj.used; }) && !solved) {
+          solved = true; setTimeout(onSolved, 600);
+        }
+      }
+      function nearestSlot(x, y) {
+        var best = null, bestDist = Infinity;
+        [-2,-1,1,2].forEach(function(slot) {
+          if (placed[slot] !== undefined) return;
+          var p = beamPoint(slot);
+          var d = Math.hypot(p.x - x, p.y - y);
+          if (d < bestDist) { bestDist = d; best = slot; }
+        });
+        return bestDist < 60 ? best : null;
+      }
+      function move(e) {
+        if (dragVal === null || solved) return;
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) / rect.height * 320;
+        dragPos = { x: x, y: y };
+      }
+      function up() {
+        if (dragVal === null) return;
+        var x = dragPos ? dragPos.x : 0, y = dragPos ? dragPos.y : 0;
+        var slot = nearestSlot(x, y);
+        if (slot !== null) { placed[slot] = dragVal; weights[dragOrigin].used = true; }
+        dragVal = null; dragOrigin = null; dragPos = null;
+        render();
+      }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Pour(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 300', width: '100%', height: '100%' }, host);
+      var COLS = ['#7F77DD','#1D9E75','#D4537E'];
+      var CAP = 3;
+      var vessels = COLS.map(function(c){ return new Array(CAP).fill(c); });
+      vessels.push([], []);
+      for (var s = 0; s < 30; s++) {
+        var from = Math.floor(Math.random()*vessels.length);
+        var to = Math.floor(Math.random()*vessels.length);
+        if (from === to) continue;
+        if (vessels[from].length === 0) continue;
+        if (vessels[to].length >= CAP) continue;
+        var top = vessels[from][vessels[from].length-1];
+        if (vessels[to].length > 0 && vessels[to][vessels[to].length-1] !== top) continue;
+        vessels[to].push(vessels[from].pop());
+      }
+      var selected = null, solved = false;
+      var positions = vessels.map(function(_, i) { return { x: 60 + i * 70, y: 220 }; });
+      function isSolved() {
+        return vessels.every(function(v) {
+          return v.length === 0 || (v.length === CAP && v.every(function(c){ return c === v[0]; }));
+        });
+      }
+      function render() {
+        svg.innerHTML = '';
+        vessels.forEach(function(v, i) {
+          var p = positions[i];
+          var w = 48, h = 120;
+          el('rect', { x: p.x - w/2, y: p.y - h, width: w, height: h, fill: 'none',
+            stroke: selected === i ? COLORS.accent : COLORS.border, 'stroke-width': selected === i ? 3 : 2, rx: 8 }, svg);
+          v.forEach(function(c, j) {
+            el('rect', { x: p.x - w/2 + 3, y: p.y - (j+1) * (h/CAP) + 3, width: w-6, height: h/CAP - 4, fill: c, rx: 4 }, svg);
+          });
+        });
+        if (!solved && isSolved()) { solved = true; setTimeout(onSolved, 600); }
+      }
+      function pointFromEvent(e) {
+        var rect = svg.getBoundingClientRect();
+        return { x: (e.clientX - rect.left) / rect.width * 400, y: (e.clientY - rect.top) / rect.height * 300 };
+      }
+      function vesselAt(x, y) {
+        for (var i = 0; i < positions.length; i++) {
+          var p = positions[i];
+          if (x > p.x - 30 && x < p.x + 30 && y > p.y - 125 && y < p.y + 5) return i;
+        }
+        return null;
+      }
+      function tryPour(from, to) {
+        if (from === to) return;
+        if (vessels[from].length === 0) return;
+        if (vessels[to].length >= CAP) return;
+        var top = vessels[from][vessels[from].length-1];
+        if (vessels[to].length > 0 && vessels[to][vessels[to].length-1] !== top) return;
+        while (vessels[from].length > 0 && vessels[from][vessels[from].length-1] === top && vessels[to].length < CAP) {
+          vessels[to].push(vessels[from].pop());
+        }
+      }
+      function click(e) {
+        if (solved) return;
+        var pos = pointFromEvent(e);
+        var idx = vesselAt(pos.x, pos.y);
+        if (idx === null) return;
+        if (selected === null) { selected = idx; }
+        else if (selected === idx) { selected = null; }
+        else { tryPour(selected, idx); selected = null; }
+        render();
+      }
+      svg.addEventListener('pointerdown', click);
+      render();
+      return function destroy() { svg.removeEventListener('pointerdown', click); };
+    }
+
+    function Align(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 340', width: '100%', height: '100%' }, host);
+      var N = 3;
+      var target = rand(0, 360);
+      var angles = [];
+      for (var i = 0; i < N; i++) angles.push((target + rand(60,300)) % 360);
+      var dragIdx = null, solved = false, checking = false;
+      var TOLERANCE = 12;
+      var centers = [];
+      for (var i = 0; i < N; i++) centers.push({ x: 90 + i * 110, y: 170 });
+      var guideCenter = { x: 200, y: 50 };
+      function diff(a, b) { var d = Math.abs(a - b) % 360; return Math.min(d, 360 - d); }
+      function checkSolved() {
+        var allAligned = angles.every(function(a) { return diff(a, target) < TOLERANCE; });
+        if (allAligned && !solved) {
+          solved = true;
+          checking = true;
+          render();
+          setTimeout(onSolved, 600);
+        }
+        return allAligned;
+      }
+      function render() {
+        svg.innerHTML = '';
+        /* Guide arrow: shows the exact angle every dial needs to match. */
+        var grad = target * Math.PI / 180;
+        var gx2 = guideCenter.x + Math.cos(grad) * 28, gy2 = guideCenter.y + Math.sin(grad) * 28;
+        el('circle', { cx: guideCenter.x, cy: guideCenter.y, r: 34, fill: 'none', stroke: COLORS.border, 'stroke-width': 2, 'stroke-dasharray': '4 4' }, svg);
+        el('line', { x1: guideCenter.x, y1: guideCenter.y, x2: gx2, y2: gy2, stroke: COLORS.textSoft, 'stroke-width': 5, 'stroke-linecap': 'round' }, svg);
+        var label = el('text', { x: guideCenter.x, y: guideCenter.y + 52, 'text-anchor': 'middle', 'font-size': 13, fill: COLORS.textSoft }, svg);
+        label.textContent = 'Match this';
+
+        var allAligned = angles.every(function(a) { return diff(a, target) < TOLERANCE; });
+        angles.forEach(function(a, i) {
+          var c = centers[i];
+          var aligned = diff(a, target) < TOLERANCE;
+          el('circle', { cx: c.x, cy: c.y, r: 38, fill: 'none', stroke: aligned ? COLORS.accent : COLORS.border, 'stroke-width': 3 }, svg);
+          var rad = a * Math.PI / 180;
+          var x2 = c.x + Math.cos(rad) * 32, y2 = c.y + Math.sin(rad) * 32;
+          var g = el('g', {}, svg);
+          el('line', { x1: c.x, y1: c.y, x2: x2, y2: y2, stroke: aligned ? COLORS.accent : COLORS.neutral1, 'stroke-width': 6, 'stroke-linecap': 'round' }, g);
+          if (!checking) {
+            var hit = el('circle', { cx: c.x, cy: c.y, r: 44, fill: 'transparent' }, g);
+            hit.style.cursor = 'grab';
+            hit.addEventListener('pointerdown', function(idx) {
+              return function(e) {
+                if (solved) return;
+                dragIdx = idx;
+                try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+              };
+            }(i));
+          }
+        });
+        if (checking) {
+          var note = el('text', { x: 200, y: 320, 'text-anchor': 'middle', 'font-size': 13, fill: COLORS.accent }, svg);
+          note.textContent = 'All matched';
+        }
+        if (!checking) checkSolved();
+      }
+      function move(e) {
+        if (dragIdx === null || solved) return;
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) / rect.height * 340;
+        var c = centers[dragIdx];
+        var a = Math.atan2(y - c.y, x - c.x) * 180 / Math.PI;
+        a = (a + 360) % 360;
+        if (diff(a, target) < TOLERANCE) a = target;
+        angles[dragIdx] = a;
+        render();
+      }
+      function up() { dragIdx = null; checkSolved(); }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Settle(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 400', width: '100%', height: '100%' }, host);
+      var shapeTypes = shuffle(['circle','square','triangle']);
+      var slots = shapeTypes.map(function(t, i) { return { type: t, x: 90 + i * 110, y: 90, filled: false }; });
+      var pieces = shuffle(shapeTypes).map(function(t, i) { return { type: t, x: 90 + i * 110, y: 320, placed: false }; });
+      var dragIdx = null, solved = false;
+      function drawShape(g, type, x, y, size, fillColor, strokeColor) {
+        if (type === 'circle') el('circle', { cx: x, cy: y, r: size, fill: fillColor, stroke: strokeColor, 'stroke-width': 3 }, g);
+        else if (type === 'square') el('rect', { x: x-size, y: y-size, width: size*2, height: size*2, fill: fillColor, stroke: strokeColor, 'stroke-width': 3, rx: 6 }, g);
+        else if (type === 'triangle') el('polygon', { points: x+','+(y-size)+' '+(x+size)+','+(y+size)+' '+(x-size)+','+(y+size), fill: fillColor, stroke: strokeColor, 'stroke-width': 3 }, g);
+      }
+      function render() {
+        svg.innerHTML = '';
+        slots.forEach(function(s) {
+          drawShape(svg, s.type, s.x, s.y, 32, 'none', s.filled ? COLORS.accent : COLORS.border);
+        });
+        pieces.forEach(function(p, i) {
+          if (p.placed) return;
+          var g = el('g', {}, svg);
+          drawShape(g, p.type, p.x, p.y, 30, COLORS.neutral1, COLORS.neutral1);
+          g.style.cursor = 'grab';
+          g.addEventListener('pointerdown', function(e) {
+            if (solved) return;
+            dragIdx = i;
+            try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+          });
+        });
+        if (!solved && pieces.every(function(p){ return p.placed; })) { solved = true; setTimeout(onSolved, 600); }
+      }
+      function move(e) {
+        if (dragIdx === null || solved) return;
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) / rect.height * 400;
+        pieces[dragIdx].x = x; pieces[dragIdx].y = y;
+        render();
+      }
+      function up() {
+        if (dragIdx === null) return;
+        var p = pieces[dragIdx];
+        var slot = slots.find(function(s) { return s.type === p.type && !s.filled && Math.hypot(s.x-p.x, s.y-p.y) < 50; });
+        if (slot) { slot.filled = true; p.placed = true; p.x = slot.x; p.y = slot.y; }
+        dragIdx = null;
+        render();
+      }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Smooth(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 300', width: '100%', height: '100%' }, host);
+      var grid = [];
+      var cellSize = 24, cols = 17, rows = 13;
+      for (var y = 0; y < rows; y++) { grid.push([]); for (var x = 0; x < cols; x++) grid[y].push(0); }
+      var dragging = false, solved = false;
+      el('rect', { x: 0, y: 0, width: 400, height: 300, fill: '#EAE4D3' }, svg);
+      var marks = el('g', {}, svg);
+      function coverage() {
+        var total = 0, done = 0;
+        for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) { total++; if (grid[y][x]) done++; }
+        return done / total;
+      }
+      function markAt(px, py) {
+        var gx = Math.floor(px / cellSize), gy = Math.floor(py / cellSize);
+        for (var dx = -1; dx <= 1; dx++) for (var dy = -1; dy <= 1; dy++) {
+          var x = gx+dx, y = gy+dy;
+          if (x >= 0 && x < cols && y >= 0 && y < rows) grid[y][x] = 1;
+        }
+      }
+      function render() {
+        marks.innerHTML = '';
+        for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
+          if (grid[y][x]) {
+            el('circle', { cx: x*cellSize+cellSize/2, cy: y*cellSize+cellSize/2, r: cellSize*0.48, fill: COLORS.accentSoft, opacity: 0.6 }, marks);
+          }
+        }
+        if (!solved && coverage() > 0.9) { solved = true; setTimeout(onSolved, 500); }
+      }
+      function pointFromEvent(e) {
+        var rect = svg.getBoundingClientRect();
+        return { x: (e.clientX - rect.left) / rect.width * 400, y: (e.clientY - rect.top) / rect.height * 300 };
+      }
+      function down(e) { if (solved) return; dragging = true; var p = pointFromEvent(e); markAt(p.x, p.y); render(); }
+      function move(e) { if (!dragging || solved) return; var p = pointFromEvent(e); markAt(p.x, p.y); render(); }
+      function up() { dragging = false; }
+      svg.addEventListener('pointerdown', down);
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointerdown', down);
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Unknot(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 430', width: '100%', height: '100%' }, host);
+      var N = 5;
+      var palette = [COLORS.neutral1, COLORS.accent, COLORS.warm, COLORS.neutral2, '#BA7517'];
+      var colorSeq = palette.slice(0, N);
+      /* Each ring is independently rotated; a ring is "home" when its
+         dots sit on the fixed target spokes shown by the guide markers.
+         Solved = every ring is home, so every colour sits on its one
+         correct spoke and therefore matches across both rings too.
+         Offsets are drawn from 1..N-1 (never N, which is equivalent to
+         0) so neither ring starts already home — otherwise the puzzle
+         could lock itself solved mid-drag the moment the other ring
+         passed through home, even though the player hadn't finished. */
+      var rings = [0, 1].map(function() { return 1 + Math.floor(Math.random() * (N - 1)); });
+      var radii = [70, 130];
+      var dragRing = null, dragStartAngle = 0, dragStartOffset = 0, solved = false, checking = false;
+      function isSolved() { return rings.every(function(r) { return r % N === 0; }); }
+      function center() { return { x: 200, y: 200 }; }
+      function checkSolved() {
+        if (isSolved() && !solved) {
+          solved = true;
+          checking = true;
+          render();
+          setTimeout(onSolved, 600);
+        }
+      }
+      function render() {
+        svg.innerHTML = '';
+        var c = center();
+        var nowSolved = isSolved();
+        var outerGuideR = radii[radii.length - 1] + 26;
+
+        /* Guide markers: a faint ring of the exact colour each spoke
+           wants, drawn once at the outer edge. This is the target —
+           it never moves. Match each dot to the guide of the same
+           colour, not just to the nearest dash. */
+        for (var s = 0; s < N; s++) {
+          var sa = (s / N) * Math.PI * 2 - Math.PI / 2;
+          var sx = c.x + Math.cos(sa) * outerGuideR;
+          var sy = c.y + Math.sin(sa) * outerGuideR;
+          el('line', { x1: c.x, y1: c.y, x2: c.x + Math.cos(sa) * (radii[0] - 22), y2: c.y + Math.sin(sa) * (radii[0] - 22), stroke: COLORS.border, 'stroke-width': 1.5, 'stroke-dasharray': '3 5' }, svg);
+          el('circle', { cx: sx, cy: sy, r: 10, fill: 'none', stroke: colorSeq[s], 'stroke-width': 3 }, svg);
+        }
+        var guideLabel = el('text', { x: c.x, y: c.y - outerGuideR - 22, 'text-anchor': 'middle', 'font-size': 13, fill: COLORS.textSoft }, svg);
+        guideLabel.textContent = 'Send each dot to its matching ring';
+
+        radii.forEach(function(rad, ringIdx) {
+          var offset = rings[ringIdx];
+          var g = el('g', {}, svg);
+          if (!checking) {
+            /* Invisible wide hit-band so a drag anywhere near the ring
+               (not just exactly on a dot) starts rotating it. */
+            var hit = el('circle', { cx: c.x, cy: c.y, r: rad, fill: 'none', stroke: 'transparent', 'stroke-width': 36 }, g);
+          }
+          el('circle', { cx: c.x, cy: c.y, r: rad, fill: 'none', stroke: nowSolved ? COLORS.accent : COLORS.border, 'stroke-width': nowSolved ? 3 : 2 }, g);
+          for (var i = 0; i < N; i++) {
+            var a = ((i + offset) / N) * Math.PI * 2 - Math.PI/2;
+            var x = c.x + Math.cos(a) * rad, y = c.y + Math.sin(a) * rad;
+            el('circle', { cx: x, cy: y, r: 16, fill: colorSeq[i], stroke: nowSolved ? COLORS.accent : 'none', 'stroke-width': 2 }, g);
+          }
+          if (!checking) {
+            g.style.cursor = 'grab';
+            g.addEventListener('pointerdown', function(idx) {
+              return function(e) {
+                if (solved) return;
+                dragRing = idx;
+                var rect = svg.getBoundingClientRect();
+                var x = (e.clientX - rect.left) / rect.width * 400 - c.x;
+                var y = (e.clientY - rect.top) / rect.height * 430 - c.y;
+                dragStartAngle = Math.atan2(y, x);
+                dragStartOffset = rings[idx];
+                try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+              };
+            }(ringIdx));
+          }
+        });
+        if (checking) {
+          var note = el('text', { x: 200, y: 410, 'text-anchor': 'middle', 'font-size': 13, fill: COLORS.accent }, svg);
+          note.textContent = 'Lined up';
+        }
+        if (!checking) checkSolved();
+      }
+      function move(e) {
+        if (dragRing === null || solved) return;
+        var c = center();
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400 - c.x;
+        var y = (e.clientY - rect.top) / rect.height * 430 - c.y;
+        var a = Math.atan2(y, x);
+        var deltaAngle = a - dragStartAngle;
+        var deltaSteps = Math.round(deltaAngle / (Math.PI * 2 / N));
+        rings[dragRing] = ((dragStartOffset + deltaSteps) % N + N) % N;
+        render();
+      }
+      function up() { dragRing = null; checkSolved(); }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    function Release(host, onSolved) {
+      var svg = el('svg', { viewBox: '0 0 400 400', width: '100%', height: '100%' }, host);
+      var N = 6;
+      var leaves = [];
+      for (var i = 0; i < N; i++) {
+        leaves.push({ x: rand(70,330), y: rand(70,330), rot: rand(0,360), color: pick([COLORS.accentSoft, '#FAC775', '#F0997B']), removed: false });
+      }
+      var dragIdx = null, solved = false;
+      function leafPath(size) {
+        return 'M0,'+(-size)+' C '+size*0.8+','+(-size*0.5)+' '+size*0.8+','+size*0.5+' 0,'+size+' C '+(-size*0.8)+','+size*0.5+' '+(-size*0.8)+','+(-size*0.5)+' 0,'+(-size);
+      }
+      function render() {
+        svg.innerHTML = '';
+        leaves.forEach(function(leaf, i) {
+          if (leaf.removed) return;
+          var g = el('g', { transform: 'translate('+leaf.x+','+leaf.y+') rotate('+leaf.rot+')' }, svg);
+          el('path', { d: leafPath(28), fill: leaf.color, opacity: 0.95 }, g);
+          g.style.cursor = 'grab';
+          g.addEventListener('pointerdown', function(idx) {
+            return function(e) {
+              if (solved) return;
+              dragIdx = idx;
+              try { e.target.setPointerCapture(e.pointerId); } catch(err) {}
+            };
+          }(i));
+        });
+        if (!solved && leaves.every(function(l){ return l.removed; })) { solved = true; setTimeout(onSolved, 500); }
+      }
+      function move(e) {
+        if (dragIdx === null || solved) return;
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * 400;
+        var y = (e.clientY - rect.top) / rect.height * 400;
+        leaves[dragIdx].x = x; leaves[dragIdx].y = y;
+        render();
+      }
+      function up() {
+        if (dragIdx === null) return;
+        var l = leaves[dragIdx];
+        if (l.x < 15 || l.x > 385 || l.y < 15 || l.y > 385) l.removed = true;
+        dragIdx = null;
+        render();
+      }
+      svg.addEventListener('pointermove', move);
+      svg.addEventListener('pointerup', up);
+      svg.addEventListener('pointercancel', up);
+      render();
+      return function destroy() {
+        svg.removeEventListener('pointermove', move);
+        svg.removeEventListener('pointerup', up);
+        svg.removeEventListener('pointercancel', up);
+      };
+    }
+
+    /* Icon-led labels rather than instructional sentences, so a
+       non-reading child can still recognise which puzzle is which
+       by shape alone. The longer hint text is kept as a title
+       attribute / aria-label for screen readers and parents, not
+       as the primary on-screen cue. */
+    var PUZZLES = {
+      untangle: { name: 'Untangle', hint: 'Move the dots so the lines do not cross', build: Untangle },
+      trace:    { name: 'Trace',    hint: 'Draw one path from the green dot to the pink dot', build: Trace },
+      assemble: { name: 'Assemble', hint: 'Put the four tiles back in their squares', build: Assemble },
+      balance:  { name: 'Balance',  hint: 'Put the balls on until the seesaw is flat', build: Balance },
+      pour:     { name: 'Pour',     hint: 'Tap a cup, then tap another, to pour', build: Pour },
+      align:    { name: 'Align',    hint: 'Turn each circle so the arrows match', build: Align },
+      settle:   { name: 'Settle',   hint: 'Move each shape into its matching outline', build: Settle },
+      smooth:   { name: 'Smooth',   hint: 'Drag your finger over all of the sand', build: Smooth },
+      unknot:   { name: 'Unknot',   hint: 'Turn the rings so the colours line up', build: Unknot },
+      release:  { name: 'Release',  hint: 'Drag each leaf off the edge', build: Release }
+    };
+
+    var order = Object.keys(PUZZLES);
+    var idx = 0;
+    var destroyCurrent = null;
+
+    var titleEl = root.querySelector('[data-calm-title]');
+    var hintEl = root.querySelector('[data-calm-hint]');
+    var stageEl = root.querySelector('[data-calm-stage]');
+    var dotsEl = root.querySelector('[data-calm-dots]');
+    var doneEl = root.querySelector('[data-calm-done]');
+    var prevBtn = root.querySelector('[data-calm-prev]');
+    var nextBtn = root.querySelector('[data-calm-next]');
+    var againBtn = root.querySelector('[data-calm-another]');
+
+    order.forEach(function(key, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'calm-puz-dot';
+      dot.setAttribute('aria-label', PUZZLES[key].name);
+      dot.addEventListener('click', function() { load(i); });
+      dotsEl.appendChild(dot);
+    });
+
+    function load(i) {
+      idx = ((i % order.length) + order.length) % order.length;
+      var key = order[idx];
+      var def = PUZZLES[key];
+      if (destroyCurrent) { destroyCurrent(); destroyCurrent = null; }
+      stageEl.innerHTML = '';
+      doneEl.style.display = 'none';
+      stageEl.style.display = 'block';
+      titleEl.textContent = def.name;
+      hintEl.textContent = def.hint;
+      Array.prototype.forEach.call(dotsEl.children, function(d, j) {
+        d.classList.toggle('is-active', j === idx);
+      });
+      destroyCurrent = def.build(stageEl, function() {
+        stageEl.style.display = 'none';
+        doneEl.style.display = 'flex';
+      });
+    }
+
+    prevBtn.addEventListener('click', function() { load(idx - 1); });
+    nextBtn.addEventListener('click', function() { load(idx + 1); });
+    againBtn.addEventListener('click', function() { load(Math.floor(Math.random() * order.length)); });
+
+    load(0);
+  }
+
+  initCalmPuzzles('calm-puz-standalone');
+})();
+</script>
+</body>
+</html>

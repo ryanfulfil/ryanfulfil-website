@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RyanFulfil — Your Fulfilment Team in China</title>
+  <meta name="description" content="RyanFulfil is your China-based fulfilment partner. We source, check, pack and ship direct to your customers worldwide. Operating since 2018.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* =====================
+       CUSTOM PROPERTIES
+    ===================== */
+    :root {
+      --navy:   #0D1F3C;
+      --accent: #2AAEF5;
+      --white:  #FFFFFF;
+      --surface:#F0F7FF;
+      --text:   #111827;
+      --muted:  #64748B;
+      --border: #E2E8F0;
+      --font-head: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* =====================
+       LAYOUT UTILITIES
+    ===================== */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section     { padding: 80px 0; }
+    .section-sm  { padding: 56px 0; }
+    .text-center { text-align: center; }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 1rem;
+      max-width: 600px;
+    }
+    .text-center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* =====================
+       BUTTONS
+    ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      border: none;
+      white-space: nowrap;
+      gap: 8px;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary  { background: var(--accent); color: var(--white); }
+    .btn-outline  { background: transparent; border: 2px solid rgba(255,255,255,0.75); color: var(--white); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); opacity: 1; }
+    .btn-ghost-navy { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
+    .btn-lg { padding: 14px 28px; font-size: 1rem; border-radius: 8px; }
+
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--navy);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--navy);
+      padding: 4px;
+    }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 96px 0 84px;
+      text-align: center;
+    }
+    .hero-headline {
+      font-family: var(--font-head);
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 36px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 28px;
+      margin-bottom: 44px;
+    }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.88);
+    }
+    .hero-badge svg { color: var(--accent); flex-shrink: 0; }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =====================
+       TRUST BAR
+    ===================== */
+    .trust-bar {
+      background: var(--accent);
+      padding: 13px 0;
+      overflow-x: auto;
+    }
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 24px;
+      flex-wrap: wrap;
+      min-width: max-content;
+      padding: 0 24px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+    }
+    .trust-item svg { opacity: 0.85; }
+    .trust-sep {
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.45);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* =====================
+       FOUNDER STRIP
+    ===================== */
+    .founder-strip {
+      background: var(--surface);
+      padding: 44px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .founder-inner {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .founder-photo {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.5rem;
+      border: 3px solid var(--accent);
+    }
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .founder-quote {
+      font-size: 0.9375rem;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .founder-attr {
+      margin-top: 10px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--navy);
+      font-style: normal;
+    }
+
+    /* =====================
+       DIFFERENCE GRID
+    ===================== */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .diff-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      transition: box-shadow 0.2s;
+    }
+    .diff-card:hover { box-shadow: 0 4px 16px rgba(13,31,60,0.08); }
+    .diff-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+    .diff-text strong {
+      display: block;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 3px;
+      font-size: 0.9rem;
+    }
+    .diff-text span { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+
+    /* =====================
+       SERVICES GRID
+    ===================== */
+    .services-section { background: var(--surface); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 16px rgba(13,31,60,0.07); }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--surface);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .service-card h3 {
+      font-family: var(--font-head);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    /* =====================
+       JOURNEY ACCORDION
+    ===================== */
+    .journey-list {
+      margin-top: 48px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .journey-item { border-bottom: 1px solid var(--border); }
+    .journey-item:last-child { border-bottom: none; }
+    .journey-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+      transition: background 0.15s;
+    }
+    .journey-trigger:hover  { background: var(--surface); }
+    .journey-trigger.active { background: var(--surface); }
+    .journey-label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--navy);
+    }
+    .journey-chevron {
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .journey-trigger.active .journey-chevron { transform: rotate(180deg); }
+    .journey-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease, padding 0.2s;
+      padding: 0 24px;
+    }
+    .journey-body.open {
+      max-height: 200px;
+      padding: 0 24px 20px;
+    }
+    .journey-body p { font-size: 0.9375rem; color: var(--muted); line-height: 1.65; }
+
+    /* =====================
+       SHIPPING TABLE
+    ===================== */
+    .shipping-section { background: var(--surface); }
+    .shipping-wrap { overflow-x: auto; margin-top: 40px; border-radius: 10px; border: 1px solid var(--border); }
+    .shipping-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 480px;
+    }
+    .shipping-table th {
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      padding: 13px 18px;
+      font-family: var(--font-head);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .shipping-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .shipping-table tr:last-child td { border-bottom: none; }
+    .shipping-table tr:nth-child(even) td { background: rgba(240,247,255,0.55); }
+    .shipping-note {
+      margin-top: 12px;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    /* =====================
+       PRICING
+    ===================== */
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 40px 48px;
+      margin-top: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pricing-body { color: var(--muted); font-size: 0.9375rem; line-height: 1.65; margin-bottom: 8px; }
+    .pricing-payment {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-checks { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .pricing-checks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9375rem;
+      color: var(--text);
+    }
+    .pricing-checks li svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+
+    /* =====================
+       BOTTOM CTA
+    ===================== */
+    .cta-section {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 88px 0;
+    }
+    .cta-section h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-section .cta-sub {
+      color: rgba(255,255,255,0.78);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 8px;
+    }
+    .cta-note {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 36px;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      background: #0a1828;
+      color: rgba(255,255,255,0.55);
+      padding: 56px 0 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-brand p { font-size: 0.8125rem; line-height: 1.65; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.65);
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-btn:hover { background: rgba(255,255,255,0.14); color: var(--white); }
+    .footer-col h4 {
+      font-family: var(--font-head);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 0.875rem; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .diff-grid    { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); padding: 16px 24px 24px; gap: 16px; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      nav { position: relative; }
+      .section { padding: 56px 0; }
+      .hero { padding: 64px 0 56px; }
+      .founder-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .pricing-card { padding: 28px 24px; }
+    }
+    @media (max-width: 600px) {
+      .diff-grid     { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-badges   { flex-direction: column; align-items: flex-start; padding: 0 4px; }
+      .hero-ctas     { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; max-width: 320px; }
+      .cta-btns      { flex-direction: column; align-items: center; }
+      .cta-btns .btn { width: 100%; max-width: 320px; }
+    }
+
+    /* ── NAV LOGO IMAGE ──────────────────────────────────────── */
+    .nav__logo-wrap {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav__logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.95);
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+    .nav__logo-fallback {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.2rem;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav__logo-fallback span { color: var(--accent); }
+    /* ── FOOTER LOGO IMAGE ────────────────────────────────────── */
+    .footer__logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.9);
+      border-radius: 5px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Ryan<span>Fulfil</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="games.html">Games</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-headline">Your Fulfilment Team in China.</h1>
+    <p class="hero-sub">We source it, check it, pack it, ship direct to your customers.</p>
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        Trusted by 400+ dropshippers · 5,000+ orders daily
+      </div>
+      <div class="hero-badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        Factory-direct pricing, cheaper than AliExpress
+      </div>
+      <div class="hero-badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        Branding from order one
+      </div>
+      <div class="hero-badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        Your winning products stay confidential
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="https://wa.me/8617846669989" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Get a Free Product Quote
+      </a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUST BAR ===================== -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Operating since 2018
+    </span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      Warehouse in Guangzhou, China
+    </span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+      Ships to 150+ countries
+    </span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Shopify Partner
+    </span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">Payments in USD, EUR, GBP, SGD</span>
+  </div>
+</div>
+
+<!-- ===================== FOUNDER STRIP ===================== -->
+<section class="founder-strip">
+  <div class="container">
+    <div class="founder-inner">
+      <div class="founder-photo">
+        <!--
+          REPLACE PLACEHOLDER: add Ryan's photo file to the same folder as this HTML file,
+          then update the src below. Example: src="assets/ryan.jpg"
+          The fallback "R" initial will show if the image fails to load.
+        -->
+        <img src="assets/ryan.jpg" alt="Ryan, Founder of RyanFulfil"
+             onerror="this.parentElement.innerHTML='R'">
+      </div>
+      <div>
+        <p class="founder-quote">
+          "I started in ecommerce in 2018, back when reliable China fulfilment basically didn't exist.
+          I built RyanFulfil to be the partner I needed. Your team on the ground, handling the backend
+          so you don't have to. You deal with us. Not with the factory, not with the shipper, not with
+          anyone else in between."
+        </p>
+        <p class="founder-attr">Ryan, Founder of RyanFulfil</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT MAKES US DIFFERENT ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">Built differently from the start.</h2>
+      <p class="section-sub">Six things you get working with RyanFulfil that most agents don't cover.</p>
+    </div>
+    <div class="diff-grid">
+
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+          </svg>
+        </div>
+        <div class="diff-text">
+          <strong>Your packaging, not theirs</strong>
+          <span>Plain or fully branded. No AliExpress logos, no Chinese writing.</span>
+        </div>
+      </div>
+
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+          </svg>
+        </div>
+        <div class="diff-text">
+          <strong>One shipment, not scattered parcels</strong>
+          <span>Multiple SKUs bundled and dispatched as a single, clean fulfilment.</span>
+        </div>
+      </div>
+
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </div>
+        <div class="diff-text">
+          <strong>Stock held and QC'd, not risking defects</strong>
+          <span>We inspect every batch at our Guangzhou warehouse before it ships.</span>
+        </div>
+      </div>
+
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div class="diff-text">
+          <strong>WhatsApp with real people, not chatbots</strong>
+          <span>Message us and a human responds. Same day, Mon-Sat (China time).</span>
+        </div>
+      </div>
+
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div class="diff-text">
+          <strong>Clean invoices, not missing paperwork</strong>
+          <span>Every order comes with a proper invoice and shipping proof.</span>
+        </div>
+      </div>
+
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="diff-text">
+          <strong>Auto-fulfilled and tracked, not manual</strong>
+          <span>Tracking numbers upload directly to your store. Nothing to export.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT WE DO ===================== -->
+<section class="section services-section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">What we do</h2>
+      <p class="section-sub">Everything between "I found a product" and "my customer got it."</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h3>Product Sourcing</h3>
+        <p>We source direct from factories, matched to your exact specs.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <h3>Order Fulfilment</h3>
+        <p>We inspect, pack, and ship direct to your customer, with tracking worldwide.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+            <line x1="7" y1="7" x2="7.01" y2="7"/>
+          </svg>
+        </div>
+        <h3>Custom Branding</h3>
+        <p>Brand every order with logo stickers, thank-you cards and custom packaging.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Inventory Warehousing</h3>
+        <p>Pre-stock at our Guangzhou warehouse for faster dispatch. No stockout surprises.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8"/><path d="M12 17v4"/>
+          </svg>
+        </div>
+        <h3>Store Integration</h3>
+        <p>Automatic order sync with Shopify, WooCommerce, eBay, Etsy and more. CSV and Excel orders work too.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.56 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.76a16 16 0 006.29 6.29l.86-.86a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <h3>After-Sales Support</h3>
+        <p>Lost packages reshipped. Damaged items replaced. Issues resolved on your behalf.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== JOURNEY ACCORDION ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">From testing to scaling, we have your backend covered.</h2>
+      <p class="section-sub">Wherever you are in your journey, we fit in.</p>
+    </div>
+    <div class="journey-list">
+
+      <div class="journey-item">
+        <button class="journey-trigger" onclick="toggleJourney(this)">
+          <span class="journey-label">Testing a product</span>
+          <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="journey-body">
+          <p>Check product cost, sample options, and shipping routes before you spend on ads.</p>
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <button class="journey-trigger" onclick="toggleJourney(this)">
+          <span class="journey-label">Scaling a winner</span>
+          <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="journey-body">
+          <p>Plan stock, backup suppliers, and faster shipping before order volume spikes.</p>
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <button class="journey-trigger" onclick="toggleJourney(this)">
+          <span class="journey-label">Building a brand</span>
+          <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="journey-body">
+          <p>From logo stickers to fully branded packaging, product tweaks, and even IP protection. Branding solutions that grow with your volume.</p>
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <button class="journey-trigger" onclick="toggleJourney(this)">
+          <span class="journey-label">Switching from another agent</span>
+          <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="journey-body">
+          <p>Whatever made you start looking: slow shipping, poor quality, or lack of after-sales support. We'll hear you out and fix it. We switch you over with no gap in fulfilment.</p>
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <button class="journey-trigger" onclick="toggleJourney(this)">
+          <span class="journey-label">Managing multiple SKUs</span>
+          <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="journey-body">
+          <p>Bundling, variant tracking, stock visibility, and order exceptions. All handled in one workflow that holds up as your catalogue grows.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHIPPING ===================== -->
+<section class="section shipping-section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">We ship worldwide.</h2>
+      <p class="section-sub">Core markets below. We ship to 150+ countries globally.</p>
+    </div>
+    <div class="shipping-wrap">
+      <table class="shipping-table">
+        <thead>
+          <tr>
+            <th>Destination</th>
+            <th>Express shipping</th>
+            <th>Standard shipping</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>United States</td><td>4-7 working days</td><td>6-10 working days</td></tr>
+          <tr><td>United Kingdom</td><td>4-7 working days</td><td>6-10 working days</td></tr>
+          <tr><td>Europe (FR / DE / NL / BE / ES / IT)</td><td>4-7 working days</td><td>6-12 working days</td></tr>
+          <tr><td>Australia</td><td>4-7 working days</td><td>9-10 working days</td></tr>
+          <tr><td>Canada</td><td>4-7 working days</td><td>7-9 working days</td></tr>
+          <tr><td>Israel / UAE</td><td>6-10 working days</td><td>N/A</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="shipping-note">Processing time: 1-3 working days at our Guangzhou warehouse. Applies separately once product is stocked.</p>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">We quote all-in. No hidden fees.</h2>
+      <p class="section-sub">Every quote includes cost of goods, shipping, and handling. No surprise charges. We source factory-direct.</p>
+    </div>
+    <div class="pricing-card">
+      <p class="pricing-payment">Payment via Wise or bank transfer in USD, EUR, GBP, or SGD.</p>
+      <ul class="pricing-checks">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          No minimum order quantity for standard dropshipping.
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Custom packaging available from low MOQs. Ask us for details.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOTTOM CTA ===================== -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Outgrown AliExpress?<br>We'll handle your China backend.</h2>
+    <p class="cta-sub">Send us your product link and target country on WhatsApp. We'll check sourcing, shipping route, and landed cost. Usually within 24 hours.</p>
+    <p class="cta-note">No commitment needed.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/8617846669989" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message us on WhatsApp
+      </a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="footer-logo">Ryan<span>Fulfil</span></div>
+        <p>Your fulfilment team in China. Sourcing, packing, and shipping direct to your customers worldwide since 2018.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/ryanfulfil" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@ryan_dropship" class="social-btn" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.81a4.85 4.85 0 01-1.07-.12z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Get a Quote</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/8617846669989" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.facebook.com/ryanfulfil" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.tiktok.com/@ryan_dropship" target="_blank" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 RyanFulfil. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav')) navLinks.classList.remove('open');
+  });
+
+  // Journey accordion — one open at a time
+  function toggleJourney(trigger) {
+    const body = trigger.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.journey-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.journey-trigger').forEach(t => t.classList.remove('active'));
+    if (!isOpen) {
+      body.classList.add('open');
+      trigger.classList.add('active');
+    }
+  }
+</script>
+
+</body>
+</html>

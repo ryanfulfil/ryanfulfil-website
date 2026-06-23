@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe Game</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f6f6;
+      color: #111111;
+    }
+
+    .ttt-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+      background: #f6f6f6;
+    }
+
+    .ttt-card {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 24px;
+      background: #ffffff;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .ttt-title {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1.2;
+      color: #111111;
+    }
+
+    .ttt-subtitle {
+      margin: 0 0 22px;
+      color: #111111;
+      opacity: 0.75;
+    }
+
+    .ttt-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .ttt-mode,
+    .ttt-reset {
+      cursor: pointer;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 700;
+      background: #111111;
+      color: #ffffff;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .ttt-mode:hover,
+    .ttt-reset:hover {
+      transform: translateY(-1px);
+    }
+
+    .ttt-mode {
+      flex: 1;
+      opacity: 0.45;
+    }
+
+    .ttt-mode.active {
+      opacity: 1;
+    }
+
+    .ttt-status {
+      min-height: 28px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .ttt-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .ttt-cell {
+      aspect-ratio: 1 / 1;
+      border: 2px solid #dddddd;
+      border-radius: 18px;
+      background: #ffffff;
+      color: #111111;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .ttt-cell:hover {
+      transform: scale(1.03);
+      background: rgba(0, 0, 0, 0.03);
+      border-color: #bbbbbb;
+    }
+
+    .ttt-cell:disabled {
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ttt-cell.winner {
+      background: #c9ffd8;
+      border-color: #34a853;
+    }
+
+    .ttt-reset {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 480px) {
+      .ttt-card { padding: 22px; }
+      .ttt-title { font-size: 26px; }
+      .ttt-cell {
+        font-size: 40px;
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="ttt-html-game" class="ttt-section">
+    <div class="ttt-card">
+      <h1 class="ttt-title">Tic Tac Toe</h1>
+      <p class="ttt-subtitle">Play with a friend or challenge the computer.</p>
+
+      <div class="ttt-controls">
+        <button type="button" class="ttt-mode active" data-mode="2p">2 Players</button>
+        <button type="button" class="ttt-mode" data-mode="cpu">Vs Computer</button>
+      </div>
+
+      <div class="ttt-status" aria-live="polite">Player X's turn</div>
+
+      <div class="ttt-board" role="grid" aria-label="Tic Tac Toe board">
+        <button type="button" class="ttt-cell" data-index="0" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="1" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="2" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="3" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="4" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="5" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="6" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="7" aria-label="Empty cell"></button>
+        <button type="button" class="ttt-cell" data-index="8" aria-label="Empty cell"></button>
+      </div>
+
+      <button type="button" class="ttt-reset">Restart Game</button>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const game = document.getElementById('ttt-html-game');
+      if (!game) return;
+
+      const cells = game.querySelectorAll('.ttt-cell');
+      const status = game.querySelector('.ttt-status');
+      const resetButton = game.querySelector('.ttt-reset');
+      const modeButtons = game.querySelectorAll('.ttt-mode');
+
+      let board = ['', '', '', '', '', '', '', '', ''];
+      let currentPlayer = 'X';
+      let gameActive = true;
+      let mode = '2p';
+
+      const winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+
+      function updateStatus(message) {
+        status.textContent = message;
+      }
+
+      function markCell(index, player) {
+        board[index] = player;
+        cells[index].textContent = player;
+        cells[index].disabled = true;
+        cells[index].setAttribute('aria-label', 'Cell marked ' + player);
+      }
+
+      function checkWinner() {
+        for (const combo of winningCombos) {
+          const a = combo[0];
+          const b = combo[1];
+          const c = combo[2];
+
+          if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return combo;
+          }
+        }
+
+        return null;
+      }
+
+      function checkGameState() {
+        const winnerCombo = checkWinner();
+
+        if (winnerCombo) {
+          gameActive = false;
+
+          winnerCombo.forEach(function (index) {
+            cells[index].classList.add('winner');
+          });
+
+          updateStatus('Player ' + currentPlayer + ' wins!');
+          return true;
+        }
+
+        if (!board.includes('')) {
+          gameActive = false;
+          updateStatus("It's a draw!");
+          return true;
+        }
+
+        return false;
+      }
+
+      function findBestMove(player) {
+        for (const combo of winningCombos) {
+          const values = combo.map(function (index) {
+            return board[index];
+          });
+
+          const playerCount = values.filter(function (value) {
+            return value === player;
+          }).length;
+
+          const emptyCount = values.filter(function (value) {
+            return value === '';
+          }).length;
+
+          if (playerCount === 2 && emptyCount === 1) {
+            return combo[values.indexOf('')];
+          }
+        }
+
+        return null;
+      }
+
+      function computerMove() {
+        if (!gameActive) return;
+
+        const emptyCells = board
+          .map(function (value, index) {
+            return value === '' ? index : null;
+          })
+          .filter(function (value) {
+            return value !== null;
+          });
+
+        if (!emptyCells.length) return;
+
+        let chosenIndex = findBestMove('O');
+
+        if (chosenIndex === null) {
+          chosenIndex = findBestMove('X');
+        }
+
+        if (chosenIndex === null) {
+          if (board[4] === '') {
+            chosenIndex = 4;
+          } else {
+            chosenIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+          }
+        }
+
+        markCell(chosenIndex, 'O');
+
+        if (checkGameState()) return;
+
+        currentPlayer = 'X';
+        updateStatus("Player X's turn");
+      }
+
+      function handleCellClick(event) {
+        const index = Number(event.currentTarget.dataset.index);
+
+        if (!gameActive || board[index] !== '') return;
+
+        markCell(index, currentPlayer);
+
+        if (checkGameState()) return;
+
+        if (mode === 'cpu') {
+          currentPlayer = 'O';
+          updateStatus("Computer's turn");
+          setTimeout(computerMove, 350);
+        } else {
+          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+          updateStatus("Player " + currentPlayer + "'s turn");
+        }
+      }
+
+      function resetGame() {
+        board = ['', '', '', '', '', '', '', '', ''];
+        currentPlayer = 'X';
+        gameActive = true;
+
+        cells.forEach(function (cell) {
+          cell.textContent = '';
+          cell.disabled = false;
+          cell.classList.remove('winner');
+          cell.setAttribute('aria-label', 'Empty cell');
+        });
+
+        updateStatus("Player X's turn");
+      }
+
+      cells.forEach(function (cell) {
+        cell.addEventListener('click', handleCellClick);
+      });
+
+      resetButton.addEventListener('click', resetGame);
+
+      modeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          modeButtons.forEach(function (btn) {
+            btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+          mode = button.dataset.mode;
+          resetGame();
+        });
+      });
+
+      resetGame();
+    })();
+  </script>
+</body>
+</html>

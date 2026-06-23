@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — RyanFulfil</title>
+  <meta name="description" content="See every step of how RyanFulfil works — from product link to customer delivery. No black boxes, no surprises.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* =====================
+       CUSTOM PROPERTIES
+    ===================== */
+    :root {
+      --navy:   #0D1F3C;
+      --accent: #2AAEF5;
+      --white:  #FFFFFF;
+      --surface:#F0F7FF;
+      --text:   #111827;
+      --muted:  #64748B;
+      --border: #E2E8F0;
+      --font-head: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* =====================
+       LAYOUT UTILITIES
+    ===================== */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section    { padding: 80px 0; }
+    .section-alt { background: var(--surface); }
+    .text-center { text-align: center; }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 1rem;
+      max-width: 600px;
+    }
+    .text-center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* =====================
+       BUTTONS
+    ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: var(--white); }
+    .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.75); color: var(--white); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); opacity: 1; }
+    .btn-lg { padding: 14px 28px; font-size: 1rem; border-radius: 8px; }
+
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--navy);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--navy);
+      padding: 4px;
+    }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 88px 0 72px;
+      text-align: center;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hero-headline {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-sub {
+      font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+      color: rgba(255,255,255,0.78);
+      max-width: 620px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =====================
+       8-STEP PROCESS
+    ===================== */
+    .steps-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .step {
+      display: flex;
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-number {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 56px;
+      text-align: right;
+      padding-top: 2px;
+    }
+    .step-content h3 {
+      font-family: var(--font-head);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .step-content p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .step-divider {
+      width: 1px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* =====================
+       PLATFORM TABLE
+    ===================== */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 560px;
+    }
+    .data-table th {
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      padding: 13px 18px;
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: rgba(240,247,255,0.55); }
+    .data-table td:first-child { font-weight: 600; color: var(--navy); white-space: nowrap; }
+
+    /* =====================
+       ISSUES TABLE
+    ===================== */
+    .issue-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* =====================
+       BOTTOM CTA
+    ===================== */
+    .cta-section {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 88px 0;
+    }
+    .cta-section h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      background: #0a1828;
+      color: rgba(255,255,255,0.55);
+      padding: 56px 0 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-brand p { font-size: 0.8125rem; line-height: 1.65; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.65);
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-btn:hover { background: rgba(255,255,255,0.14); color: var(--white); }
+    .footer-col h4 {
+      font-family: var(--font-head);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 0.875rem; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px 24px;
+        gap: 16px;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      nav { position: relative; }
+      .section { padding: 56px 0; }
+      .hero { padding: 64px 0 52px; }
+      .step { gap: 18px; padding: 24px 0; }
+      .step-number { font-size: 1.5rem; width: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; max-width: 320px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-btns .btn { width: 100%; max-width: 320px; }
+    }
+
+    /* ── NAV LOGO IMAGE ──────────────────────────────────────── */
+    .nav__logo-wrap {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav__logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.95);
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+    .nav__logo-fallback {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.2rem;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav__logo-fallback span { color: var(--accent); }
+    /* ── FOOTER LOGO IMAGE ────────────────────────────────────── */
+    .footer__logo-img {
+      height: 32px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.9);
+      border-radius: 5px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Ryan<span>Fulfil</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="how-it-works.html" class="active">How It Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="games.html">Games</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-label">How It Works</span>
+    <h1 class="hero-headline">From product link to customer delivery. Here's every step.</h1>
+    <p class="hero-sub">
+      Most fulfilment agents are a black box. You send money, something ships, you hope.
+      RyanFulfil is different. You can see every step, measure us at any point, and we keep you updated throughout.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/8617846669989" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send us a product link
+      </a>
+      <a href="services.html" class="btn btn-outline btn-lg">See our services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8-STEP PROCESS ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">The 8-step process</h2>
+      <p class="section-sub">From the moment you send a product link to the moment your customer gets their order.</p>
+    </div>
+
+    <div class="steps-list">
+
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h3>Share your product</h3>
+          <p>Send us the link — AliExpress, Alibaba, 1688, or just a photo. Tell us which country you're selling to, how many unfulfilled orders you currently have, and any specific requirements: colour, size, bundle, custom packaging. We'll match exact specifications and source from factories we already work with. If we can't find the exact product, we'll tell you honestly and suggest the closest alternative.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h3>We check sourcing and shipping</h3>
+          <p>We review supplier availability, product cost, variant availability, MOQ, domestic lead time, and shipping routes. If suppliers are closed or stock is limited, we set a clear next-update expectation so you're never left waiting without a timeline.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h3>Review your quote</h3>
+          <p>You receive an all-in price per unit: product cost plus shipping in one number. No hidden fees. No separate freight invoice. The quote includes unit price from factory, shipping cost, carrier, estimated delivery time, available variants, and MOQ note (standard dropshipping has no MOQ). If you want to compare standard vs express shipping, just ask. We'll quote both.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <h3>Test with a sample or first order</h3>
+          <p>For new products, we recommend a sample first. This lets you verify actual product quality, packaging, size, colour, and delivery experience before scaling ad spend. Samples ship direct to you or to any address you nominate.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <h3>Connect your store</h3>
+          <p>We're a Shopify Partner and connect via collaborator access. No credentials shared. Once connected, new orders appear in our system automatically. No manual exports. For WooCommerce and other platforms, we work with CSV or Excel order exports while the integration is set up.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">06</div>
+        <div class="step-content">
+          <h3>We pick, pack, and QC</h3>
+          <p>When an order comes in, we purchase from the factory (or pull from pre-stocked inventory). Goods arrive at our Guangzhou warehouse in 2-3 working days. Our team inspects and checks quantities, then packs in plain packaging by default or with your branding inserts. Dispatch follows the same day or next working day.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">07</div>
+        <div class="step-content">
+          <h3>Tracking uploads automatically</h3>
+          <p>Once dispatched, the tracking number uploads directly to your Shopify store. Your customer receives a shipping notification. You don't need to do anything. For other platforms, we send tracking in your preferred format.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">08</div>
+        <div class="step-content">
+          <h3>Scale with control</h3>
+          <p>When orders become consistent, we talk through inventory storage, faster shipping routes, custom packaging options, backup supplier arrangements, and regular stock and performance reporting. The team handling your first order is the same team handling your first thousand.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLATFORM / WORKFLOW ===================== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">Your platform, your workflow</h2>
+      <p class="section-sub">We adapt to how you operate. No forced migrations, no new tools to learn.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Workflow</th>
+            <th>Best for</th>
+            <th>How it works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Shopify (collaborator access)</td>
+            <td>Shopify stores ready for fulfilment</td>
+            <td>We request collaborator access, connect the workflow, and upload tracking automatically.</td>
+          </tr>
+          <tr>
+            <td>WooCommerce</td>
+            <td>WooCommerce sellers</td>
+            <td>We review your setup and agree the best workflow for order import and tracking upload.</td>
+          </tr>
+          <tr>
+            <td>CSV / Excel order upload</td>
+            <td>Beginners or manual testing</td>
+            <td>Export orders in CSV or Excel while we prepare the longer-term workflow.</td>
+          </tr>
+          <tr>
+            <td>Manual quote / sample</td>
+            <td>First product test</td>
+            <td>Start with a product link and destination country. No store connection needed yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT IF SOMETHING GOES WRONG ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">What if something goes wrong?</h2>
+      <p class="section-sub">Issues happen in fulfilment. Here's exactly how we handle the common ones.</p>
+    </div>
+    <div class="table-wrap" style="margin-top: 40px;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Issue</th>
+            <th>What we do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Package lost by carrier</td>
+            <td>We reship at no extra product cost.</td>
+          </tr>
+          <tr>
+            <td>Item delivered damaged</td>
+            <td>Customer sends a photo. We resend the correct item.</td>
+          </tr>
+          <tr>
+            <td>Wrong item shipped</td>
+            <td>We confirm with the factory and resend the correct item.</td>
+          </tr>
+          <tr>
+            <td>Address undeliverable</td>
+            <td>We notify you immediately and request an updated address.</td>
+          </tr>
+          <tr>
+            <td>Customer claims non-delivery (tracking shows delivered)</td>
+            <td>We apply for proof of delivery from the carrier on your behalf.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top: 16px; font-size: 0.8125rem; color: var(--muted);">
+      All issues are handled directly by our team. You forward the problem, we resolve it. You do not need to deal with the factory or carrier yourself.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== BOTTOM CTA ===================== -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Start with a single product test.<br>No commitment. No setup fee.</h2>
+    <p class="cta-sub">Send us one product link and get a quote. See how we work before you scale.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/8617846669989" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send us a product link
+      </a>
+      <a href="contact.html" class="btn btn-outline btn-lg">Get a full quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Ryan<span>Fulfil</span></div>
+        <p>Your fulfilment team in China. Sourcing, packing, and shipping direct to your customers worldwide since 2018.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/ryanfulfil" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@ryan_dropship" class="social-btn" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.81a4.85 4.85 0 01-1.07-.12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Get a Quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/8617846669989" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.facebook.com/ryanfulfil" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.tiktok.com/@ryan_dropship" target="_blank" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 RyanFulfil. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav')) navLinks.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
