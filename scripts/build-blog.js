@@ -53,22 +53,22 @@ const SHARED_CSS = `
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
   /* NAV */
-  .nav { position: sticky; top: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); }
   .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .nav__logo-wrap { display: flex; align-items: center; text-decoration: none; }
-  .nav__logo-img { height: 36px; width: auto; display: block; background: rgba(255,255,255,0.95); border-radius: 6px; padding: 4px 8px; }
-  .nav__logo-fallback { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--white); letter-spacing: -0.02em; }
+  .nav__logo-img { height: 52px; width: auto; display: block; }
+  .nav__logo-fallback { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--navy); letter-spacing: -0.02em; }
   .nav__logo-fallback span { color: var(--accent); }
   .nav__links { display: flex; align-items: center; gap: 32px; list-style: none; }
-  .nav__links a { color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-  .nav__links a:hover, .nav__links a.active { color: var(--white); }
+  .nav__links a { color: var(--text); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+  .nav__links a:hover, .nav__links a.active { color: var(--accent); }
   .nav__cta { background: var(--accent); color: var(--white) !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; transition: opacity 0.2s !important; }
   .nav__cta:hover { opacity: 0.9; }
   .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-  .nav__hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+  .nav__hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
   @media (max-width: 768px) {
     .nav__hamburger { display: flex; }
-    .nav__links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); flex-direction: column; align-items: flex-start; padding: 16px 24px 24px; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .nav__links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--white); flex-direction: column; align-items: flex-start; padding: 16px 24px 24px; gap: 16px; border-bottom: 1px solid var(--border); }
     .nav__links.open { display: flex; }
   }
 
@@ -76,7 +76,7 @@ const SHARED_CSS = `
   .footer { background: #0A1829; padding: 48px 0 32px; color: rgba(255,255,255,0.6); }
   .footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
   @media (max-width: 768px) { .footer__grid { grid-template-columns: 1fr; gap: 28px; } }
-  .footer__logo-img { height: 32px; width: auto; display: block; background: rgba(255,255,255,0.9); border-radius: 5px; padding: 3px 8px; margin-bottom: 10px; }
+  .footer__logo-img { height: 40px; width: auto; display: block; margin-bottom: 10px; }
   .footer__tagline { font-size: 0.85rem; line-height: 1.6; max-width: 260px; }
   .footer__col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
   .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
@@ -89,7 +89,7 @@ const NAV_HTML = (activePage = '') => `
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav__inner">
       <a href="../index.html" class="nav__logo-wrap">
-        <img src="../assets/logo.png" alt="RyanFulfil" class="nav__logo-img"
+        <img src="../assets/logo.jpg" alt="RyanFulfil" class="nav__logo-img"
              onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
         <span class="nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
       </a>
@@ -113,7 +113,7 @@ const FOOTER_HTML = `
     <div class="container">
       <div class="footer__grid">
         <div>
-          <img src="../assets/logo.png" alt="RyanFulfil" class="footer__logo-img"
+          <img src="../assets/logo.jpg" alt="RyanFulfil" class="footer__logo-img"
                onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
           <span style="display:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;">Ryan<span style="color:#2AAEF5">Fulfil</span></span>
           <p class="footer__tagline">Reliable Sourcing. Responsive Service. Reach Worldwide.</p>
