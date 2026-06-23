@@ -6,7 +6,7 @@ name: Build Blog
 # 3. On any push to main (keeps blog in sync after code changes)
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
   push:
     branches:
@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Generate blog pages from Sanity
         env:
