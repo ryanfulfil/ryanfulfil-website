@@ -1,0 +1,47 @@
+{% comment %}
+  Fit-Tech Power Lift Challenge v4
+{% endcomment %}
+
+{{ 'fit-tech-game.css' | asset_url | stylesheet_tag }}
+
+<div id="root" class="ft-game-section"></div>
+
+<style>
+.ft-game-section { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; width: 100%; min-height: 100vh; }
+</style>
+
+<script>
+window.FT_IMAGES = {
+  hero: "{{ 'hero-lifter-bg.png' | asset_url }}",
+  deadlift: "{{ 'lift-deadlift.jpg' | asset_url }}",
+  squat: "{{ 'lift-squat.jpg' | asset_url }}",
+  bench: "{{ 'lift-bench.jpg' | asset_url }}",
+  hooks: "{{ 'gear-power-hooks.png' | asset_url }}",
+  straps: "{{ 'gear-wrist-straps.png' | asset_url }}",
+  bundle: "{{ 'gear-power-bundle.png' | asset_url }}"
+};
+</script>
+
+<script type="module" src="{{ 'fit-tech-game.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "Fit Tech Power Lift",
+  "tag": "section",
+  "class": "ft-game-section-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0A0A0B"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fit Tech Power Lift",
+      "category": "Interactive"
+    }
+  ]
+}
+{% endschema %}

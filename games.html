@@ -96,10 +96,13 @@
     .games-section { padding: 72px 0 88px; }
     .games-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      max-width: 800px;
+      max-width: 1100px;
       margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .games-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
     }
     @media (max-width: 640px) {
       .games-grid { grid-template-columns: 1fr; }
@@ -204,7 +207,7 @@
     <div class="container">
       <div class="hero__label">Games</div>
       <h1>Take a quick break.</h1>
-      <p class="hero__sub">While you wait for your quote, or just because. Two simple games, no login needed.</p>
+      <p class="hero__sub">While you wait for your quote, or just because. Three games, no login needed.</p>
     </div>
   </header>
 
@@ -212,6 +215,22 @@
   <section class="games-section" aria-label="Available games">
     <div class="container">
       <div class="games-grid">
+
+        <!-- Power Lift Challenge -->
+        <div class="game-card">
+          <div class="game-card__preview" style="background:#0A0A0B;">
+            <div class="game-card__icon" style="background:rgba(42,174,245,0.15);font-size:2.5rem;">🏋️</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Action</span>
+            <h2>Power Lift Challenge</h2>
+            <p>Pick your lift — deadlift, squat, or bench. Tap and mash to lift as much as you can. Hit score milestones to unlock rewards.</p>
+            <a href="fit-tech-game.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
 
         <!-- Calm Puzzles -->
         <div class="game-card">

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power Lift Challenge | RyanFulfil Games</title>
+  <meta name="description" content="Play the Power Lift Challenge — choose your lift, mash to score, unlock rewards. A quick break while you wait for your quote." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/fit-tech-game/fit-tech-game.css" />
+  <style>
+    :root {
+      --navy:    #0D1F3C;
+      --accent:  #2AAEF5;
+      --white:   #FFFFFF;
+      --border:  #E2E8F0;
+      --text:    #111827;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav__inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav__logo-wrap { display: flex; align-items: center; text-decoration: none; }
+    .nav__logo-img { height: 46px; width: auto; display: block; border-radius: 4px; }
+    .nav__logo-fallback {
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav__logo-fallback span { color: var(--accent); }
+    .nav__links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav__links a { color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav__links a:hover, .nav__links a.active { color: var(--white); }
+    .nav__cta {
+      background: var(--accent); color: var(--white) !important;
+      padding: 8px 18px; border-radius: 6px; font-weight: 600 !important;
+      transition: opacity 0.2s !important; white-space: nowrap;
+    }
+    .nav__cta:hover { opacity: 0.88 !important; }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav__hamburger span { width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .nav__hamburger { display: flex; }
+      .nav__links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        background: var(--navy); flex-direction: column; align-items: flex-start;
+        padding: 16px 24px 24px; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+        z-index: 199;
+      }
+      .nav__links.open { display: flex; }
+    }
+
+    /* ── GAME WRAPPER ── */
+    #root { width: 100%; }
+    .ft-game-section { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; width: 100%; min-height: 100vh; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo-wrap">
+        <img src="assets/logo.jpg" alt="RyanFulfil" class="nav__logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span class="nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
+      </a>
+      <button class="nav__hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks" role="list">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="games.html" class="active">Games</a></li>
+        <li><a href="contact.html" class="nav__cta">Get a Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- GAME -->
+  <div id="root" class="ft-game-section"></div>
+
+  <!-- IMAGE PATHS -->
+  <script>
+    window.FT_IMAGES = {
+      hero:      "assets/fit-tech-game/hero-lifter-bg.png",
+      deadlift:  "assets/fit-tech-game/lift-deadlift.jpg",
+      squat:     "assets/fit-tech-game/lift-squat.jpg",
+      bench:     "assets/fit-tech-game/lift-bench.jpg",
+      hooks:     "assets/fit-tech-game/gear-power-hooks.png",
+      straps:    "assets/fit-tech-game/gear-wrist-straps.png",
+      bundle:    "assets/fit-tech-game/gear-power-bundle.png"
+    };
+  </script>
+
+  <!-- GAME SCRIPT -->
+  <script type="module" src="assets/fit-tech-game/fit-tech-game.js"></script>
+
+  <!-- NAV TOGGLE -->
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.nav')) links.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>
