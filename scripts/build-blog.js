@@ -85,11 +85,12 @@ const SHARED_CSS = `
   .footer__bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; }
 `;
 
-const NAV_HTML = (activePage = '') => `
+// base: '../' for blog/index.html, '../../' for blog/[slug]/index.html
+const NAV_HTML = (activePage = '', base = '../') => `
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav__inner">
-      <a href="../index.html" class="nav__logo-wrap">
-        <img src="../assets/logo.jpg" alt="RyanFulfil" class="nav__logo-img"
+      <a href="${base}index.html" class="nav__logo-wrap">
+        <img src="${base}assets/logo.jpg" alt="RyanFulfil" class="nav__logo-img"
              onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
         <span class="nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
       </a>
@@ -97,23 +98,23 @@ const NAV_HTML = (activePage = '') => `
         <span></span><span></span><span></span>
       </button>
       <ul class="nav__links" id="navLinks" role="list">
-        <li><a href="../how-it-works.html">How It Works</a></li>
-        <li><a href="../services.html">Services</a></li>
-        <li><a href="../why-ryanfulfil.html">Why RyanFulfil</a></li>
-        <li><a href="../faq.html">FAQ</a></li>
-        <li><a href="index.html"${activePage === 'blog' ? ' class="active"' : ''}>Blog</a></li>
-        <li><a href="../games.html">Games</a></li>
-        <li><a href="../contact.html" class="nav__cta">Get a Quote</a></li>
+        <li><a href="${base}how-it-works.html">How It Works</a></li>
+        <li><a href="${base}services.html">Services</a></li>
+        <li><a href="${base}why-ryanfulfil.html">Why RyanFulfil</a></li>
+        <li><a href="${base}faq.html">FAQ</a></li>
+        <li><a href="${base}blog/index.html"${activePage === 'blog' ? ' class="active"' : ''}>Blog</a></li>
+        <li><a href="${base}games.html">Games</a></li>
+        <li><a href="${base}contact.html" class="nav__cta">Get a Quote</a></li>
       </ul>
     </div>
   </nav>`;
 
-const FOOTER_HTML = `
+const FOOTER_HTML = (base = '../') => `
   <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <img src="../assets/logo-dark.jpg" alt="RyanFulfil" class="footer__logo-img"
+          <img src="${base}assets/logo-dark.jpg" alt="RyanFulfil" class="footer__logo-img"
                onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
           <span style="display:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;">Ryan<span style="color:#2AAEF5">Fulfil</span></span>
           <p class="footer__tagline">Reliable Sourcing. Responsive Service. Reach Worldwide.</p>
@@ -121,19 +122,19 @@ const FOOTER_HTML = `
         <div class="footer__col">
           <h4>Pages</h4>
           <ul>
-            <li><a href="../how-it-works.html">How It Works</a></li>
-            <li><a href="../services.html">Services</a></li>
-            <li><a href="../why-ryanfulfil.html">Why RyanFulfil</a></li>
-            <li><a href="../faq.html">FAQ</a></li>
-            <li><a href="index.html">Blog</a></li>
-            <li><a href="../games.html">Games</a></li>
+            <li><a href="${base}how-it-works.html">How It Works</a></li>
+            <li><a href="${base}services.html">Services</a></li>
+            <li><a href="${base}why-ryanfulfil.html">Why RyanFulfil</a></li>
+            <li><a href="${base}faq.html">FAQ</a></li>
+            <li><a href="${base}blog/index.html">Blog</a></li>
+            <li><a href="${base}games.html">Games</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4>Contact</h4>
           <ul>
             <li><a href="https://wa.me/8617846669989" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="../contact.html">Get a Quote</a></li>
+            <li><a href="${base}contact.html">Get a Quote</a></li>
           </ul>
         </div>
       </div>
@@ -272,7 +273,7 @@ function generateIndex(posts) {
 </head>
 <body>
 
-${NAV_HTML('blog')}
+${NAV_HTML('blog', '../')}
 
 <header class="hero">
   <div class="container">
@@ -290,7 +291,7 @@ ${NAV_HTML('blog')}
   </div>
 </section>
 
-${FOOTER_HTML}
+${FOOTER_HTML('../')}
 ${NAV_JS}
 </body>
 </html>`;
@@ -373,7 +374,7 @@ function generatePost(post, allPosts) {
 </head>
 <body>
 
-${NAV_HTML('blog')}
+${NAV_HTML('blog', '../../')}
 
 <header class="post-hero">
   <div class="container">
@@ -407,7 +408,7 @@ ${coverHtml}
   </div>
 </div>
 
-${FOOTER_HTML}
+${FOOTER_HTML('../../')}
 ${NAV_JS}
 </body>
 </html>`;
