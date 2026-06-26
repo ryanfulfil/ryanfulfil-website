@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Games | RyanFulfil</title>
-  <meta name="description" content="Take a quick break. A couple of simple games while you wait for your sourcing quote." />
+  <meta name="description" content="Take a quick break. Four simple games while you wait for your sourcing quote." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
@@ -130,6 +130,14 @@
     }
     .game-card__icon--calm { background: rgba(42,174,245,0.12); }
     .game-card__icon--ttt  { background: rgba(13,31,60,0.08); }
+    .game-card__icon--still {
+      background: linear-gradient(135deg, #E8ECE6, #F7F5F0);
+      color: #4A5A48;
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      border: 1px solid rgba(74,90,72,0.14);
+    }
     .game-card__body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
     .game-card__tag {
       display: inline-block;
@@ -207,7 +215,7 @@
     <div class="container">
       <div class="hero__label">Games</div>
       <h1>Take a quick break.</h1>
-      <p class="hero__sub">While you wait for your quote, or just because. Three games, no login needed.</p>
+      <p class="hero__sub">While you wait for your quote, or just because. Four games, no login needed.</p>
     </div>
   </header>
 
@@ -248,6 +256,21 @@
           </div>
         </div>
 
+        <!-- The Still Point -->
+        <div class="game-card">
+          <div class="game-card__preview" style="background:#F1F4EF;">
+            <div class="game-card__icon game-card__icon--still">SP</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Mindful</span>
+            <h2>The Still Point</h2>
+            <p>A calm hub of six reflective mini-games for overthinking, worry, grounding, breath, and self-kindness.</p>
+            <a href="still-point.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
         <!-- Tic Tac Toe -->
         <div class="game-card">
           <div class="game-card__preview">

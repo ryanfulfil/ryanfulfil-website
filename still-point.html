@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Still Point | RyanFulfil Games</title>
+  <meta name="description" content="Play The Still Point, a calm mini-game hub for anxiety, OCD, and overthinking." />
+
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 300;
+      font-display: swap;
+      src: url('assets/still-point/inter-300.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/still-point/inter-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/still-point/inter-500.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/still-point/playfair-400.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/still-point/playfair-400i.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('assets/still-point/playfair-500.woff2') format('woff2');
+    }
+  </style>
+
+  <link rel="stylesheet" crossorigin href="assets/still-point/stillpoint.css" />
+
+  <style>
+    :root {
+      --rf-navy: #0D1F3C;
+      --rf-accent: #2AAEF5;
+      --rf-white: #FFFFFF;
+      --rf-border: #E2E8F0;
+      --rf-text: #111827;
+    }
+
+    .rf-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--rf-navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .rf-nav__inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      gap: 24px;
+    }
+
+    .rf-nav__logo-wrap {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .rf-nav__logo-img {
+      height: 46px;
+      width: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .rf-nav__logo-fallback {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--rf-white);
+      letter-spacing: 0;
+    }
+
+    .rf-nav__logo-fallback span {
+      color: var(--rf-accent);
+    }
+
+    .rf-nav__links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .rf-nav__links a {
+      color: rgba(255,255,255,0.76);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.2;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .rf-nav__links a:hover,
+    .rf-nav__links a.active {
+      color: var(--rf-white);
+    }
+
+    .rf-nav__cta {
+      background: var(--rf-accent);
+      color: var(--rf-white) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: opacity 0.2s !important;
+    }
+
+    .rf-nav__cta:hover {
+      opacity: 0.88;
+    }
+
+    .rf-nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      flex-shrink: 0;
+    }
+
+    .rf-nav__hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--rf-white);
+      border-radius: 2px;
+    }
+
+    #root {
+      min-height: calc(100svh - 64px);
+    }
+
+    @media (max-width: 768px) {
+      .rf-nav__hamburger {
+        display: flex;
+      }
+
+      .rf-nav__links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--rf-navy);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 24px 24px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .rf-nav__links.open {
+        display: flex;
+      }
+    }
+  </style>
+
+  <script type="module" crossorigin src="assets/still-point/stillpoint.js"></script>
+</head>
+<body>
+  <nav class="rf-nav" role="navigation" aria-label="Main navigation">
+    <div class="rf-nav__inner">
+      <a href="index.html" class="rf-nav__logo-wrap">
+        <img src="assets/logo.jpg" alt="RyanFulfil" class="rf-nav__logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span class="rf-nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
+      </a>
+      <button class="rf-nav__hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="rf-nav__links" id="navLinks" role="list">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="games.html" class="active">Games</a></li>
+        <li><a href="contact.html" class="rf-nav__cta">Get a Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="root"></div>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.rf-nav')) {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
