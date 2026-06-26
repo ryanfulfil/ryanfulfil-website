@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Knight's Tour | RyanFulfil Games</title>
+  <meta name="description" content="Play Open Knight's Tour, a chess puzzle game where you guide a knight across every square exactly once." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0D1F3C;
+      --accent: #2AAEF5;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #050607; color: #F8FAFC; font-family: 'Inter', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .rf-nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .rf-nav__inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; min-height: 64px;
+      gap: 24px;
+    }
+    .rf-nav__logo-wrap { display: flex; align-items: center; flex-shrink: 0; }
+    .rf-nav__logo-img { height: 46px; width: auto; border-radius: 4px; }
+    .rf-nav__logo-fallback { font-weight: 800; font-size: 1.2rem; color: var(--white); letter-spacing: 0; }
+    .rf-nav__logo-fallback span { color: var(--accent); }
+    .rf-nav__links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .rf-nav__links a { color: rgba(255,255,255,0.76); font-size: 0.875rem; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
+    .rf-nav__links a:hover, .rf-nav__links a.active { color: var(--white); }
+    .rf-nav__cta { background: var(--accent); color: var(--white) !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; }
+    .rf-nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .rf-nav__hamburger span { width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .rf-nav__hamburger { display: flex; }
+      .rf-nav__links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        background: var(--navy); flex-direction: column; align-items: flex-start;
+        padding: 16px 24px 24px; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .rf-nav__links.open { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="rf-nav" role="navigation" aria-label="Main navigation">
+    <div class="rf-nav__inner">
+      <a href="index.html" class="rf-nav__logo-wrap">
+        <img src="assets/logo.jpg" alt="RyanFulfil" class="rf-nav__logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+        <span class="rf-nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
+      </a>
+      <button class="rf-nav__hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="rf-nav__links" id="navLinks" role="list">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="games.html" class="active">Games</a></li>
+        <li><a href="contact.html" class="rf-nav__cta">Get a Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<section id="kt-open-knights-tour" class="kt-wrap" data-default-size="5">
+  <style>
+    #kt-open-knights-tour {
+      --kt-bg: #07090D;
+      --kt-card: #111720;
+      --kt-card-2: #0A0D12;
+      --kt-text: #F8FAFC;
+      --kt-muted: #AAB5C4;
+      --kt-accent: #00F5A0;
+      --kt-accent-2: #7CFFCB;
+      --kt-light: #D8E7DD;
+      --kt-dark: #5D7B6F;
+      --kt-visited: #2D3542;
+      --kt-current: #00F5A0;
+      --kt-hint: #FFD166;
+      --kt-border: rgba(255,255,255,.12);
+      --kt-shadow: 0 24px 70px rgba(0,0,0,.32);
+      color: var(--kt-text);
+      background:
+        radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--kt-accent) 24%, transparent) 0, transparent 34%),
+        radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--kt-accent-2) 20%, transparent) 0, transparent 30%),
+        linear-gradient(135deg, var(--kt-bg), #050607 72%);
+      padding: clamp(22px, 4vw, 52px) 16px;
+      overflow: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    #kt-open-knights-tour * { box-sizing: border-box; }
+
+    #kt-open-knights-tour .kt-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    #kt-open-knights-tour .kt-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    #kt-open-knights-tour .kt-panel {
+      background: linear-gradient(145deg, color-mix(in srgb, var(--kt-card) 94%, white 6%), var(--kt-card-2));
+      border: 1px solid var(--kt-border);
+      border-radius: 28px;
+      box-shadow: var(--kt-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #kt-open-knights-tour .kt-hero-main {
+      padding: clamp(24px, 5vw, 54px);
+      min-height: 330px;
+      display: grid;
+      align-content: center;
+    }
+
+    #kt-open-knights-tour .kt-kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--kt-accent) 55%, transparent);
+      color: var(--kt-accent);
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-bottom: 16px;
+      background: color-mix(in srgb, var(--kt-accent) 10%, transparent);
+    }
+
+    #kt-open-knights-tour .kt-title {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 96px);
+      line-height: .9;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+      font-weight: 950;
+      max-width: 800px;
+    }
+
+    #kt-open-knights-tour .kt-subtitle {
+      color: var(--kt-muted);
+      font-size: clamp(15px, 1.7vw, 19px);
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 18px 0 0;
+    }
+
+    #kt-open-knights-tour .kt-side {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    #kt-open-knights-tour .kt-side h3,
+    #kt-open-knights-tour .kt-game-card h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    #kt-open-knights-tour .kt-side p,
+    #kt-open-knights-tour .kt-game-card p {
+      color: var(--kt-muted);
+      line-height: 1.55;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    #kt-open-knights-tour .kt-proof {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.045);
+    }
+
+    #kt-open-knights-tour .kt-proof-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--kt-accent), var(--kt-accent-2));
+      color: #050607;
+      font-weight: 950;
+      box-shadow: 0 10px 30px color-mix(in srgb, var(--kt-accent) 25%, transparent);
+    }
+
+    #kt-open-knights-tour .kt-game {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    #kt-open-knights-tour .kt-board-panel {
+      padding: clamp(14px, 2.4vw, 28px);
+    }
+
+    #kt-open-knights-tour .kt-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    #kt-open-knights-tour .kt-size-buttons,
+    #kt-open-knights-tour .kt-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    #kt-open-knights-tour button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--kt-text);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 11px 16px;
+      font: inherit;
+      font-weight: 850;
+      letter-spacing: .03em;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease, opacity .16s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    #kt-open-knights-tour button:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--kt-accent) 70%, white 12%); }
+    #kt-open-knights-tour button:active { transform: translateY(0); }
+    #kt-open-knights-tour button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    #kt-open-knights-tour .kt-size.is-active,
+    #kt-open-knights-tour .kt-primary {
+      color: #07100d;
+      background: linear-gradient(135deg, var(--kt-accent), var(--kt-accent-2));
+      border-color: transparent;
+      box-shadow: 0 12px 26px color-mix(in srgb, var(--kt-accent) 22%, transparent);
+    }
+
+    #kt-open-knights-tour .kt-danger {
+      border-color: rgba(255,107,107,.35);
+      color: #ffd5d5;
+    }
+
+    #kt-open-knights-tour .kt-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    #kt-open-knights-tour .kt-stat {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(0,0,0,.24);
+      border-radius: 18px;
+      padding: 13px 14px;
+    }
+
+    #kt-open-knights-tour .kt-label {
+      display: block;
+      color: var(--kt-muted);
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      margin-bottom: 6px;
+    }
+
+    #kt-open-knights-tour .kt-value {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -.04em;
+    }
+
+    #kt-open-knights-tour .kt-board-wrap {
+      position: relative;
+      max-width: min(100%, 680px);
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 22px 60px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+      background: #111;
+      touch-action: manipulation;
+    }
+
+    #kt-open-knights-tour .kt-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    #kt-open-knights-tour .kt-lines polyline {
+      fill: none;
+      stroke: color-mix(in srgb, var(--kt-accent) 80%, white 15%);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .62;
+      filter: drop-shadow(0 0 7px color-mix(in srgb, var(--kt-accent) 65%, transparent));
+    }
+
+    #kt-open-knights-tour .kt-board {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    #kt-open-knights-tour .kt-square {
+      position: relative;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      color: var(--kt-text);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    #kt-open-knights-tour .kt-square:hover { transform: none; filter: brightness(1.08); }
+    #kt-open-knights-tour .kt-square.is-light { background: var(--kt-light); }
+    #kt-open-knights-tour .kt-square.is-dark { background: var(--kt-dark); }
+
+    #kt-open-knights-tour .kt-square.is-visited::before {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--kt-visited) 82%, transparent);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.15), 0 10px 25px rgba(0,0,0,.18);
+      z-index: 1;
+    }
+
+    #kt-open-knights-tour .kt-square.is-current::before {
+      background: linear-gradient(135deg, var(--kt-current), var(--kt-accent-2));
+      box-shadow: 0 0 0 3px rgba(255,255,255,.65), 0 0 28px color-mix(in srgb, var(--kt-current) 70%, transparent);
+      inset: 9%;
+    }
+
+    #kt-open-knights-tour .kt-square.is-legal:not(.is-visited)::after {
+      content: "";
+      position: absolute;
+      width: 20%;
+      height: 20%;
+      min-width: 10px;
+      min-height: 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--kt-accent) 90%, white 10%);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--kt-accent) 72%, transparent);
+      z-index: 3;
+    }
+
+    #kt-open-knights-tour .kt-square.is-hint:not(.is-visited)::after {
+      content: "";
+      position: absolute;
+      inset: 10%;
+      border-radius: 16px;
+      border: 3px solid var(--kt-hint);
+      background: color-mix(in srgb, var(--kt-hint) 22%, transparent);
+      box-shadow: 0 0 25px color-mix(in srgb, var(--kt-hint) 68%, transparent);
+      animation: ktPulse-open-knights-tour 1s ease-in-out infinite;
+      z-index: 4;
+    }
+
+    #kt-open-knights-tour .kt-move-number {
+      position: relative;
+      z-index: 5;
+      font-size: clamp(10px, 2.4vw, 19px);
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,.75);
+      line-height: 1;
+    }
+
+    #kt-open-knights-tour .kt-knight {
+      position: relative;
+      z-index: 6;
+      font-size: clamp(20px, 4.8vw, 42px);
+      line-height: 1;
+      filter: drop-shadow(0 4px 9px rgba(0,0,0,.45));
+    }
+
+    @keyframes ktPulse-open-knights-tour {
+      0%, 100% { transform: scale(.98); opacity: .72; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+
+    #kt-open-knights-tour .kt-message {
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      background: rgba(0,0,0,.22);
+      padding: 14px 15px;
+      color: var(--kt-muted);
+      line-height: 1.55;
+      font-weight: 650;
+      min-height: 52px;
+    }
+
+    #kt-open-knights-tour .kt-message strong { color: var(--kt-text); }
+    #kt-open-knights-tour .kt-message .ok { color: var(--kt-accent); }
+    #kt-open-knights-tour .kt-message .warn { color: #ffd166; }
+
+    #kt-open-knights-tour .kt-side-tabs {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 16px;
+    }
+
+    #kt-open-knights-tour .kt-tab-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 5px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+    }
+
+    #kt-open-knights-tour .kt-tab {
+      padding: 10px 8px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: transparent;
+      border: 0;
+    }
+
+    #kt-open-knights-tour .kt-tab.is-active {
+      color: #07100d;
+      background: linear-gradient(135deg, var(--kt-accent), var(--kt-accent-2));
+    }
+
+    #kt-open-knights-tour .kt-tab-panel { display: none; }
+    #kt-open-knights-tour .kt-tab-panel.is-active { display: grid; gap: 13px; }
+
+    #kt-open-knights-tour .kt-info-card {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.045);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    #kt-open-knights-tour .kt-info-card h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    #kt-open-knights-tour .kt-info-card p,
+    #kt-open-knights-tour .kt-info-card li {
+      color: var(--kt-muted);
+      line-height: 1.55;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    #kt-open-knights-tour .kt-info-card ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+
+    #kt-open-knights-tour .kt-progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,.11);
+      margin-top: 9px;
+    }
+
+    #kt-open-knights-tour .kt-progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--kt-accent), var(--kt-accent-2));
+      transition: width .25s ease;
+    }
+
+    #kt-open-knights-tour .kt-record-row {
+      display: grid;
+      gap: 6px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    #kt-open-knights-tour .kt-record-row:last-child { border-bottom: 0; }
+
+    #kt-open-knights-tour .kt-record-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      color: var(--kt-muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    #kt-open-knights-tour .kt-record-top b { color: var(--kt-text); }
+
+    #kt-open-knights-tour .kt-mini-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      margin-top: 8px;
+      max-width: 190px;
+    }
+
+    #kt-open-knights-tour .kt-mini-board span {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      background: rgba(255,255,255,.08);
+    }
+
+    #kt-open-knights-tour .kt-mini-board span:nth-child(3),
+    #kt-open-knights-tour .kt-mini-board span:nth-child(10),
+    #kt-open-knights-tour .kt-mini-board span:nth-child(17),
+    #kt-open-knights-tour .kt-mini-board span:nth-child(24) {
+      background: var(--kt-accent);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--kt-accent) 65%, transparent);
+    }
+
+    #kt-open-knights-tour .kt-footer-note {
+      color: var(--kt-muted);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 980px) {
+      #kt-open-knights-tour .kt-hero,
+      #kt-open-knights-tour .kt-game { grid-template-columns: 1fr; }
+      #kt-open-knights-tour .kt-side-tabs { position: static; }
+      #kt-open-knights-tour .kt-board-wrap { max-width: min(100%, 620px); }
+    }
+
+    @media (max-width: 620px) {
+      #kt-open-knights-tour { padding: 18px 10px; }
+      #kt-open-knights-tour .kt-panel { border-radius: 22px; }
+      #kt-open-knights-tour .kt-hero-main { min-height: auto; padding: 24px; }
+      #kt-open-knights-tour .kt-title { font-size: clamp(40px, 14vw, 72px); }
+      #kt-open-knights-tour .kt-stat-grid { grid-template-columns: repeat(2, 1fr); }
+      #kt-open-knights-tour .kt-toolbar { align-items: stretch; }
+      #kt-open-knights-tour .kt-size-buttons,
+      #kt-open-knights-tour .kt-action-row { width: 100%; }
+      #kt-open-knights-tour .kt-size-buttons button { flex: 1; padding-left: 10px; padding-right: 10px; }
+      #kt-open-knights-tour .kt-action-row button { flex: 1 1 auto; }
+      #kt-open-knights-tour .kt-board-wrap { border-radius: 18px; }
+      #kt-open-knights-tour .kt-side { padding: 16px; }
+      #kt-open-knights-tour .kt-side-tabs { padding: 14px; }
+    }
+  </style>
+
+  <div class="kt-shell">
+    <div class="kt-hero">
+      <div class="kt-panel kt-hero-main">
+        <div class="kt-kicker">Relaxed chess puzzle</div>
+        <h2 class="kt-title">Open Knight's Tour</h2>
+        <p class="kt-subtitle">A relaxed chess puzzle: guide the knight across every square exactly once. Choose 5x5 to 9x9, undo freely, and use verified hints when you want help.</p>
+      </div>
+
+      <aside class="kt-panel kt-side" aria-label="Game promises">
+        <div class="kt-proof">
+          <div class="kt-proof-icon">1</div>
+          <div>
+            <h3>Open tour only</h3>
+            <p>Visit every square exactly once. No need to return to the starting square.</p>
+          </div>
+        </div>
+        <div class="kt-proof">
+          <div class="kt-proof-icon">2</div>
+          <div>
+            <h3>Verified hints</h3>
+            <p>Hints are shown only after the solver finds a complete route from your current board.</p>
+          </div>
+        </div>
+        <div class="kt-proof">
+          <div class="kt-proof-icon">3</div>
+          <div>
+            <h3>No timer</h3>
+            <p>Undo freely, explore slowly, and play it like a calm chess meditation.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="kt-game">
+      <div class="kt-panel kt-board-panel">
+        <div class="kt-toolbar">
+          <div class="kt-size-buttons" role="group" aria-label="Board size">
+            <button type="button" class="kt-size" data-size="5">5x5</button>
+            <button type="button" class="kt-size" data-size="6">6x6</button>
+            <button type="button" class="kt-size" data-size="7">7x7</button>
+            <button type="button" class="kt-size" data-size="8">8x8</button>
+            <button type="button" class="kt-size" data-size="9">9x9</button>
+          </div>
+          <div class="kt-action-row">
+            <button type="button" class="kt-primary" data-action="hint">Hint</button>
+            <button type="button" data-action="use-hint" disabled>Use hint</button>
+            <button type="button" data-action="undo" disabled>Undo</button>
+            <button type="button" class="kt-danger" data-action="new">New</button>
+          </div>
+        </div>
+
+        <div class="kt-stat-grid" aria-live="polite">
+          <div class="kt-stat"><span class="kt-label">Board</span><span class="kt-value" data-stat="board">5x5</span></div>
+          <div class="kt-stat"><span class="kt-label">Moves</span><span class="kt-value" data-stat="moves">0</span></div>
+          <div class="kt-stat"><span class="kt-label">Left</span><span class="kt-value" data-stat="left">25</span></div>
+          <div class="kt-stat"><span class="kt-label">Best</span><span class="kt-value" data-stat="best">0</span></div>
+        </div>
+
+        <div class="kt-board-wrap">
+          <svg class="kt-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points=""></polyline></svg>
+          <div class="kt-board" role="grid" aria-label="Knight tour board"></div>
+        </div>
+
+        <div class="kt-message" data-message>
+          <strong>Choose any starting square.</strong> Then move like a knight: two squares in one direction, one square sideways.
+        </div>
+      </div>
+
+      <aside class="kt-panel kt-side-tabs">
+        <div class="kt-tab-buttons" role="tablist" aria-label="Game information">
+          <button type="button" class="kt-tab is-active" data-tab="how">How</button>
+          <button type="button" class="kt-tab" data-tab="hint">Hints</button>
+          <button type="button" class="kt-tab" data-tab="records">Records</button>
+        </div>
+
+        <div class="kt-tab-panel is-active" data-panel="how">
+          <div class="kt-info-card">
+            <h4>How to play</h4>
+            <ul>
+              <li>Pick a board from 5x5 to 9x9.</li>
+              <li>Click any square to start.</li>
+              <li>Each next move must be a legal knight move.</li>
+              <li>Win by visiting every square once.</li>
+            </ul>
+            <div class="kt-mini-board" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="kt-info-card">
+            <h4>Best starting point</h4>
+            <p>There is no pressure. Start anywhere, undo when needed, or press Hint before your first move for a solver-approved start.</p>
+          </div>
+        </div>
+
+        <div class="kt-tab-panel" data-panel="hint">
+          <div class="kt-info-card">
+            <h4>Correct hint rule</h4>
+            <p>The hint button runs a completion search. A square is highlighted only if the solver has already found a full open tour that continues from it.</p>
+          </div>
+          <div class="kt-info-card">
+            <h4>If no hint appears</h4>
+            <p>Your current route may be trapped, or the search took too long. Undo one or more moves and ask again.</p>
+          </div>
+          <div class="kt-info-card">
+            <h4>Hint cache</h4>
+            <p>When you follow a verified hint, the next hint is faster because the game remembers the verified route. If you choose a different move, it checks again.</p>
+          </div>
+        </div>
+
+        <div class="kt-tab-panel" data-panel="records">
+          <div class="kt-info-card">
+            <h4>Local records</h4>
+            <div data-records></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="kt-footer-note">Hints are solver-verified before they appear. If no hint is shown, undo a few moves and ask again.</div>
+  </div>
+
+  <script>
+    (function() {
+      var root = document.getElementById('kt-open-knights-tour');
+      if (!root || root.dataset.ready === '1') return;
+      root.dataset.ready = '1';
+
+      var boardEl = root.querySelector('.kt-board');
+      var lineEl = root.querySelector('.kt-lines polyline');
+      var messageEl = root.querySelector('[data-message]');
+      var recordsEl = root.querySelector('[data-records]');
+      var useHintBtn = root.querySelector('[data-action="use-hint"]');
+      var undoBtn = root.querySelector('[data-action="undo"]');
+      var hintBtn = root.querySelector('[data-action="hint"]');
+      var statBoard = root.querySelector('[data-stat="board"]');
+      var statMoves = root.querySelector('[data-stat="moves"]');
+      var statLeft = root.querySelector('[data-stat="left"]');
+      var statBest = root.querySelector('[data-stat="best"]');
+
+      var state = {
+        n: parseInt(root.getAttribute('data-default-size'), 10) || 5,
+        path: [],
+        visited: [],
+        hintIndex: null,
+        verifiedTail: null,
+        solverBusy: false,
+        completed: false,
+        moveCache: {},
+        records: loadRecords()
+      };
+
+      function loadRecords() {
+        try {
+          var raw = localStorage.getItem('open_knights_tour_records_v1');
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveRecords() {
+        try { localStorage.setItem('open_knights_tour_records_v1', JSON.stringify(state.records)); } catch (e) {}
+      }
+
+      function total() { return state.n * state.n; }
+      function idx(r, c) { return r * state.n + c; }
+      function row(i) { return Math.floor(i / state.n); }
+      function col(i) { return i % state.n; }
+      function coord(i) { return String.fromCharCode(65 + col(i)) + (row(i) + 1); }
+
+      function movesFor(n, i) {
+        var key = n + ':' + i;
+        if (state.moveCache[key]) return state.moveCache[key];
+        var r = Math.floor(i / n), c = i % n;
+        var jumps = [[2,1],[1,2],[-1,2],[-2,1],[-2,-1],[-1,-2],[1,-2],[2,-1]];
+        var out = [];
+        for (var k = 0; k < jumps.length; k++) {
+          var nr = r + jumps[k][0], nc = c + jumps[k][1];
+          if (nr >= 0 && nr < n && nc >= 0 && nc < n) out.push(nr * n + nc);
+        }
+        state.moveCache[key] = out;
+        return out;
+      }
+
+      function isVisited(i) { return state.visited[i] > 0; }
+
+      function isLegal(i) {
+        if (state.completed || isVisited(i)) return false;
+        if (state.path.length === 0) return true;
+        var current = state.path[state.path.length - 1];
+        var moves = movesFor(state.n, current);
+        return moves.indexOf(i) !== -1;
+      }
+
+      function legalMovesFromCurrent() {
+        if (state.path.length === 0) {
+          var all = [];
+          for (var i = 0; i < total(); i++) all.push(i);
+          return all;
+        }
+        var current = state.path[state.path.length - 1];
+        return movesFor(state.n, current).filter(function(i) { return !isVisited(i); });
+      }
+
+      function setMessage(html) { messageEl.innerHTML = html; }
+
+      function setSize(n) {
+        state.n = n;
+        newGame();
+      }
+
+      function newGame() {
+        state.path = [];
+        state.visited = new Array(total()).fill(0);
+        state.hintIndex = null;
+        state.verifiedTail = null;
+        state.solverBusy = false;
+        state.completed = false;
+        renderBoard();
+        setMessage('<strong>Choose any starting square.</strong> Or press <strong>Hint</strong> for a verified starting square.');
+        updateUI();
+      }
+
+      function applyMove(i) {
+        if (!isLegal(i)) {
+          if (isVisited(i)) setMessage('<strong class="warn">That square is already visited.</strong> Use Undo if you want to change your route.');
+          else setMessage('<strong class="warn">Not a knight move.</strong> A knight moves in an L shape: 2 plus 1.');
+          return;
+        }
+
+        if (state.verifiedTail && state.verifiedTail.length) {
+          if (i === state.verifiedTail[0]) state.verifiedTail.shift();
+          else state.verifiedTail = null;
+        }
+
+        state.path.push(i);
+        state.visited[i] = state.path.length;
+        state.hintIndex = null;
+
+        var t = total();
+        var movesLeft = t - state.path.length;
+        var record = state.records[state.n] || { best: 0, solved: 0 };
+        if (state.path.length > record.best) {
+          record.best = state.path.length;
+          state.records[state.n] = record;
+          saveRecords();
+        }
+
+        if (state.path.length === t) {
+          state.completed = true;
+          record.solved = (record.solved || 0) + 1;
+          record.best = t;
+          state.records[state.n] = record;
+          saveRecords();
+          setMessage('<strong class="ok">Open tour complete.</strong> You visited all ' + t + ' squares exactly once. Calm, clean, solved.');
+        } else if (legalMovesFromCurrent().length === 0) {
+          setMessage('<strong class="warn">Dead end at ' + coord(i) + '.</strong> You reached ' + state.path.length + '/' + t + '. Undo one or more moves and continue.');
+        } else {
+          setMessage('<strong>Move ' + state.path.length + ':</strong> ' + coord(i) + '. ' + movesLeft + ' squares left.');
+        }
+        updateUI();
+      }
+
+      function undo() {
+        if (!state.path.length || state.solverBusy) return;
+        var last = state.path.pop();
+        state.visited[last] = 0;
+        state.hintIndex = null;
+        state.verifiedTail = null;
+        state.completed = false;
+        if (state.path.length) {
+          setMessage('<strong>Undone.</strong> Current square is ' + coord(state.path[state.path.length - 1]) + '. Ask for a fresh verified hint if needed.');
+        } else {
+          setMessage('<strong>Back to start.</strong> Choose any square or press Hint for a verified start.');
+        }
+        updateUI();
+      }
+
+      function renderBoard() {
+        boardEl.innerHTML = '';
+        boardEl.style.gridTemplateColumns = 'repeat(' + state.n + ', 1fr)';
+        boardEl.style.gridTemplateRows = 'repeat(' + state.n + ', 1fr)';
+        for (var r = 0; r < state.n; r++) {
+          for (var c = 0; c < state.n; c++) {
+            var button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'kt-square ' + (((r + c) % 2 === 0) ? 'is-light' : 'is-dark');
+            button.setAttribute('data-index', idx(r, c));
+            button.setAttribute('role', 'gridcell');
+            button.setAttribute('aria-label', coord(idx(r, c)));
+            button.addEventListener('click', function() {
+              applyMove(parseInt(this.getAttribute('data-index'), 10));
+            });
+            boardEl.appendChild(button);
+          }
+        }
+      }
+
+      function updateBoard() {
+        var legal = legalMovesFromCurrent();
+        var legalMap = {};
+        for (var i = 0; i < legal.length; i++) legalMap[legal[i]] = true;
+        var current = state.path.length ? state.path[state.path.length - 1] : null;
+        var squares = boardEl.querySelectorAll('.kt-square');
+        for (var s = 0; s < squares.length; s++) {
+          var el = squares[s];
+          var cell = parseInt(el.getAttribute('data-index'), 10);
+          var moveNum = state.visited[cell];
+          el.classList.toggle('is-visited', moveNum > 0);
+          el.classList.toggle('is-current', cell === current);
+          el.classList.toggle('is-legal', legalMap[cell] && state.path.length > 0);
+          el.classList.toggle('is-hint', cell === state.hintIndex);
+          el.disabled = state.solverBusy || state.completed || (!isLegal(cell) && !state.completed);
+          if (moveNum > 0) {
+            if (cell === current) el.innerHTML = '<span class="kt-knight" aria-hidden="true">♞</span><span class="kt-move-number" style="position:absolute;right:17%;bottom:15%;font-size:11px;">' + moveNum + '</span>';
+            else el.innerHTML = '<span class="kt-move-number">' + moveNum + '</span>';
+          } else {
+            el.innerHTML = '';
+          }
+        }
+        updateLines();
+      }
+
+      function updateLines() {
+        if (state.path.length < 2) {
+          lineEl.setAttribute('points', '');
+          return;
+        }
+        var n = state.n;
+        var points = state.path.map(function(i) {
+          var x = ((col(i) + 0.5) / n) * 100;
+          var y = ((row(i) + 0.5) / n) * 100;
+          return x.toFixed(2) + ',' + y.toFixed(2);
+        }).join(' ');
+        lineEl.setAttribute('points', points);
+      }
+
+      function updateUI() {
+        var t = total();
+        var record = state.records[state.n] || { best: 0, solved: 0 };
+        statBoard.textContent = state.n + 'x' + state.n;
+        statMoves.textContent = state.path.length;
+        statLeft.textContent = Math.max(0, t - state.path.length);
+        statBest.textContent = record.best || 0;
+        undoBtn.disabled = state.solverBusy || state.path.length === 0;
+        hintBtn.disabled = state.solverBusy || state.completed;
+        useHintBtn.disabled = state.solverBusy || state.hintIndex === null || state.completed;
+        root.querySelectorAll('.kt-size').forEach(function(btn) {
+          btn.classList.toggle('is-active', parseInt(btn.getAttribute('data-size'), 10) === state.n);
+        });
+        updateBoard();
+        renderRecords();
+      }
+
+      function renderRecords() {
+        var html = '';
+        [5,6,7,8,9].forEach(function(n) {
+          var rec = state.records[n] || { best: 0, solved: 0 };
+          var t = n * n;
+          var pct = Math.min(100, Math.round(((rec.best || 0) / t) * 100));
+          html += '<div class="kt-record-row"><div class="kt-record-top"><span>' + n + 'x' + n + '</span><span><b>' + (rec.best || 0) + '</b>/' + t + ' · solved ' + (rec.solved || 0) + '</span></div><div class="kt-progress"><span style="width:' + pct + '%"></span></div></div>';
+        });
+        recordsEl.innerHTML = html;
+      }
+
+      function degreeFor(n, cell, visited) {
+        var m = movesFor(n, cell);
+        var count = 0;
+        for (var i = 0; i < m.length; i++) if (!visited[m[i]]) count++;
+        return count;
+      }
+
+      function orderedCandidates(n, current, visited) {
+        var arr = current === null ? [] : movesFor(n, current).filter(function(x) { return !visited[x]; });
+        if (current === null) {
+          for (var i = 0; i < n * n; i++) if (!visited[i]) arr.push(i);
+        }
+        arr.sort(function(a, b) {
+          var da = degreeFor(n, a, visited);
+          var db = degreeFor(n, b, visited);
+          if (da !== db) return da - db;
+          var ca = Math.abs(rowFor(n, a) - (n - 1) / 2) + Math.abs(colFor(n, a) - (n - 1) / 2);
+          var cb = Math.abs(rowFor(n, b) - (n - 1) / 2) + Math.abs(colFor(n, b) - (n - 1) / 2);
+          return cb - ca;
+        });
+        return arr;
+      }
+
+      function rowFor(n, i) { return Math.floor(i / n); }
+      function colFor(n, i) { return i % n; }
+
+      function findVerifiedHint() {
+        if (state.completed) return;
+        if (state.verifiedTail && state.verifiedTail.length) {
+          state.hintIndex = state.verifiedTail[0];
+          setMessage('<strong class="ok">Verified hint:</strong> move to <strong>' + coord(state.hintIndex) + '</strong>. This follows a complete route already found by the solver.');
+          updateUI();
+          return;
+        }
+
+        state.solverBusy = true;
+        state.hintIndex = null;
+        updateUI();
+        setMessage('<strong>Checking a guaranteed hint...</strong> The game will only suggest a square if it finds a full open tour from your current route.');
+
+        window.setTimeout(function() {
+          var result = solveForHint(2800);
+          state.solverBusy = false;
+          if (result && result.ok) {
+            state.hintIndex = result.move;
+            state.verifiedTail = result.tail.slice();
+            setMessage('<strong class="ok">Verified hint:</strong> move to <strong>' + coord(result.move) + '</strong>. Solver found a full route to all ' + total() + ' squares.');
+          } else if (result && result.timeout) {
+            state.hintIndex = null;
+            state.verifiedTail = null;
+            setMessage('<strong class="warn">No guaranteed hint found fast enough.</strong> The route may still be solvable, but the safe move was not proven in time. Undo one or two moves and try again.');
+          } else {
+            state.hintIndex = null;
+            state.verifiedTail = null;
+            setMessage('<strong class="warn">No complete tour found from this position.</strong> Undo one or more moves, then ask for another verified hint.');
+          }
+          updateUI();
+        }, 35);
+      }
+
+      function solveForHint(msBudget) {
+        var n = state.n;
+        var t = n * n;
+        var visited = new Array(t).fill(false);
+        for (var i = 0; i < state.path.length; i++) visited[state.path[i]] = true;
+        var count = state.path.length;
+        var current = count ? state.path[count - 1] : null;
+        var deadline = performance.now() + msBudget;
+        var nodes = 0;
+        var timedOut = false;
+
+        function orderedFrom(cell, v) {
+          var next = orderedCandidates(n, cell, v);
+          return next;
+        }
+
+        function dfs(cell, v, c, out) {
+          nodes++;
+          if ((nodes & 2047) === 0 && performance.now() > deadline) {
+            timedOut = true;
+            return false;
+          }
+          if (c === t) return true;
+
+          var candidates = orderedFrom(cell, v);
+          for (var j = 0; j < candidates.length; j++) {
+            var m = candidates[j];
+            v[m] = true;
+            out.push(m);
+            if (dfs(m, v, c + 1, out)) return true;
+            out.pop();
+            v[m] = false;
+            if (timedOut) return false;
+          }
+          return false;
+        }
+
+        var firstMoves = orderedCandidates(n, current, visited);
+        for (var f = 0; f < firstMoves.length; f++) {
+          if (performance.now() > deadline) return { ok: false, timeout: true };
+          var move = firstMoves[f];
+          var v2 = visited.slice();
+          var tail = [move];
+          v2[move] = true;
+          if (count + 1 === t || dfs(move, v2, count + 1, tail)) {
+            return { ok: true, move: move, tail: tail, nodes: nodes };
+          }
+          if (timedOut) return { ok: false, timeout: true };
+        }
+        return { ok: false, timeout: false };
+      }
+
+      root.querySelectorAll('.kt-size').forEach(function(btn) {
+        btn.addEventListener('click', function() { setSize(parseInt(btn.getAttribute('data-size'), 10)); });
+      });
+
+      root.querySelector('[data-action="new"]').addEventListener('click', newGame);
+      root.querySelector('[data-action="undo"]').addEventListener('click', undo);
+      root.querySelector('[data-action="hint"]').addEventListener('click', findVerifiedHint);
+      root.querySelector('[data-action="use-hint"]').addEventListener('click', function() {
+        if (state.hintIndex !== null) applyMove(state.hintIndex);
+      });
+
+      root.querySelectorAll('.kt-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var target = tab.getAttribute('data-tab');
+          root.querySelectorAll('.kt-tab').forEach(function(t) { t.classList.toggle('is-active', t === tab); });
+          root.querySelectorAll('.kt-tab-panel').forEach(function(panel) { panel.classList.toggle('is-active', panel.getAttribute('data-panel') === target); });
+        });
+      });
+
+      newGame();
+    })();
+  </script>
+</section>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.rf-nav')) {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
