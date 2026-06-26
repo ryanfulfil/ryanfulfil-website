@@ -167,6 +167,34 @@
       min-height: calc(100svh - 64px);
     }
 
+    body {
+      overflow-y: auto;
+    }
+
+    #root > .h-screen {
+      height: auto !important;
+      min-height: calc(100svh - 64px);
+      overflow: visible !important;
+    }
+
+    #root > .h-screen > main {
+      min-height: inherit;
+      overflow: visible !important;
+    }
+
+    #root [style*="radial-gradient"] {
+      height: auto !important;
+      min-height: 820px;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    @media (max-height: 760px) {
+      #root [style*="radial-gradient"] {
+        min-height: 860px;
+      }
+    }
+
     @media (max-width: 768px) {
       .rf-nav__hamburger {
         display: flex;
