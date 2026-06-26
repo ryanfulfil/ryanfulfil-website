@@ -399,34 +399,52 @@
        SHIPPING TABLE
     ===================== */
     .shipping-section { background: var(--surface); }
-    .shipping-wrap { overflow-x: auto; margin-top: 40px; border-radius: 10px; border: 1px solid var(--border); }
-    .shipping-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      min-width: 480px;
-    }
-    .shipping-table th {
-      background: var(--navy);
-      color: var(--white);
-      text-align: left;
-      padding: 13px 18px;
-      font-family: var(--font-head);
-      font-size: 0.8125rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    .shipping-table td {
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-    }
-    .shipping-table tr:last-child td { border-bottom: none; }
-    .shipping-table tr:nth-child(even) td { background: rgba(240,247,255,0.55); }
-    .shipping-note {
-      margin-top: 12px;
-      font-size: 0.8125rem;
-      color: var(--muted);
+    .sw-controls{display:flex;gap:8px;margin-bottom:.6rem;flex-wrap:wrap;align-items:center;margin-top:32px}
+    .sw-search-wrap{position:relative;flex:1;min-width:180px}
+    .sw-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:#aaa;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    #sw-search{width:100%;padding:8px 10px 8px 32px;border:1px solid #ddd;border-radius:8px;font-size:14px;color:#1a1a1a;background:#fff;outline:none;font-family:var(--font-body)}
+    #sw-search:focus{border-color:var(--accent)}
+    #sw-search::placeholder{color:#bbb}
+    .sw-fbtn{padding:6px 14px;border-radius:20px;border:1px solid #ddd;font-size:13px;cursor:pointer;background:#fff;color:#555;transition:all .15s;white-space:nowrap;font-family:var(--font-body)}
+    .sw-fbtn:hover{border-color:var(--accent);color:var(--accent)}
+    .sw-fbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .sw-rc{font-size:12px;color:#999;margin-bottom:.5rem;min-height:14px}
+    .sw-outer{border:1px solid #e0e0de;border-radius:12px;overflow:hidden;background:#fff}
+    .sw-outer table{width:100%;border-collapse:collapse;font-size:13.5px}
+    .sw-outer thead tr{background:var(--navy)}
+    .sw-outer thead th{text-align:left;padding:12px 14px;color:#fff;font-weight:500;font-size:13px}
+    .sw-outer th.wd{width:30%}.sw-outer th.wr{width:20%}.sw-outer th.ws{width:13%}.sw-outer th.we{width:18%}.sw-outer th.wt{width:19%}
+    .sw-sec-hdr td{background:#f4f4f2;padding:7px 14px;font-size:11px;font-weight:600;color:#777;letter-spacing:.06em;text-transform:uppercase;border-top:1px solid #e8e8e6}
+    .sw-dr{border-top:1px solid #f0f0ee;transition:background .1s}
+    .sw-dr:hover{background:#fafaf8}
+    .sw-dr.hidden{display:none}
+    .sw-sec-hdr.hidden{display:none}
+    .sw-outer td{padding:10px 14px;vertical-align:middle}
+    .sw-outer td.dest{font-weight:500;color:#1a1a1a}
+    .sw-outer td.reg{color:#888;font-size:12.5px}
+    .sw-outer td.exp-t{color:#0f5fa8;font-weight:500}
+    .sw-outer td.std-t{color:#444}
+    .sw-outer td.dash{color:#ccc}
+    .sw-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:12px;font-size:11.5px;font-weight:500}
+    .sw-b-exp{background:#e8f4ff;color:#0f5fa8}
+    .sw-b-std{background:#f0f0f0;color:#555}
+    .sw-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+    .sw-dot-exp{background:#1a6fbf}
+    .sw-dot-std{background:#999}
+    .sw-more-section{display:none;border-top:2px solid #e8e8e6}
+    .sw-toggle-btn{width:100%;border:none;border-top:1px solid #e0e0de;background:#fff;padding:11px 14px;font-size:13px;font-weight:500;color:#1a6fbf;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s;font-family:var(--font-body)}
+    .sw-toggle-btn:hover{background:#f7f7f5}
+    .sw-toggle-btn svg{width:14px;height:14px;stroke:#1a6fbf;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+    .sw-toggle-btn.open svg{transform:rotate(180deg)}
+    .sw-no-res{text-align:center;padding:2rem;color:#999;font-size:14px;display:none}
+    .sw-more-hdr{background:#f9f9f7;padding:8px 14px;font-size:12px;color:#888;border-bottom:1px solid #e8e8e6;display:flex;align-items:center;gap:6px}
+    .sw-fn{margin-top:.85rem;font-size:12px;color:#999;line-height:1.7}
+    .sw-cn{margin-top:.4rem;font-size:13px;color:#555}
+    .sw-cn a{color:var(--accent);text-decoration:none}
+    .sw-cn a:hover{text-decoration:underline}
+    @media(max-width:580px){
+      .sw-outer thead th,.sw-outer td{padding:8px 8px;font-size:12px}
+      .sw-outer th.wr,.sw-outer td.reg{display:none}
     }
 
     /* =====================
@@ -652,7 +670,7 @@
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        Factory-direct pricing, cheaper than AliExpress
+        Factory-direct pricing — cheaper than AliExpress
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -716,7 +734,7 @@
       <div>
         <p class="founder-quote">
           "I started in ecommerce in 2018, back when reliable China fulfilment basically didn't exist.
-          I built RyanFulfil to be the partner I needed. Your team on the ground, handling the backend
+          I built RyanFulfil to be the partner I needed — your team on the ground, handling the backend
           so you don't have to. You deal with us. Not with the factory, not with the shipper, not with
           anyone else in between."
         </p>
@@ -820,7 +838,7 @@
 <section class="section services-section">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-title">What we do</h2>
+      <h2 class="section-title">What RyanFulfil handles for you</h2>
       <p class="section-sub">Everything between "I found a product" and "my customer got it."</p>
     </div>
     <div class="services-grid">
@@ -927,7 +945,7 @@
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
-          <p>From logo stickers to fully branded packaging, product tweaks, and even IP protection. Branding solutions that grow with your volume.</p>
+          <p>From logo stickers to fully branded packaging, product tweaks, and even IP protection — branding solutions that grow with your volume.</p>
         </div>
       </div>
 
@@ -937,7 +955,7 @@
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
-          <p>Whatever made you start looking: slow shipping, poor quality, or lack of after-sales support. We'll hear you out and fix it. We switch you over with no gap in fulfilment.</p>
+          <p>Whatever made you start looking — slow shipping, poor quality, or lack of after-sales support — we'll hear you out and fix it. And we switch you over with no gap in fulfilment.</p>
         </div>
       </div>
 
@@ -960,28 +978,60 @@
   <div class="container">
     <div class="text-center">
       <h2 class="section-title">We ship worldwide.</h2>
-      <p class="section-sub">Core markets below. We ship to 150+ countries globally.</p>
+      <p class="section-sub">Search any country below. We ship to 150+ destinations globally.</p>
     </div>
-    <div class="shipping-wrap">
-      <table class="shipping-table">
-        <thead>
-          <tr>
-            <th>Destination</th>
-            <th>Express shipping</th>
-            <th>Standard shipping</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>United States</td><td>4-7 working days</td><td>6-10 working days</td></tr>
-          <tr><td>United Kingdom</td><td>4-7 working days</td><td>6-10 working days</td></tr>
-          <tr><td>Europe (FR / DE / NL / BE / ES / IT)</td><td>4-7 working days</td><td>6-12 working days</td></tr>
-          <tr><td>Australia</td><td>4-7 working days</td><td>9-10 working days</td></tr>
-          <tr><td>Canada</td><td>4-7 working days</td><td>7-9 working days</td></tr>
-          <tr><td>Israel / UAE</td><td>6-10 working days</td><td>N/A</td></tr>
-        </tbody>
+
+    <div class="sw-controls">
+      <div class="sw-search-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="sw-search" placeholder="Search destination..." autocomplete="off" spellcheck="false">
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="sw-fbtn on" data-f="all">All</button>
+        <button class="sw-fbtn" data-f="1">Express</button>
+        <button class="sw-fbtn" data-f="2">Standard</button>
+      </div>
+    </div>
+    <div class="sw-rc" id="sw-rc"></div>
+
+    <div class="sw-outer">
+      <table>
+        <thead><tr>
+          <th class="wd">Destination</th>
+          <th class="wr">Region</th>
+          <th class="ws">Service</th>
+          <th class="we">Express shipping</th>
+          <th class="wt">Standard / Economy</th>
+        </tr></thead>
+        <tbody id="sw-core-body"></tbody>
       </table>
+
+      <div class="sw-more-section" id="sw-more-section">
+        <div class="sw-more-hdr">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Additional destinations — standard and economy service
+        </div>
+        <table>
+          <thead><tr>
+            <th class="wd">Destination</th>
+            <th class="wr">Region</th>
+            <th class="ws">Service</th>
+            <th class="we">Express shipping</th>
+            <th class="wt">Standard / Economy</th>
+          </tr></thead>
+          <tbody id="sw-more-body"></tbody>
+        </table>
+      </div>
+
+      <button class="sw-toggle-btn" id="sw-toggle-btn" aria-expanded="false">
+        <span id="sw-tl">More destinations</span>
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sw-no-res" id="sw-no-res">No destinations match your search.</div>
     </div>
-    <p class="shipping-note">Processing time: 1-3 working days at our Guangzhou warehouse. Applies separately once product is stocked.</p>
+
+    <p class="sw-fn">All times are working days from dispatch at our Guangzhou warehouse. Add 2–3 days processing unless your product is pre-stocked with us. Remote areas may take longer. Weight limits and available services vary by destination — contact us for heavy items or unlisted countries.</p>
+    <p class="sw-cn">147 destinations listed. We ship to 150+ countries — <a href="contact.html">contact us</a> if yours isn't listed and we'll find a solution.</p>
   </div>
 </section>
 
@@ -1001,7 +1051,7 @@
         </li>
         <li>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Custom packaging available from low MOQs. Ask us for details.
+          Custom packaging available from low MOQs — ask us for details.
         </li>
       </ul>
     </div>
@@ -1012,14 +1062,14 @@
 <section class="cta-section">
   <div class="container">
     <h2>Outgrown AliExpress?<br>We'll handle your China backend.</h2>
-    <p class="cta-sub">Send us your product link and target country on WhatsApp. We'll check sourcing, shipping route, and landed cost. Usually within 24 hours.</p>
+    <p class="cta-sub">Send us your product link and target country on WhatsApp. We'll check sourcing, shipping route, and landed cost — usually within 24 hours.</p>
     <p class="cta-note">No commitment needed.</p>
     <div class="cta-btns">
       <a href="https://wa.me/8617846669989" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Message us on WhatsApp
       </a>
-      <a href="how-it-works.html" class="btn btn-outline btn-lg">See how it works</a>
+      <a href="https://wa.me/8617846669989" class="btn btn-outline btn-lg" target="_blank" rel="noopener">Speak to an Expert</a>
     </div>
   </div>
 </section>
@@ -1090,6 +1140,205 @@
       trigger.classList.add('active');
     }
   }
+
+  // ── Shipping table ──────────────────────────────────────
+  const SW_DATA=[
+    ["United States","North America",1,"5–8","6–12",false],
+    ["Canada","North America",1,"5–7","7–9",false],
+    ["Mexico","North America",2,"","8–12",true],
+    ["Puerto Rico","North America",2,"","15–20",true],
+    ["United Kingdom","United Kingdom",1,"3–5","5–8",false],
+    ["Germany","Europe",1,"4–6","6–10",false],
+    ["France","Europe",1,"3–5","6–10",false],
+    ["Netherlands","Europe",1,"3–6","6–10",false],
+    ["Belgium","Europe",1,"3–6","6–10",false],
+    ["Spain","Europe",1,"5–8","6–10",false],
+    ["Italy","Europe",1,"5–8","6–10",false],
+    ["Sweden","Europe",1,"5–7","6–10",false],
+    ["Denmark","Europe",1,"5–7","6–10",false],
+    ["Poland","Europe",1,"6–8","6–10",false],
+    ["Austria","Europe",1,"6–8","6–10",false],
+    ["Switzerland","Europe",1,"6–9","",false],
+    ["Ireland","Europe",2,"","6–10",true],
+    ["Portugal","Europe",2,"","6–10",true],
+    ["Norway","Europe",2,"","8–10",true],
+    ["Finland","Europe",2,"","6–10",true],
+    ["Czech Republic","Europe",2,"","6–10",true],
+    ["Slovakia","Europe",2,"","6–10",true],
+    ["Hungary","Europe",2,"","6–10",true],
+    ["Romania","Europe",2,"","6–10",true],
+    ["Bulgaria","Europe",2,"","6–10",true],
+    ["Slovenia","Europe",2,"","6–10",true],
+    ["Croatia","Europe",2,"","6–10",true],
+    ["Latvia","Europe",2,"","6–10",true],
+    ["Lithuania","Europe",2,"","6–10",true],
+    ["Estonia","Europe",2,"","6–10",true],
+    ["Luxembourg","Europe",2,"","6–10",true],
+    ["Malta","Europe",2,"","6–10",true],
+    ["Greece","Europe",2,"","8–12",true],
+    ["Cyprus","Europe",2,"","8–12",true],
+    ["Iceland","Europe",2,"","12–15",true],
+    ["Turkey","Europe",2,"","15–20",true],
+    ["Serbia","Europe",2,"","15–20",true],
+    ["Albania","Europe",2,"","15–20",true],
+    ["North Macedonia","Europe",2,"","15–20",true],
+    ["Belarus","Europe",2,"","15–20",true],
+    ["Georgia","Europe",2,"","15–20",true],
+    ["Armenia","Europe",2,"","15–20",true],
+    ["Faroe Islands","Europe",2,"","15–20",true],
+    ["Greenland","Europe",2,"","15–20",true],
+    ["Gibraltar","Europe",2,"","15–20",true],
+    ["Liechtenstein","Europe",2,"","15–20",true],
+    ["Monaco","Europe",2,"","15–20",true],
+    ["San Marino","Europe",2,"","15–20",true],
+    ["Vatican","Europe",2,"","15–20",true],
+    ["Andorra","Europe",2,"","15–20",true],
+    ["Guernsey","Europe",2,"","15–20",true],
+    ["Jersey","Europe",2,"","15–20",true],
+    ["Ukraine","Europe",2,"","10–12",true],
+    ["Moldova","Europe",2,"","10–25",true],
+    ["Montenegro","Europe",2,"","17–19",true],
+    ["Russia","Europe",2,"","15–30",true],
+    ["Australia","Asia-Pacific",1,"4–7","5–8",false],
+    ["Japan","Asia-Pacific",1,"4–6","",false],
+    ["South Korea","Asia-Pacific",1,"5–8","6–8",false],
+    ["Singapore","Asia-Pacific",1,"5–6","6–7",false],
+    ["Vietnam","Asia-Pacific",1,"5–6","",false],
+    ["Thailand","Asia-Pacific",1,"5–8","",false],
+    ["Indonesia","Asia-Pacific",1,"7–9","",false],
+    ["Hong Kong","Asia-Pacific",1,"2–5","",false],
+    ["Macau","Asia-Pacific",1,"3–5","",false],
+    ["New Zealand","Asia-Pacific",2,"","6–10",true],
+    ["Malaysia","Asia-Pacific",2,"","8–10",true],
+    ["Philippines","Asia-Pacific",2,"","8–10",true],
+    ["Sri Lanka","Asia-Pacific",2,"","15–20",true],
+    ["India","Asia-Pacific",2,"","15–20",true],
+    ["Pakistan","Asia-Pacific",2,"","15–17",true],
+    ["Bangladesh","Asia-Pacific",2,"","15–20",true],
+    ["Myanmar","Asia-Pacific",2,"","15–20",true],
+    ["Taiwan","Asia-Pacific",2,"","15–20",true],
+    ["North Korea","Asia-Pacific",2,"","15–20",true],
+    ["Israel","Middle East",2,"","6–10",true],
+    ["UAE","Middle East",2,"","6–10",true],
+    ["Saudi Arabia","Middle East",2,"","8–12",true],
+    ["Qatar","Middle East",2,"","8–12",true],
+    ["Kuwait","Middle East",2,"","8–12",true],
+    ["Bahrain","Middle East",2,"","8–12",true],
+    ["Jordan","Middle East",2,"","10–14",true],
+    ["Lebanon","Middle East",2,"","15–20",true],
+    ["Azerbaijan","Caucasus & Central Asia",2,"","13–15",true],
+    ["Uzbekistan","Caucasus & Central Asia",2,"","15–20",true],
+    ["Kyrgyzstan","Caucasus & Central Asia",2,"","15–20",true],
+    ["South Africa","Africa",2,"","8–12",true],
+    ["Morocco","Africa",2,"","10–15",true],
+    ["Mauritius","Africa",2,"","9–14",true],
+    ["Seychelles","Africa",2,"","8–13",true],
+    ["Rwanda","Africa",2,"","9–13",true],
+    ["Réunion","Africa",2,"","10–15",true],
+    ["Madagascar","Africa",2,"","10–15",true],
+    ["Tanzania","Africa",2,"","11–13",true],
+    ["Angola","Africa",2,"","11–13",true],
+    ["Senegal","Africa",2,"","11–15",true],
+    ["Zambia","Africa",2,"","11–18",true],
+    ["Nigeria","Africa",2,"","13–16",true],
+    ["Kenya","Africa",2,"","13–16",true],
+    ["Ghana","Africa",2,"","13–16",true],
+    ["Uganda","Africa",2,"","13–16",true],
+    ["Mayotte","Africa",2,"","13–16",true],
+    ["Egypt","Africa",2,"","15–20",true],
+    ["Ethiopia","Africa",2,"","15–20",true],
+    ["Algeria","Africa",2,"","15–20",true],
+    ["Cameroon","Africa",2,"","15–20",true],
+    ["Ivory Coast","Africa",2,"","15–20",true],
+    ["Zimbabwe","Africa",2,"","15–20",true],
+    ["Namibia","Africa",2,"","15–20",true],
+    ["Mozambique","Africa",2,"","15–20",true],
+    ["Lesotho","Africa",2,"","15–20",true],
+    ["Liberia","Africa",2,"","15–20",true],
+    ["Eritrea","Africa",2,"","15–20",true],
+    ["Gabon","Africa",2,"","15–20",true],
+    ["Comoros","Africa",2,"","15–20",true],
+    ["Brazil","Latin America",2,"","15–25",true],
+    ["Argentina","Latin America",2,"","15–20",true],
+    ["Chile","Latin America",2,"","19–21",true],
+    ["Colombia","Latin America",2,"","19–21",true],
+    ["Peru","Latin America",2,"","15–23",true],
+    ["Uruguay","Latin America",2,"","15–20",true],
+    ["Costa Rica","Latin America",2,"","15–20",true],
+    ["French Guiana","Latin America",2,"","15–20",true],
+    ["Suriname","Latin America",2,"","15–20",true],
+    ["Falkland Islands","Latin America",2,"","15–20",true],
+    ["Ecuador","Latin America",2,"","17–22",true],
+    ["Paraguay","Latin America",2,"","20–30",true],
+    ["El Salvador","Latin America",2,"","20–30",true],
+    ["Bolivia","Latin America",2,"","30–40",true],
+    ["Honduras","Latin America",2,"","30–40",true],
+    ["Nicaragua","Latin America",2,"","30–40",true],
+    ["Guatemala","Latin America",2,"","47–50",true],
+    ["Panama","Latin America",2,"","54–57",true],
+    ["Tonga","Pacific Islands",2,"","15–20",true],
+    ["Vanuatu","Pacific Islands",2,"","15–20",true],
+    ["Samoa","Pacific Islands",2,"","15–20",true],
+    ["Palau","Pacific Islands",2,"","15–20",true],
+    ["Micronesia","Pacific Islands",2,"","15–20",true],
+    ["Marshall Islands","Pacific Islands",2,"","15–20",true],
+    ["Kiribati","Pacific Islands",2,"","15–20",true],
+    ["Tuvalu","Pacific Islands",2,"","15–20",true],
+    ["Nauru","Pacific Islands",2,"","15–20",true],
+    ["Cook Islands","Pacific Islands",2,"","15–20",true],
+    ["Niue","Pacific Islands",2,"","15–20",true],
+    ["Christmas Island","Pacific Islands",2,"","15–20",true],
+    ["Northern Mariana Islands","Pacific Islands",2,"","15–20",true],
+    ["Wallis & Futuna","Pacific Islands",2,"","15–20",true]
+  ];
+  function swBadge(t){return t===1?'<span class="sw-badge sw-b-exp"><span class="sw-dot sw-dot-exp"></span>Express</span>':'<span class="sw-badge sw-b-std"><span class="sw-dot sw-dot-std"></span>Standard</span>';}
+  function swBuildRows(items,id){
+    const tb=document.getElementById(id);let lastR='';
+    items.forEach(c=>{
+      const[name,region,tier,exp,std]=c;
+      if(region!==lastR){const hr=document.createElement('tr');hr.className='sw-sec-hdr';hr.dataset.region=region.toLowerCase();hr.innerHTML='<td colspan="5">'+region+'</td>';tb.appendChild(hr);lastR=region;}
+      const tr=document.createElement('tr');tr.className='sw-dr';tr.dataset.name=name.toLowerCase();tr.dataset.region=region.toLowerCase();tr.dataset.tier=tier;tr.dataset.hasExp=exp?'1':'0';tr.dataset.hasStd=std?'1':'0';
+      tr.innerHTML='<td class="dest">'+name+'</td><td class="reg">'+region+'</td><td>'+swBadge(tier)+'</td>'+(exp?'<td class="exp-t">'+exp+' days</td>':'<td class="dash">—</td>')+(std?'<td class="std-t">'+std+' days</td>':'<td class="dash">—</td>');
+      tb.appendChild(tr);
+    });
+  }
+  const swCore=SW_DATA.filter(c=>!c[5]),swMore=SW_DATA.filter(c=>c[5]);
+  swBuildRows(swCore,'sw-core-body');swBuildRows(swMore,'sw-more-body');
+  const swSearch=document.getElementById('sw-search'),swRc=document.getElementById('sw-rc'),swNoRes=document.getElementById('sw-no-res'),swFbtns=document.querySelectorAll('.sw-fbtn');
+  const swToggleBtn=document.getElementById('sw-toggle-btn'),swMoreSection=document.getElementById('sw-more-section'),swTl=document.getElementById('sw-tl');
+  let swAF='all',swAQ='',swMoreOpen=false;
+  swTl.textContent='More destinations ('+swMore.length+')';
+  function swApply(){
+    let vis=0;
+    document.querySelectorAll('#sw-core-body tr,#sw-more-body tr').forEach(tr=>{
+      if(tr.classList.contains('sw-sec-hdr'))return;
+      const mQ=!swAQ||tr.dataset.name.includes(swAQ)||tr.dataset.region.includes(swAQ);
+      let mF=true;if(swAF==='1')mF=tr.dataset.hasExp==='1';else if(swAF==='2')mF=tr.dataset.hasStd==='1';
+      tr.classList.toggle('hidden',!(mQ&&mF));if(mQ&&mF)vis++;
+    });
+    ['sw-core-body','sw-more-body'].forEach(id=>{
+      const tb=document.getElementById(id);let last=null,hv=false;
+      tb.querySelectorAll('tr').forEach(tr=>{if(tr.classList.contains('sw-sec-hdr')){if(last)last.classList.toggle('hidden',!hv);last=tr;hv=false;}else if(!tr.classList.contains('hidden'))hv=true;});
+      if(last)last.classList.toggle('hidden',!hv);
+    });
+    swRc.textContent=(swAQ||swAF!=='all')?'Showing '+vis+' destination'+(vis!==1?'s':''):'';
+    swNoRes.style.display=vis===0?'block':'none';
+  }
+  swSearch.addEventListener('input',e=>{
+    swAQ=e.target.value.toLowerCase().trim();
+    if(swAQ&&!swMoreOpen){const m=swMore.some(c=>c[0].toLowerCase().includes(swAQ)||c[1].toLowerCase().includes(swAQ));if(m){swMoreOpen=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}}
+    swApply();
+  });
+  swFbtns.forEach(b=>b.addEventListener('click',()=>{
+    swFbtns.forEach(x=>x.classList.remove('on'));b.classList.add('on');swAF=b.dataset.f;
+    if(swAF==='2'&&!swMoreOpen){swMoreOpen=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}
+    swApply();
+  }));
+  swToggleBtn.addEventListener('click',()=>{
+    swMoreOpen=!swMoreOpen;swMoreSection.style.display=swMoreOpen?'block':'none';
+    swTl.textContent=swMoreOpen?'Show fewer destinations':'More destinations ('+swMore.length+')';
+    swToggleBtn.classList.toggle('open',swMoreOpen);swToggleBtn.setAttribute('aria-expanded',swMoreOpen);swApply();
+  });
 </script>
 
 </body>
