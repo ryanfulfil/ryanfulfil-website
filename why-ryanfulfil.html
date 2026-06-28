@@ -133,11 +133,13 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
+    .reason-card:last-child { grid-column: 1 / -1; }
     @media (max-width: 900px) {
       .reasons__grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       .reasons__grid { grid-template-columns: 1fr; }
+      .reason-card:last-child { grid-column: auto; }
     }
     .reason-card {
       background: rgba(255,255,255,0.05);
@@ -521,8 +523,8 @@
           <h2>Built by someone who has been on your side of the screen.</h2>
           <div class="meet-ryan__bio">
             <p>Ryan started RyanFulfil in 2018 after years of running his own dropshipping stores. He knew the frustration of slow shipping, inconsistent product quality, and agents who went quiet when things went wrong.</p>
-            <p>RyanFulfil was built to fix that: <strong>a China-based fulfilment partner that works the way sellers actually need.</strong> Fast communication, honest sourcing, and a team that treats your business as if it were their own.</p>
-            <p>Today, RyanFulfil handles fulfilment for sellers across Europe, North America, and Australia. The same values that shaped the business in 2018 still shape how it operates now.</p>
+            <p>RyanFulfil was built to fix that: <strong>a China-based fulfilment partner that works the way sellers actually need.</strong> Fast communication, honest sourcing, and clear updates when stock, quality, or shipping changes.</p>
+            <p>Today, RyanFulfil supports sellers across Europe, North America, and Australia with sourcing, packing, tracking, and issue resolution handled by one China-based team.</p>
           </div>
         </div>
       </div>
@@ -552,6 +554,10 @@
             </li>
             <li>
               <span class="fit-list__dot">&#10003;</span>
+              You are testing new products and need fast, flexible sourcing
+            </li>
+            <li>
+              <span class="fit-list__dot">&#10003;</span>
               You sell to US, European, or global markets
             </li>
             <li>
@@ -565,10 +571,6 @@
             <li>
               <span class="fit-list__dot">&#10003;</span>
               You value responsiveness and honest communication over sales talk
-            </li>
-            <li>
-              <span class="fit-list__dot">&#10003;</span>
-              You are testing new products and need fast, flexible sourcing
             </li>
           </ul>
         </div>
@@ -593,6 +595,10 @@
             <li>
               <span class="fit-list__dot" style="font-size:0.8rem;">&#8722;</span>
               You need guaranteed next-day domestic delivery inside the US or EU
+            </li>
+            <li>
+              <span class="fit-list__dot" style="font-size:0.8rem;">&#8722;</span>
+              You are looking for product research, winning product recommendations, or guaranteed profit margins — we handle fulfilment, not product-market fit
             </li>
           </ul>
         </div>
