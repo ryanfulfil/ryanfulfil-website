@@ -550,6 +550,33 @@
     .pricing-checks li svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
 
     /* =====================
+       COMMUNITY
+    ===================== */
+    .community-section { background: var(--surface); }
+    .community-stat-bar { display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin:32px 0 44px; }
+    .community-stat { text-align:center; }
+    .community-stat-num { font-family:var(--font-head);font-size:2.4rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:4px; }
+    .community-stat-label { font-size:0.83rem;color:var(--muted); }
+    .community-divider { width:1px;height:44px;background:var(--border); }
+    .community-cards { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px; }
+    .community-card { background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:box-shadow 0.2s,border-color 0.2s; }
+    .community-card:hover { box-shadow:0 4px 20px rgba(13,31,60,0.1);border-color:var(--accent); }
+    .community-card-top { display:flex;align-items:center;gap:10px; }
+    .community-fb-icon { width:32px;height:32px;border-radius:8px;background:#1877F2;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .community-card-name { font-weight:600;font-size:0.875rem;color:var(--navy);line-height:1.35; }
+    .community-card-count { font-family:var(--font-head);font-size:1.55rem;font-weight:800;color:var(--accent); }
+    .community-card-tag { font-size:0.78rem;color:var(--muted); }
+    .community-card-join { margin-top:auto;font-size:0.82rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:4px; }
+    .community-footer { text-align:center;font-size:0.875rem;color:var(--muted); }
+    .community-footer a { color:var(--accent);font-weight:600;text-decoration:none; }
+    .community-footer a:hover { text-decoration:underline; }
+    @media(max-width:768px){
+      .community-cards{grid-template-columns:1fr;}
+      .community-divider{width:40px;height:1px;}
+      .community-stat-num{font-size:2rem;}
+    }
+
+    /* =====================
        BOTTOM CTA
     ===================== */
     .cta-section {
@@ -741,12 +768,12 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="container">
-    <h1 class="hero-headline">Your Fulfilment Team in China.</h1>
-    <p class="hero-sub">We source it, check it, pack it, ship direct to your customers.</p>
+    <h1 class="hero-headline">Your China Fulfilment Partner Since 2018.</h1>
+    <p class="hero-sub">We source it, check it, pack it, ship direct to your customers — with a real human on WhatsApp, not a chatbot.</p>
     <div class="hero-badges">
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        Trusted by 400+ dropshippers · 5,000+ orders daily
+        400+ active clients · 660,000+ community members across 10 groups
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1166,6 +1193,76 @@
   </div>
 </section>
 
+<!-- ===================== COMMUNITY ===================== -->
+<section class="section community-section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">The hub of the dropshipping community.</h2>
+      <p class="section-sub">RyanFulfil owns and moderates 10 of the largest dropshipping groups on Facebook. Active posts every hour, members from every market.</p>
+    </div>
+
+    <div class="community-stat-bar">
+      <div class="community-stat">
+        <div class="community-stat-num">660,000+</div>
+        <div class="community-stat-label">community members</div>
+      </div>
+      <div class="community-divider"></div>
+      <div class="community-stat">
+        <div class="community-stat-num">10</div>
+        <div class="community-stat-label">active Facebook groups</div>
+      </div>
+      <div class="community-divider"></div>
+      <div class="community-stat">
+        <div class="community-stat-num">Since 2018</div>
+        <div class="community-stat-label">running fulfilment &amp; community</div>
+      </div>
+    </div>
+
+    <div class="community-cards">
+      <a class="community-card" href="https://www.facebook.com/groups/578609290466408/" target="_blank" rel="noopener">
+        <div class="community-card-top">
+          <div class="community-fb-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div class="community-card-name">Dropshipping Agent | China 3PL Supplier Fast Delivery</div>
+        </div>
+        <div class="community-card-count">402,100+</div>
+        <div class="community-card-tag">General dropshipping · All markets</div>
+        <div class="community-card-join">Join group <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </a>
+
+      <a class="community-card" href="https://www.facebook.com/groups/844800962827249/" target="_blank" rel="noopener">
+        <div class="community-card-top">
+          <div class="community-fb-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div class="community-card-name">Dropshipping Agent</div>
+        </div>
+        <div class="community-card-count">179,500+</div>
+        <div class="community-card-tag">General dropshipping · All markets</div>
+        <div class="community-card-join">Join group <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </a>
+
+      <a class="community-card" href="https://www.facebook.com/groups/dropshippingsuppliersuk/" target="_blank" rel="noopener">
+        <div class="community-card-top">
+          <div class="community-fb-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </div>
+          <div class="community-card-name">Dropshipping Suppliers USA UK Australia</div>
+        </div>
+        <div class="community-card-count">77,900+</div>
+        <div class="community-card-tag">USA · UK · Australia markets</div>
+        <div class="community-card-join">Join group <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </a>
+    </div>
+
+    <p class="community-footer">
+      + 7 more active communities across specific markets. &nbsp;
+      <a href="https://www.facebook.com/groups/578609290466408/" target="_blank" rel="noopener">Browse all groups →</a>
+    </p>
+  </div>
+</section>
+
 <!-- ===================== BOTTOM CTA ===================== -->
 <section class="cta-section">
   <div class="container">
@@ -1459,6 +1556,31 @@
   // Merged section header labels and group keys (for collapsing UK+Europe under one header)
   const SW_HDR_LABEL={'United Kingdom':'Europe / United Kingdom','Europe':'Europe / United Kingdom'};
   const SW_HDR_GROUP={'United Kingdom':'EU','Europe':'EU'};
+  // Regional alias lookup — maps common trade/geographic shorthand to country names (lowercase)
+  const SW_REGION_META={
+    'dach':['germany','austria','switzerland','liechtenstein'],
+    'benelux':['belgium','netherlands','luxembourg'],
+    'nordics':['sweden','denmark','norway','finland','iceland','faroe islands'],
+    'nordic':['sweden','denmark','norway','finland','iceland'],
+    'scandinavia':['sweden','denmark','norway'],
+    'scandinavian':['sweden','denmark','norway'],
+    'gcc':['uae','saudi arabia','qatar','kuwait','bahrain'],
+    'mena':['egypt','morocco','algeria','jordan','lebanon','israel','uae','saudi arabia','qatar','kuwait','bahrain','turkey'],
+    'sea':['singapore','vietnam','thailand','indonesia','malaysia','philippines','myanmar'],
+    'anz':['australia','new zealand'],
+    'apac':['australia','japan','south korea','singapore','vietnam','thailand','indonesia','hong kong','macau','new zealand','malaysia','philippines','sri lanka','india','pakistan','bangladesh','myanmar','taiwan'],
+    'latam':['brazil','argentina','chile','colombia','peru','uruguay','ecuador','paraguay','bolivia','costa rica','el salvador','honduras','nicaragua','guatemala','panama','mexico','french guiana','suriname','falkland islands','puerto rico'],
+    'cee':['poland','czech republic','slovakia','hungary','romania','bulgaria','slovenia','croatia','ukraine','moldova','belarus','serbia','albania','north macedonia','montenegro'],
+    'eea':['germany','france','netherlands','belgium','spain','italy','sweden','denmark','austria','ireland','portugal','finland','poland','czech republic','slovakia','hungary','romania','bulgaria','slovenia','croatia','latvia','lithuania','estonia','luxembourg','malta','greece','cyprus','norway','iceland','liechtenstein'],
+    'balkans':['serbia','albania','north macedonia','croatia','slovenia','montenegro','greece','bulgaria'],
+    'baltics':['estonia','latvia','lithuania'],
+    'baltic':['estonia','latvia','lithuania'],
+    'cis':['russia','ukraine','belarus','moldova','uzbekistan','kyrgyzstan','azerbaijan','armenia','georgia'],
+    'ssa':['south africa','nigeria','kenya','ghana','ethiopia','tanzania','uganda','senegal','angola','zambia','cameroon','ivory coast','zimbabwe','namibia','mozambique','lesotho','liberia','eritrea','gabon','rwanda','mauritius','seychelles','comoros','mayotte'],
+    'sub-saharan':['south africa','nigeria','kenya','ghana','ethiopia','tanzania','uganda','senegal','angola','zambia','cameroon','ivory coast','zimbabwe','namibia','mozambique','lesotho','liberia','eritrea','gabon','rwanda'],
+    'greater china':['hong kong','macau','taiwan'],
+    'caribbean':['puerto rico'],
+  };
   function swBuildRows(items,id){
     const tb=document.getElementById(id);let lastGroup='';
     items.forEach(c=>{
@@ -1478,12 +1600,14 @@
   const swToggleBtn=document.getElementById('sw-toggle-btn'),swMoreSection=document.getElementById('sw-more-section'),swTl=document.getElementById('sw-tl');
   let swAF='all',swAQ='',swMoreOpen=false,swAutoExpanded=false;
   swTl.textContent='More destinations ('+swMore.length+')';
+  function swRegSet(q){const s=new Set();if(q.length>=2){for(const[t,cs]of Object.entries(SW_REGION_META)){if(t===q||t.startsWith(q)){cs.forEach(c=>s.add(c));}}}return s;}
   function swApply(){
     let vis=0;
+    const swReg=swRegSet(swAQ);
     document.querySelectorAll('#sw-core-body tr,#sw-more-body tr').forEach(tr=>{
       if(tr.classList.contains('sw-sec-hdr'))return;
       const swMeta=SW_META[tr.dataset.name];const aliasHit=swMeta&&swMeta.some(a=>a.startsWith(swAQ)||swAQ.startsWith(a)&&a.length>=2);
-      const mQ=!swAQ||tr.dataset.name.includes(swAQ)||tr.dataset.region.includes(swAQ)||tr.dataset.subregion.includes(swAQ)||aliasHit;
+      const mQ=!swAQ||tr.dataset.name.includes(swAQ)||tr.dataset.region.includes(swAQ)||tr.dataset.subregion.includes(swAQ)||aliasHit||swReg.has(tr.dataset.name);
       let mF=true;if(swAF==='1')mF=tr.dataset.hasExp==='1';else if(swAF==='2')mF=tr.dataset.hasStd==='1';
       tr.classList.toggle('hidden',!(mQ&&mF));if(mQ&&mF)vis++;
     });
@@ -1498,7 +1622,7 @@
   function swCollapseMore(){swMoreOpen=false;swAutoExpanded=false;swMoreSection.style.display='none';swTl.textContent='More destinations ('+swMore.length+')';swToggleBtn.classList.remove('open');swToggleBtn.setAttribute('aria-expanded','false');}
   swSearch.addEventListener('input',e=>{
     swAQ=e.target.value.toLowerCase().trim();
-    if(swAQ&&!swMoreOpen){const m=swMore.some(c=>c[0].toLowerCase().includes(swAQ)||c[1].toLowerCase().includes(swAQ)||(c[6]&&c[6].toLowerCase().includes(swAQ)));if(m){swMoreOpen=true;swAutoExpanded=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}}
+    if(swAQ&&!swMoreOpen){const swReg=swRegSet(swAQ);const m=swMore.some(c=>c[0].toLowerCase().includes(swAQ)||c[1].toLowerCase().includes(swAQ)||(c[6]&&c[6].toLowerCase().includes(swAQ))||swReg.has(c[0].toLowerCase()));if(m){swMoreOpen=true;swAutoExpanded=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}}
     if(!swAQ&&swAutoExpanded){swCollapseMore();}
     swApply();
   });
