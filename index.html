@@ -1504,7 +1504,6 @@
   });
   swFbtns.forEach(b=>b.addEventListener('click',()=>{
     swFbtns.forEach(x=>x.classList.remove('on'));b.classList.add('on');swAF=b.dataset.f;
-    if(swAF!=='all'&&!swMoreOpen){swMoreOpen=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}
     swApply();
   }));
   swToggleBtn.addEventListener('click',()=>{
