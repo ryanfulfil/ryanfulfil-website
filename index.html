@@ -203,7 +203,6 @@
     .trust-bar {
       background: var(--accent);
       padding: 13px 0;
-      overflow-x: auto;
     }
     .trust-bar-inner {
       display: flex;
@@ -606,6 +605,9 @@
       .pricing-card { padding: 28px 24px; }
     }
     @media (max-width: 600px) {
+      .trust-bar-inner { min-width: 0; flex-wrap: wrap; justify-content: center; gap: 8px 18px; padding: 0 16px; }
+      .trust-item      { white-space: normal; }
+      .trust-sep       { display: none; }
       .diff-grid     { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
       .hero-badges   { grid-template-columns: 1fr; }
@@ -732,7 +734,10 @@
       Shopify Partner
     </span>
     <span class="trust-sep"></span>
-    <span class="trust-item">Payments in USD, EUR, GBP, SGD</span>
+    <span class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      Payments in USD, EUR, GBP, SGD
+    </span>
   </div>
 </div>
 
@@ -766,8 +771,8 @@
 <section class="section">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-title">Built differently from the start.</h2>
-      <p class="section-sub">Six things you get working with RyanFulfil that most agents don't cover.</p>
+      <h2 class="section-title">What's included with every order.</h2>
+      <p class="section-sub">Six things that come standard with RyanFulfil — no add-ons, no surprises.</p>
     </div>
     <div class="diff-grid">
 
@@ -804,7 +809,7 @@
           </svg>
         </div>
         <div class="diff-text">
-          <strong>Stock held and QC'd, not risking defects</strong>
+          <strong>QC'd before it ships, not after a complaint</strong>
           <span>We inspect every batch at our Guangzhou warehouse before it ships.</span>
         </div>
       </div>
@@ -843,7 +848,7 @@
           </svg>
         </div>
         <div class="diff-text">
-          <strong>Auto-fulfilled and tracked, not manual</strong>
+          <strong>Tracking synced to your store, not copy-pasted</strong>
           <span>Tracking numbers upload directly to your store. Nothing to export.</span>
         </div>
       </div>
