@@ -414,7 +414,14 @@
        SHIPPING TABLE
     ===================== */
     .shipping-section { background: var(--surface); }
-    .sw-controls{display:flex;gap:8px;margin-bottom:.6rem;flex-wrap:wrap;align-items:center;margin-top:32px}
+    .sw-quick-btns{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:32px;margin-bottom:10px}
+    .sw-quick-label{font-size:12px;color:#999;font-weight:500;margin-right:2px}
+    .sw-qb{padding:5px 12px;border-radius:20px;border:1px solid #ddd;font-size:13px;cursor:pointer;background:#fff;color:#444;transition:all .15s;font-family:var(--font-body)}
+    .sw-qb:hover,.sw-qb.active{border-color:var(--accent);color:var(--accent);background:#f0faff}
+    .sw-flag{font-size:1em;line-height:1}
+    @keyframes sw-glow{0%{background:rgba(42,174,245,0.18)}100%{background:transparent}}
+    .sw-highlight{animation:sw-glow 3s ease-out forwards}
+    .sw-controls{display:flex;gap:8px;margin-bottom:.6rem;flex-wrap:wrap;align-items:center;margin-top:0}
     .sw-search-wrap{position:relative;flex:1;min-width:180px}
     .sw-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:#aaa;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
     #sw-search{width:100%;padding:8px 10px 8px 32px;border:1px solid #ddd;border-radius:8px;font-size:14px;color:#1a1a1a;background:#fff;outline:none;font-family:var(--font-body)}
@@ -1011,6 +1018,15 @@
       <p class="section-sub">Search any country below. We ship to 150+ destinations globally.</p>
     </div>
 
+    <div class="sw-quick-btns">
+      <span class="sw-quick-label">Quick:</span>
+      <button class="sw-qb" data-q="united states">🇺🇸 US</button>
+      <button class="sw-qb" data-q="united kingdom">🇬🇧 UK</button>
+      <button class="sw-qb" data-q="australia">🇦🇺 AU</button>
+      <button class="sw-qb" data-q="canada">🇨🇦 CA</button>
+      <button class="sw-qb" data-q="germany">🇩🇪 DE</button>
+    </div>
+
     <div class="sw-controls">
       <div class="sw-search-wrap">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1172,6 +1188,59 @@
   }
 
   // ── Shipping table ──────────────────────────────────────
+  // Country metadata: ISO code + search aliases
+  const SW_META={
+    'united states':['us','usa','america'],'canada':['ca','can'],
+    'united kingdom':['gb','uk','great britain','england','britain'],
+    'germany':['de','deu','deutschland'],'france':['fr','fra'],
+    'netherlands':['nl','nld','holland'],'belgium':['be','bel'],
+    'spain':['es','esp'],'italy':['it','ita'],'sweden':['se','swe'],
+    'denmark':['dk','dnk'],'poland':['pl','pol'],'austria':['at','aut'],
+    'switzerland':['ch','che'],'australia':['au','aus'],
+    'new zealand':['nz','nzl'],'japan':['jp','jpn'],
+    'south korea':['kr','kor','korea'],'singapore':['sg','sgp'],
+    'hong kong':['hk','hkg'],'macau':['mo','mac','macao'],
+    'vietnam':['vn','vnm','viet nam'],'thailand':['th','tha'],
+    'indonesia':['id','idn'],'malaysia':['my','mys'],
+    'philippines':['ph','phl'],'taiwan':['tw','twn'],
+    'ireland':['ie','irl'],'finland':['fi','fin'],'norway':['no','nor'],
+    'portugal':['pt','prt'],'czech republic':['cz','cze','czechia'],
+    'romania':['ro','rou'],'hungary':['hu','hun'],'greece':['gr','gre'],
+    'croatia':['hr','hrv'],'bulgaria':['bg','bgr'],'slovakia':['sk','svk'],
+    'slovenia':['si','svn'],'estonia':['ee','est'],'latvia':['lv','lva'],
+    'lithuania':['lt','ltu'],'ukraine':['ua','ukr'],'russia':['ru','rus'],
+    'turkey':['tr','tur'],'israel':['il','isr'],
+    'saudi arabia':['sa','sau','ksa'],
+    'united arab emirates':['ae','uae','emirates'],
+    'qatar':['qa','qat'],'kuwait':['kw','kwt'],'bahrain':['bh','bhr'],
+    'jordan':['jo','jor'],'oman':['om','omn'],
+    'mexico':['mx','mex'],'brazil':['br','bra'],'argentina':['ar','arg'],
+    'chile':['cl','chl'],'colombia':['co','col'],'peru':['pe','per'],
+    'ecuador':['ec','ecu'],'paraguay':['py','pry'],'bolivia':['bo','bol'],
+    'uruguay':['uy','ury'],'venezuela':['ve','ven'],
+    'south africa':['za','zaf'],'nigeria':['ng','nga'],'kenya':['ke','ken'],
+    'egypt':['eg','egy'],'ghana':['gh','gha'],'morocco':['ma','mar'],
+    'ethiopia':['et','eth'],'tanzania':['tz','tza'],'senegal':['sn','sen'],
+    'tunisia':['tn','tun'],'algeria':['dz','dza'],
+    'cambodia':['kh','khm'],'myanmar':['mm','mmr','burma'],
+    'laos':['la','lao'],'mongolia':['mn','mng'],'brunei':['bn','brn'],
+    'moldova':['md','mda'],'montenegro':['me','mne'],'serbia':['rs','srb'],
+    'albania':['al','alb'],'luxembourg':['lu','lux'],'cyprus':['cy','cyp'],
+    'malta':['mt','mlt'],'belarus':['by','blr'],'georgia':['ge','geo'],
+    'kazakhstan':['kz','kaz'],'pakistan':['pk','pak'],'india':['in','ind'],
+    'bangladesh':['bd','bgd'],'sri lanka':['lk','lka'],'nepal':['np','npl'],
+    'papua new guinea':['pg','png'],'fiji':['fj','fji'],
+    'honduras':['hn','hnd'],'guatemala':['gt','gtm'],
+    'el salvador':['sv','slv'],'nicaragua':['ni','nic'],
+    'panama':['pa','pan'],'costa rica':['cr','cri'],
+    'dominican republic':['do','dom'],'cuba':['cu','cub'],
+    'trinidad and tobago':['tt','tto'],'guyana':['gy','guy'],
+    'reunion':['re','reu'],'ivory coast':['ci','civ'],
+    'cameroon':['cm','cmr'],'uganda':['ug','uga'],
+    'north macedonia':['mk','mkd','macedonia'],'armenia':['am','arm'],
+  };
+  function swFlag(name){const m=SW_META[name.toLowerCase()];if(!m)return'';return[...m[0].toUpperCase()].map(c=>String.fromCodePoint(0x1F1E6+c.charCodeAt(0)-65)).join('');}
+
   const SW_DATA=[
     ["United States","North America",1,"5–8","6–12",false],
     ["Canada","North America",1,"5–7","7–9",false],
@@ -1328,7 +1397,7 @@
       const[name,region,tier,exp,std]=c;
       if(region!==lastR){const hr=document.createElement('tr');hr.className='sw-sec-hdr';hr.dataset.region=region.toLowerCase();hr.innerHTML='<td colspan="5">'+region+'</td>';tb.appendChild(hr);lastR=region;}
       const tr=document.createElement('tr');tr.className='sw-dr';tr.dataset.name=name.toLowerCase();tr.dataset.region=region.toLowerCase();tr.dataset.tier=tier;tr.dataset.hasExp=exp?'1':'0';tr.dataset.hasStd=std?'1':'0';
-      tr.innerHTML='<td class="dest">'+name+'</td><td class="reg">'+region+'</td><td>'+swBadge(tier)+'</td>'+(exp?'<td class="exp-t">'+exp+' days</td>':'<td class="dash">—</td>')+(std?'<td class="std-t">'+std+' days</td>':'<td class="dash">—</td>');
+      const flag=swFlag(name);tr.innerHTML='<td class="dest">'+(flag?'<span class="sw-flag">'+flag+'</span> ':'')+name+'</td><td class="reg">'+region+'</td><td>'+swBadge(tier)+'</td>'+(exp?'<td class="exp-t">'+exp+' days</td>':'<td class="dash">—</td>')+(std?'<td class="std-t">'+std+' days</td>':'<td class="dash">—</td>');
       tb.appendChild(tr);
     });
   }
@@ -1342,7 +1411,8 @@
     let vis=0;
     document.querySelectorAll('#sw-core-body tr,#sw-more-body tr').forEach(tr=>{
       if(tr.classList.contains('sw-sec-hdr'))return;
-      const mQ=!swAQ||tr.dataset.name.includes(swAQ)||tr.dataset.region.includes(swAQ);
+      const swMeta=SW_META[tr.dataset.name];const aliasHit=swMeta&&swMeta.some(a=>a.startsWith(swAQ)||swAQ.startsWith(a)&&a.length>=2);
+      const mQ=!swAQ||tr.dataset.name.includes(swAQ)||tr.dataset.region.includes(swAQ)||aliasHit;
       let mF=true;if(swAF==='1')mF=tr.dataset.hasExp==='1';else if(swAF==='2')mF=tr.dataset.hasStd==='1';
       tr.classList.toggle('hidden',!(mQ&&mF));if(mQ&&mF)vis++;
     });
@@ -1369,6 +1439,36 @@
     swTl.textContent=swMoreOpen?'Show fewer destinations':'More destinations ('+swMore.length+')';
     swToggleBtn.classList.toggle('open',swMoreOpen);swToggleBtn.setAttribute('aria-expanded',swMoreOpen);swApply();
   });
+
+  // Quick-filter buttons
+  document.querySelectorAll('.sw-qb').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const q=btn.dataset.q;
+      const already=btn.classList.contains('active');
+      document.querySelectorAll('.sw-qb').forEach(b=>b.classList.remove('active'));
+      if(already){swSearch.value='';swAQ='';swApply();return;}
+      btn.classList.add('active');
+      swSearch.value=q;swAQ=q;
+      if(!swMoreOpen){const m=swMore.some(c=>c[0].toLowerCase()===q);if(m){swMoreOpen=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}}
+      swApply();
+    });
+  });
+  swSearch.addEventListener('input',()=>{document.querySelectorAll('.sw-qb').forEach(b=>b.classList.remove('active'));});
+
+  // Auto-detect visitor country and highlight their row
+  (function swDetect(){
+    fetch('https://ipapi.co/json/')
+      .then(r=>r.json())
+      .then(d=>{
+        const code=(d.country_code||'').toLowerCase();if(!code)return;
+        let name=null;
+        for(const[n,aliases]of Object.entries(SW_META)){if(aliases[0]===code){name=n;break;}}
+        if(!name)return;
+        const row=document.querySelector('tr[data-name="'+name+'"]');if(!row)return;
+        if(row.closest('#sw-more-body')&&!swMoreOpen){swMoreOpen=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}
+        row.classList.add('sw-highlight');
+      }).catch(()=>{});
+  })();
 </script>
 
 </body>
