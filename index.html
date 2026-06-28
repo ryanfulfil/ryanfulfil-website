@@ -210,7 +210,6 @@
       justify-content: center;
       gap: 8px 24px;
       flex-wrap: wrap;
-      min-width: max-content;
       padding: 0 24px;
     }
     .trust-item {
@@ -610,11 +609,17 @@
       .founder-inner { flex-direction: column; gap: 20px; text-align: center; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
       .pricing-card { padding: 28px 24px; }
+      .hero-badges { grid-template-columns: 1fr; }
+      .hero-badge  { justify-content: center; }
+    }
+    @media (max-width: 420px) {
+      .nav-right .btn { display: none; }
     }
     @media (max-width: 600px) {
       .trust-bar-inner { min-width: 0; flex-wrap: wrap; justify-content: center; gap: 8px 18px; padding: 0 16px; }
       .trust-item      { white-space: normal; }
       .trust-sep       { display: none; }
+      .sw-outer        { overflow-x: auto; }
       .diff-grid     { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
       .hero-badges   { grid-template-columns: 1fr; }
