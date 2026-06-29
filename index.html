@@ -487,7 +487,7 @@
     .sw-outer table{width:100%;border-collapse:collapse;font-size:13.5px}
     .sw-outer thead tr{background:var(--navy)}
     .sw-outer thead th{text-align:left;padding:12px 14px;color:#fff;font-weight:500;font-size:13px}
-    .sw-outer th.wd{width:30%}.sw-outer th.wr{width:20%}.sw-outer th.ws{width:13%}.sw-outer th.we{width:18%}.sw-outer th.wt{width:19%}
+    .sw-outer th.wd{width:35%}.sw-outer th.wr{width:22%}.sw-outer th.we{width:21%}.sw-outer th.wt{width:22%}
     .sw-sec-hdr td{background:#f4f4f2;padding:7px 14px;font-size:11px;font-weight:600;color:#777;letter-spacing:.06em;text-transform:uppercase;border-top:1px solid #e8e8e6}
     .sw-dr{border-top:1px solid #f0f0ee;transition:background .1s}
     .sw-dr:hover{background:#fafaf8}
@@ -1136,7 +1136,6 @@
         <thead><tr>
           <th class="wd">Destination</th>
           <th class="wr">Region</th>
-          <th class="ws">Service</th>
           <th class="we">Express shipping</th>
           <th class="wt">Standard / Economy</th>
         </tr></thead>
@@ -1152,7 +1151,6 @@
           <thead><tr>
             <th class="wd">Destination</th>
             <th class="wr">Region</th>
-            <th class="ws">Service</th>
             <th class="we">Express shipping</th>
             <th class="wt">Standard / Economy</th>
           </tr></thead>
@@ -1651,9 +1649,9 @@
       const displayRegion=dispReg||region;
       const hdrLabel=SW_HDR_LABEL[region]||region;
       const hdrGroup=SW_HDR_GROUP[region]||region;
-      if(hdrGroup!==lastGroup){const hr=document.createElement('tr');hr.className='sw-sec-hdr';hr.dataset.region=region.toLowerCase();hr.innerHTML='<td colspan="5">'+hdrLabel+'</td>';tb.appendChild(hr);lastGroup=hdrGroup;}
+      if(hdrGroup!==lastGroup){const hr=document.createElement('tr');hr.className='sw-sec-hdr';hr.dataset.region=region.toLowerCase();hr.innerHTML='<td colspan="4">'+hdrLabel+'</td>';tb.appendChild(hr);lastGroup=hdrGroup;}
       const tr=document.createElement('tr');tr.className='sw-dr';tr.dataset.name=name.toLowerCase();tr.dataset.region=region.toLowerCase();tr.dataset.subregion=displayRegion.toLowerCase();tr.dataset.tier=tier;tr.dataset.hasExp=exp?'1':'0';tr.dataset.hasStd=std?'1':'0';
-      const flag=swFlag(name);tr.innerHTML='<td class="dest">'+(flag?'<span class="sw-flag">'+flag+'</span> ':'')+name+'</td><td class="reg">'+displayRegion+'</td><td>'+swBadge(tier)+'</td>'+(exp?'<td class="exp-t">'+exp+' days</td>':'<td class="dash">—</td>')+(std?'<td class="std-t">'+std+' days</td>':'<td class="dash">—</td>');
+      const flag=swFlag(name);tr.innerHTML='<td class="dest">'+(flag?'<span class="sw-flag">'+flag+'</span> ':'')+name+'</td><td class="reg">'+displayRegion+'</td>'+(exp?'<td class="exp-t">'+exp+' days</td>':'<td class="dash">—</td>')+(std?'<td class="std-t">'+std+' days</td>':'<td class="dash">—</td>');
       tb.appendChild(tr);
     });
   }
