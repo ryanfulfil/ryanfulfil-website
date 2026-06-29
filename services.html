@@ -17,6 +17,34 @@
   <meta name="twitter:title" content="Services — RyanFulfil">
   <meta name="twitter:description" content="Full-service China fulfilment for dropshippers: product sourcing, order fulfilment, custom branding, warehousing, and after-sales support.">
   <meta name="twitter:image" content="https://ryanfulfil.github.io/ryanfulfil-website/assets/og-image.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "China Dropshipping Fulfilment",
+    "description": "Full-service fulfilment from Guangzhou, China. We source, inspect, pack, and ship direct to your customers worldwide. Factory-direct pricing, faster than AliExpress.",
+    "provider": {
+      "@type": "Organization",
+      "name": "RyanFulfil",
+      "url": "https://ryanfulfil.github.io/ryanfulfil-website/",
+      "foundingDate": "2018"
+    },
+    "areaServed": "Worldwide",
+    "serviceType": "Dropshipping Fulfilment",
+    "url": "https://ryanfulfil.github.io/ryanfulfil-website/services.html",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Fulfilment Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Product Sourcing", "description": "We source products direct from Chinese factories based on AliExpress links, Alibaba listings, photos, or product descriptions. No MOQ."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Order Fulfilment", "description": "Pick, pack, and ship direct to your customers. Every order includes a tracking number. Plain packaging as standard — no Chinese logos or AliExpress materials."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Branding", "description": "Branded packaging including boxes, poly mailers, thank-you cards, logo stickers, and product customisation. Available from approximately 500 units MOQ."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Inventory Warehousing", "description": "Pre-stock proven products in our Guangzhou warehouse for faster fulfilment and peak-season protection."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "After-Sales Support", "description": "We handle disputes, lost parcels, damaged goods, and returns directly — you do not chase the factory yourself."}}
+      ]
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -365,6 +393,33 @@
     .data-table tr:last-child td { border-bottom: none; }
     .data-table tr:nth-child(even) td { background: rgba(240,247,255,0.55); }
     .data-table td:first-child { font-weight: 600; color: var(--navy); white-space: nowrap; }
+    @media (max-width: 600px) {
+      .table-wrap { border: none; border-radius: 0; overflow-x: visible; }
+      .data-table { min-width: 0; font-size: 0.875rem; }
+      .data-table thead { display: none; }
+      .data-table tbody tr {
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 12px;
+        overflow: hidden;
+      }
+      .data-table tbody tr:nth-child(even) td { background: none; }
+      .data-table td {
+        display: block;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        white-space: normal;
+      }
+      .data-table td:last-child { border-bottom: none; }
+      .data-table td:first-child {
+        background: var(--navy);
+        color: var(--white);
+        font-size: 0.8125rem;
+        letter-spacing: 0.02em;
+        white-space: normal;
+      }
+    }
 
     /* =====================
        WHAT WE DON'T COVER
@@ -504,7 +559,7 @@
       .cta-btns { flex-direction: column; align-items: center; }
       .cta-btns .btn { width: 100%; max-width: 320px; }
     }
-    @media (max-width: 420px) {
+    @media (max-width: 860px) {
       .nav-right .btn { display: none; }
     }
 

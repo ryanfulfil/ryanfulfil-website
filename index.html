@@ -15,6 +15,10 @@
   <meta property="og:url" content="https://ryanfulfil.github.io/ryanfulfil-website/index.html">
   <meta property="og:image" content="https://ryanfulfil.github.io/ryanfulfil-website/assets/og-image.jpg">
   <meta property="og:site_name" content="RyanFulfil">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RyanFulfil — Outgrown AliExpress? We'll handle your China backend.">
+  <meta name="twitter:description" content="China-based fulfilment partner since 2018. Source, check, pack, and ship direct to your customers worldwide. Factory-direct pricing. Get a free quote within 24 hours.">
+  <meta name="twitter:image" content="https://ryanfulfil.github.io/ryanfulfil-website/assets/og-image.jpg">
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -671,6 +675,10 @@
     /* =====================
        RESPONSIVE
     ===================== */
+    @media (max-width: 960px) {
+      .hero-badges { grid-template-columns: 1fr; }
+      .hero-badge  { justify-content: center; }
+    }
     @media (max-width: 900px) {
       .diff-grid    { grid-template-columns: repeat(2, 1fr); }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -690,7 +698,7 @@
       .hero-badges { grid-template-columns: 1fr; }
       .hero-badge  { justify-content: center; }
     }
-    @media (max-width: 420px) {
+    @media (max-width: 860px) {
       .nav-right .btn { display: none; }
     }
     @media (max-width: 600px) {
