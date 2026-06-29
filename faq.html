@@ -31,7 +31,12 @@
       {"@type":"Question","name":"How is pricing calculated, and what does a quote include?","acceptedAnswer":{"@type":"Answer","text":"We quote one all-in number per product. Everything on our side — sourcing, QC, handling, packaging, warehousing, processing, currency conversion, and shipping — is absorbed into that price. Once quoted, we hold that price as long as we can, absorbing short-term cost shifts rather than repricing, because we would rather take a small margin hit than give you a reason to reconsider the relationship. If costs move enough that we genuinely cannot hold the price, we tell you directly and explain why. Custom branding and expedited shipping are quoted separately and optionally."}},
       {"@type":"Question","name":"Can you source any product, or only certain categories?","acceptedAnswer":{"@type":"Answer","text":"We source a wide range of general consumer products including home goods, accessories, electronics, beauty, and lifestyle items. We do not source regulated goods, hazardous materials, counterfeit or trademark-infringing products, or items requiring special import licences. If you are unsure, send us the details and we will tell you straight away."}},
       {"@type":"Question","name":"What if you cannot find the exact product I want?","acceptedAnswer":{"@type":"Answer","text":"We tell you. If we cannot find the exact product, we will let you know and, where possible, suggest the closest available alternative. We do not send a substitute without your approval."}},
+      {"@type":"Question","name":"Can you provide product certificates or compliance documents (CE, FCC, RoHS)?","acceptedAnswer":{"@type":"Answer","text":"Sometimes. Many factories have compliance documents for their products — CE, FCC, RoHS, and similar. If the factory has valid documents, we can request them on your behalf. We do not create, falsify, or guarantee the accuracy of compliance documentation. If you need accredited third-party certification, you would need to arrange independent testing."}},
+      {"@type":"Question","name":"Can you modify a product I am already selling — different colour, bundle, packaging?","acceptedAnswer":{"@type":"Answer","text":"For products with real sales volume behind them, we can go back to the factory and ask about modifications — different colours or materials, bundle configurations, packaging changes, or variant additions. Not every factory will accommodate changes, and there may be a minimum order quantity for customised configurations. Message us with the details and we will check what is possible before you commit."}},
       {"@type":"Question","name":"How long does shipping take?","acceptedAnswer":{"@type":"Answer","text":"Delivery times depend on destination and shipping method. US: 7–15 business days (standard), 5–8 business days (express). UK and Europe: 7–12 business days (standard), 5–7 business days (express). Australia: 10–18 business days. We will tell you the current estimated delivery window for your market when we quote."}},
+      {"@type":"Question","name":"My tracking is not updating. What does that mean?","acceptedAnswer":{"@type":"Answer","text":"'Information received' or 'label created' in the first 1–3 business days is normal — the order is waiting for carrier handover. If tracking has not moved after 7 business days, message us and we will raise it with the carrier. After 20 business days with no movement, we treat it as a potential lost parcel and begin the investigation process."}},
+      {"@type":"Question","name":"Tracking shows delivered but my customer says they did not receive it. What happens?","acceptedAnswer":{"@type":"Answer","text":"Ask your customer to check with neighbours and their building's reception first. If they still cannot locate it, message us and we will request proof of delivery from the carrier. A signed POD generally ends the investigation. If the carrier cannot produce POD, we discuss next steps with you."}},
+      {"@type":"Question","name":"What happens if a parcel is returned to sender?","acceptedAnswer":{"@type":"Answer","text":"Returns to sender happen when an address is undeliverable — wrong address, parcel uncollected, or customs refusal. We notify you when we become aware of a return. If the customer provided the wrong address or failed to collect, reshipment costs are typically the customer's responsibility. We handle each case practically to find the best resolution."}},
       {"@type":"Question","name":"Do you provide tracking for all orders?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every order ships with a tracking number. You can pass the tracking link directly to your customer."}},
       {"@type":"Question","name":"Which countries do you ship to?","acceptedAnswer":{"@type":"Answer","text":"Our core markets are the US, UK, and Europe. We also fulfil to Australia, Canada, Israel, UAE, Japan, and Southeast Asia. We ship to 150+ countries in total. If your market is not listed, message us and we will confirm coverage."}},
       {"@type":"Question","name":"Will the packaging reveal I am dropshipping?","acceptedAnswer":{"@type":"Answer","text":"No. All orders ship in plain, unmarked packaging by default. No Chinese logos, no RyanFulfil branding, no AliExpress materials. Your customer simply receives the product. Branded packaging is an optional add-on."}},
@@ -40,6 +45,7 @@
       {"@type":"Question","name":"What if a package is lost in transit?","acceptedAnswer":{"@type":"Answer","text":"We track every shipment. If a package is not moving or goes missing, we raise it with the carrier on your behalf. For confirmed lost parcels, we reship or issue a credit depending on the circumstances."}},
       {"@type":"Question","name":"Can you add my brand to the packaging?","acceptedAnswer":{"@type":"Answer","text":"Yes. We offer a full range of custom branding options including branded boxes, poly mailers, thank-you cards, inserts, stickers, and product labels. There is usually a minimum quantity for custom-printed items. We quote this separately based on what you need."}},
       {"@type":"Question","name":"Can you hold inventory in your warehouse for faster fulfilment?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once you have a proven product, we can pre-stock inventory at our warehouse so orders ship faster. This also helps you avoid stockout risk during peak periods."}},
+      {"@type":"Question","name":"How do I know when to pre-stock inventory with you?","acceptedAnswer":{"@type":"Answer","text":"Pre-stocking makes sense when you have consistent daily orders and want faster fulfilment, lower shipping costs, or protection against supply delays. We do not push sellers to pre-stock — for new products, per-order fulfilment is the right approach. When you have consistent volume, message us and we will help you think through whether pre-stock makes sense for your SKU."}},
       {"@type":"Question","name":"Who is responsible for customs duties and import taxes?","acceptedAnswer":{"@type":"Answer","text":"Import duties, taxes, and VAT are the responsibility of the recipient — either you or your end customer, depending on your shipping terms and the destination country. We do not collect or pre-pay import taxes on your behalf. For most standard dropshipping routes, low-value orders commonly clear without additional charges, but this depends on local thresholds and regulations."}},
       {"@type":"Question","name":"What is your returns policy?","acceptedAnswer":{"@type":"Answer","text":"For confirmed defects, wrong items, or covered lost parcels, we arrange a reshipment or credit — no physical return needed. Physical returns are handled case by case. In most situations, return shipping costs exceed the product value, so a replacement or credit is more practical. We do not accept returns for buyer's remorse."}},
       {"@type":"Question","name":"I am just getting started. Can I use RyanFulfil before I have consistent orders?","acceptedAnswer":{"@type":"Answer","text":"Yes. We work with sellers at all stages, from those testing their first product to those fulfilling hundreds of orders a week. There is no volume threshold to get started. You pay per order, not per month."}}
@@ -182,7 +188,7 @@
     }
     .faq-category:last-child { margin-bottom: 0; }
     .faq-category__label {
-      font-size: 0.75rem; font-weight: 600;
+      font-size: 0.8125rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 20px;
@@ -546,6 +552,36 @@
               </div>
             </div>
           </div>
+
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false" aria-controls="faq-certs">
+              Can you provide product certificates or compliance documents (CE, FCC, RoHS)?
+              <span class="faq-item__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__body" id="faq-certs" role="region">
+              <div class="faq-item__body-inner">
+                <p>Sometimes. Many factories have compliance documents for their products — CE, FCC, RoHS, and similar. If the factory has valid documents for the product you are sourcing, we can request them on your behalf.</p>
+                <p>We do not create, falsify, or guarantee the accuracy of compliance documentation. If you need accredited third-party certification for a specific market requirement, you would need to arrange independent testing. For most dropshipping operations, products clear customs without this documentation being required — but regulations vary by country and product type.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false" aria-controls="faq-modify">
+              Can you modify a product I am already selling — different colour, bundle, packaging?
+              <span class="faq-item__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__body" id="faq-modify" role="region">
+              <div class="faq-item__body-inner">
+                <p>For products with real sales volume behind them, we can go back to the factory and ask about modifications — different colours or materials, bundle configurations, packaging changes, or variant additions. Not every factory will accommodate changes, and there may be a minimum order quantity for customised configurations.</p>
+                <p>If you want to explore this for one of your SKUs, message us with the details and we will check what is possible before you commit.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- SHIPPING -->
@@ -597,6 +633,51 @@
             <div class="faq-item__body" id="faq-11" role="region">
               <div class="faq-item__body-inner">
                 <p>Our core markets are the US, UK, and Europe. We also fulfil to Australia, Canada, Israel, UAE, Japan, and Southeast Asia. If your market is not listed, message us and we will confirm coverage.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false" aria-controls="faq-tracking">
+              My tracking is not updating. What does that mean?
+              <span class="faq-item__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__body" id="faq-tracking" role="region">
+              <div class="faq-item__body-inner">
+                <p>"Information received" or "label created" in the first 1–3 business days is normal — the order has been processed and is waiting for carrier handover at the sorting facility. No action needed at that stage.</p>
+                <p>If tracking has not moved after the first 7 business days, message us with the order number and we will raise it with the carrier. If there is no update after 20 business days and the destination country is not known for customs delays, we treat it as a potential lost parcel and begin the investigation process.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false" aria-controls="faq-delivered">
+              Tracking shows delivered but my customer says they did not receive it. What happens?
+              <span class="faq-item__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__body" id="faq-delivered" role="region">
+              <div class="faq-item__body-inner">
+                <p>This happens occasionally — the package may have been left with a neighbour, delivered to a mailroom, or left at a door the customer did not check. We suggest first asking your customer to check with neighbours and their building's reception.</p>
+                <p>If they still cannot locate it, message us and we will request proof of delivery from the carrier. A signed POD generally ends the investigation. If the carrier cannot produce POD, we will discuss next steps with you. In most cases we are unable to reship for unconfirmed non-delivery claims, since we have no way to verify what happened at the delivery end.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false" aria-controls="faq-rts">
+              What happens if a parcel is returned to sender?
+              <span class="faq-item__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__body" id="faq-rts" role="region">
+              <div class="faq-item__body-inner">
+                <p>Returns to sender happen when an address is undeliverable — wrong address entered by the customer, parcel uncollected from the post office, or customs refusal. We will notify you when we become aware of a return.</p>
+                <p>If the customer provided the wrong address or failed to collect, reshipment costs are typically the customer's responsibility. We handle each case practically and work with you to find the best resolution — whether that is a corrected reshipment or a credit.</p>
               </div>
             </div>
           </div>
@@ -727,6 +808,21 @@
                 <p>For confirmed defects, wrong items shipped, or covered lost parcels, we arrange a reshipment or issue a credit — you do not need to organise a physical return.</p>
                 <p>Physical returns (customer sending the item back to China) are handled case by case. In most situations, the return shipping cost exceeds the product value, so a replacement or credit is more practical. If a return is warranted — for example on a high-value item — we discuss it with you directly and coordinate with the factory.</p>
                 <p>We do not accept returns for buyer's remorse or change-of-mind orders. Your customer-facing return policy is separate and is your responsibility to set and communicate.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false" aria-controls="faq-prestock">
+              How do I know when to pre-stock inventory with you?
+              <span class="faq-item__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11M1 6H11" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__body" id="faq-prestock" role="region">
+              <div class="faq-item__body-inner">
+                <p>Pre-stocking makes sense when you have consistent daily orders and want faster fulfilment speed, lower per-unit shipping costs (consolidated shipments), or protection against factory supply delays and stockouts during peak periods.</p>
+                <p>We do not push sellers to pre-stock. For new or unproven products, fulfilling per order is the right approach — you are not holding dead stock if the product does not perform. When you have consistent volume and want to move faster, that is when we discuss pre-stock options: quantity, storage, and replenishment timing. Message us and we will help you think through whether it makes sense for your SKU.</p>
               </div>
             </div>
           </div>

@@ -50,7 +50,7 @@
     .nav__cta:hover { opacity: 0.88 !important; }
     .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
     .nav__hamburger span { width: 22px; height: 2px; background: var(--white); border-radius: 2px; }
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .nav__hamburger { display: flex; }
       .nav__links {
         display: none; position: absolute; top: 64px; left: 0; right: 0;
@@ -59,11 +59,21 @@
         z-index: 199;
       }
       .nav__links.open { display: flex; }
+      .nav { position: relative; }
     }
 
     /* ── GAME WRAPPER ── */
-    #root { width: 100%; }
+    body { overflow-x: hidden; }
+    #root { width: 100%; max-width: 100vw; overflow-x: hidden; }
     .ft-game-section { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; width: 100%; min-height: 100vh; }
+    /* On touch devices: suppress hover-only tooltips and collapse side toolbars */
+    @media (hover: none) and (pointer: coarse) {
+      [data-tooltip]::before, [data-tooltip]::after { display: none !important; }
+      [title]:hover::after { display: none !important; }
+    }
+    @media (max-width: 860px) {
+      #root { overflow-x: hidden; }
+    }
   </style>
 </head>
 <body>
@@ -72,7 +82,7 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo-wrap">
-        <img src="assets/logo.jpg" alt="RyanFulfil" class="nav__logo-img"
+        <img src="assets/logo-dark.jpg" alt="RyanFulfil" class="nav__logo-img"
              onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
         <span class="nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
       </a>

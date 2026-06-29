@@ -169,6 +169,7 @@
 
     body {
       overflow-y: auto;
+      overflow-x: hidden;
     }
 
     #root > .h-screen {
@@ -195,7 +196,7 @@
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .rf-nav__hamburger {
         display: flex;
       }
@@ -217,6 +218,9 @@
       .rf-nav__links.open {
         display: flex;
       }
+
+      .rf-nav { position: relative; }
+      #root { max-width: 100vw; overflow-x: hidden; }
     }
   </style>
 
@@ -226,7 +230,7 @@
   <nav class="rf-nav" role="navigation" aria-label="Main navigation">
     <div class="rf-nav__inner">
       <a href="index.html" class="rf-nav__logo-wrap">
-        <img src="assets/logo.jpg" alt="RyanFulfil" class="rf-nav__logo-img"
+        <img src="assets/logo-dark.jpg" alt="RyanFulfil" class="rf-nav__logo-img"
              onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
         <span class="rf-nav__logo-fallback" style="display:none;">Ryan<span>Fulfil</span></span>
       </a>

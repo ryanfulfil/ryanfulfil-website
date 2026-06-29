@@ -72,7 +72,7 @@
     .nav__cta:hover { opacity: 0.9; }
     .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav__hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .nav__hamburger { display: flex; }
       .nav__links {
         display: none; position: absolute;
@@ -83,6 +83,7 @@
         border-bottom: 1px solid var(--border);
       }
       .nav__links.open { display: flex; }
+      .nav { position: relative; }
     }
 
     /* ── HERO ── */

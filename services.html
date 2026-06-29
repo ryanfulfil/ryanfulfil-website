@@ -93,7 +93,7 @@
 
     .section-label {
       display: inline-block;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -551,7 +551,9 @@
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
       nav { position: relative; }
-      .anchor-nav { top: 0; }
+      .anchor-nav { top: 0; overflow-x: hidden; }
+      .anchor-nav-inner { min-width: 0; flex-wrap: wrap; justify-content: center; }
+      .anchor-link { padding: 10px 14px; font-size: 0.775rem; }
       .service-section, .no-cover { scroll-margin-top: 58px; }
     }
     @media (max-width: 768px) {
@@ -699,7 +701,10 @@
         <span class="section-label">Product Sourcing</span>
         <h2 class="section-title">We check the factory before you spend on ads.</h2>
         <p class="section-body">
-          Send us a link — AliExpress, Alibaba, 1688 — or just a photo and description. Before you commit, we check factory availability, exact variants in stock, realistic lead times, bundle options, and the best shipping route for your destination. If the exact product or model isn't available, we tell you and suggest the closest alternative. You know what you're getting before you run a single ad.
+          Send us a link — AliExpress, Alibaba, 1688 — or just a photo and description. For products you are serious about, we check factory availability, exact variants in stock, realistic lead times, and the best shipping route for your destination. If the exact product or model is not available, we tell you and suggest the closest alternative.
+        </p>
+        <p class="section-body" style="margin-top: 12px;">
+          We focus our sourcing effort where there is real order intent. If you are still testing many products and have not yet validated what sells, the faster approach is to start with AliExpress, confirm a winner, then come to us. Once you have orders, we source it quickly, quote you an all-in price, and handle fulfilment from there.
         </p>
         <ul class="bullet-list">
           <li>
