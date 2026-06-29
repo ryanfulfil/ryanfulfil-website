@@ -477,7 +477,7 @@
     @media (max-width: 900px) {
       .service-inner { grid-template-columns: 1fr; gap: 40px; }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .nav-links {
         display: none;
         flex-direction: column;
@@ -491,6 +491,10 @@
       }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
+      nav { position: relative; }
+      .anchor-nav { top: 64px; }
+    }
+    @media (max-width: 768px) {
       .anchor-nav { top: 0; }
       .section { padding: 56px 0; }
       .service-section { padding: 52px 0; }

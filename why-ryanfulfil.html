@@ -102,7 +102,7 @@
       background: var(--navy); border-radius: 2px;
       transition: all 0.3s;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .nav__hamburger { display: flex; }
       .nav__links {
         display: none; position: absolute;
@@ -113,6 +113,7 @@
         border-bottom: 1px solid var(--border);
       }
       .nav__links.open { display: flex; }
+      nav { position: relative; }
     }
 
     /* ── HERO ─────────────────────────────────────────────── */
@@ -145,7 +146,20 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
-    .reason-card:last-child { grid-column: 1 / -1; }
+    .reason-card:last-child {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: rgba(42, 174, 245, 0.08);
+      border-color: rgba(42, 174, 245, 0.25);
+    }
+    .reason-card:last-child .reason-card__num { font-size: 3rem; flex-shrink: 0; opacity: 1; }
+    .reason-card:last-child h3 { font-size: 1.15rem; }
+    .reason-card:last-child p { font-size: 0.925rem; }
+    @media (max-width: 600px) {
+      .reason-card:last-child { flex-direction: column; gap: 4px; }
+    }
     @media (max-width: 900px) {
       .reasons__grid { grid-template-columns: repeat(2, 1fr); }
     }

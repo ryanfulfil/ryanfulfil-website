@@ -388,7 +388,7 @@
     /* =====================
        RESPONSIVE
     ===================== */
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .nav-links {
         display: none;
         flex-direction: column;
@@ -402,6 +402,9 @@
       }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
+      nav { position: relative; }
+    }
+    @media (max-width: 768px) {
       .section { padding: 56px 0; }
       .hero { padding: 64px 0 52px; }
       .step { gap: 18px; padding: 24px 0; }
