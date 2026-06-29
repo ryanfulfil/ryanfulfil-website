@@ -157,15 +157,12 @@
     .reason-card:last-child .reason-card__num { font-size: 3rem; flex-shrink: 0; opacity: 1; }
     .reason-card:last-child h3 { font-size: 1.15rem; }
     .reason-card:last-child p { font-size: 0.925rem; }
-    @media (max-width: 600px) {
-      .reason-card:last-child { flex-direction: column; gap: 4px; }
-    }
     @media (max-width: 900px) {
       .reasons__grid { grid-template-columns: repeat(2, 1fr); }
+      .reason-card:last-child { grid-column: auto; display: block; }
     }
     @media (max-width: 600px) {
       .reasons__grid { grid-template-columns: 1fr; }
-      .reason-card:last-child { grid-column: auto; }
     }
     .reason-card {
       background: rgba(255,255,255,0.05);
