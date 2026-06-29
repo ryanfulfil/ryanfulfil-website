@@ -1663,7 +1663,6 @@
         for(const[n,aliases]of Object.entries(SW_META)){if(aliases[0]===code){name=n;break;}}
         if(!name)return;
         const row=document.querySelector('tr[data-name="'+name+'"]');if(!row)return;
-        if(row.closest('#sw-more-body')&&!swMoreOpen){swMoreOpen=true;swMoreSection.style.display='block';swTl.textContent='Show fewer destinations';swToggleBtn.classList.add('open');swToggleBtn.setAttribute('aria-expanded','true');}
         row.classList.add('sw-highlight');
       }).catch(()=>{});
   })();
