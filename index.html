@@ -557,27 +557,38 @@
        COMMUNITY
     ===================== */
     .community-section { background: var(--surface); }
-    .community-stat-bar { display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin:32px 0 44px; }
+    .community-stat-bar { display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin:32px 0 36px; }
     .community-stat { text-align:center; }
     .community-stat-num { font-family:var(--font-head);font-size:2.4rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:4px; }
     .community-stat-label { font-size:0.83rem;color:var(--muted); }
     .community-divider { width:1px;height:44px;background:var(--border); }
-    .community-cards { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px; }
-    .community-card { background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:box-shadow 0.2s,border-color 0.2s; }
-    .community-card:hover { box-shadow:0 4px 20px rgba(13,31,60,0.1);border-color:var(--accent); }
-    .community-card-top { display:flex;align-items:center;gap:10px; }
-    .community-fb-icon { width:32px;height:32px;border-radius:8px;background:#1877F2;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
-    .community-card-name { font-weight:600;font-size:0.875rem;color:var(--navy);line-height:1.35; }
-    .community-card-count { font-family:var(--font-head);font-size:1.55rem;font-weight:800;color:var(--accent); }
-    .community-card-tag { font-size:0.78rem;color:var(--muted); }
-    .community-card-join { margin-top:auto;font-size:0.82rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:4px; }
+    /* USP callout */
+    .community-usp { background:rgba(42,174,245,0.07);border:1.5px solid rgba(42,174,245,0.22);border-radius:12px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;margin-bottom:32px; }
+    .community-usp-icon { width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px; }
+    .community-usp-text strong { display:block;font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:6px; }
+    .community-usp-text p { font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0; }
+    /* 2-col group grid */
+    .community-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:28px; }
+    .community-grid-card { background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:box-shadow 0.2s,border-color 0.2s; }
+    .community-grid-card:hover { box-shadow:0 4px 16px rgba(13,31,60,0.09);border-color:var(--accent); }
+    .community-grid-icon { width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px; }
+    .ci-navy { background:var(--navy); }
+    .ci-blue { background:var(--accent); }
+    .ci-teal { background:#0891B2; }
+    .ci-slate { background:var(--muted); }
+    .community-grid-body { flex:1;min-width:0; }
+    .community-grid-name { font-weight:600;font-size:0.84rem;color:var(--navy);line-height:1.3;margin-bottom:4px; }
+    .community-grid-count { font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:3px; }
+    .community-grid-tag { font-size:0.74rem;color:var(--muted); }
+    .community-grid-join { font-size:0.78rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:3px;margin-top:8px; }
     .community-footer { text-align:center;font-size:0.875rem;color:var(--muted); }
     .community-footer a { color:var(--accent);font-weight:600;text-decoration:none; }
     .community-footer a:hover { text-decoration:underline; }
     @media(max-width:768px){
-      .community-cards{grid-template-columns:1fr;}
+      .community-grid{grid-template-columns:1fr;}
       .community-divider{width:40px;height:1px;}
       .community-stat-num{font-size:2rem;}
+      .community-usp{flex-direction:column;gap:12px;}
     }
 
     /* =====================
@@ -783,7 +794,7 @@
     <div class="hero-badges">
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        400+ active clients · 660,000+ community members across 10 groups
+        400+ active clients · 3.4M+ community members across 10 groups
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1257,13 +1268,13 @@
 <section class="section community-section">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-title">The hub of the dropshipping community.</h2>
-      <p class="section-sub">RyanFulfil owns and moderates 10 of the largest dropshipping groups on Facebook. Active posts every hour, members from every market.</p>
+      <h2 class="section-title">3.4 million dropshippers. 10 groups. All run by Ryan.</h2>
+      <p class="section-sub">Not a side project — RyanFulfil owns and moderates 10 of the largest dropshipping communities on Facebook. Free to join. No pitch. Active every hour.</p>
     </div>
 
     <div class="community-stat-bar">
       <div class="community-stat">
-        <div class="community-stat-num">660,000+</div>
+        <div class="community-stat-num">3.4M+</div>
         <div class="community-stat-label">community members</div>
       </div>
       <div class="community-divider"></div>
@@ -1278,47 +1289,155 @@
       </div>
     </div>
 
-    <div class="community-cards">
-      <a class="community-card" href="https://www.facebook.com/groups/578609290466408/" target="_blank" rel="noopener">
-        <div class="community-card-top">
-          <div class="community-fb-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </div>
-          <div class="community-card-name">Dropshipping Agent | China 3PL Supplier Fast Delivery</div>
+    <!-- USP callout -->
+    <div class="community-usp">
+      <div class="community-usp-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="community-usp-text">
+        <strong>Why these groups matter for your dropshipping business</strong>
+        <p>3.4 million active sellers in one network means real product trends, honest supplier reviews, and peer-tested market insights — no recycled guru content. Join any group free, no obligation. Work with RyanFulfil and you also get Ryan directly across all 10: sourcing questions, live quotes, problem escalation, anything.</p>
+      </div>
+    </div>
+
+    <!-- All 10 groups -->
+    <div class="community-grid">
+
+      <!-- 906.9K — Winning Products / Multi-platform -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/105769783096268/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-navy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         </div>
-        <div class="community-card-count">402,100+</div>
-        <div class="community-card-tag">General dropshipping · All markets</div>
-        <div class="community-card-join">Join group <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping Community | Winning Products · China Sourcing</div>
+          <div class="community-grid-count">906,900+</div>
+          <div class="community-grid-tag">Multi-platform · Product research · Shopify, TikTok, Amazon, eBay</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
       </a>
 
-      <a class="community-card" href="https://www.facebook.com/groups/844800962827249/" target="_blank" rel="noopener">
-        <div class="community-card-top">
-          <div class="community-fb-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </div>
-          <div class="community-card-name">Dropshipping Agent</div>
+      <!-- 531K — General community -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/567695894386394/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-navy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
-        <div class="community-card-count">179,500+</div>
-        <div class="community-card-tag">General dropshipping · All markets</div>
-        <div class="community-card-join">Join group <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping</div>
+          <div class="community-grid-count">531,000+</div>
+          <div class="community-grid-tag">General community · Beginners to experienced · Q&amp;A</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
       </a>
 
-      <a class="community-card" href="https://www.facebook.com/groups/dropshippingsuppliersuk/" target="_blank" rel="noopener">
-        <div class="community-card-top">
-          <div class="community-fb-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </div>
-          <div class="community-card-name">Dropshipping Suppliers USA UK Australia</div>
+      <!-- 512.7K — China sourcing -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/1546251742375713/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
         </div>
-        <div class="community-card-count">77,900+</div>
-        <div class="community-card-tag">USA · UK · Australia markets</div>
-        <div class="community-card-join">Join group <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">China Sourcing Agent | 1688 &amp; Alibaba Suppliers</div>
+          <div class="community-grid-count">512,700+</div>
+          <div class="community-grid-tag">1688 · Alibaba · Factory direct · Sourcing</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
       </a>
+
+      <!-- 481K — Beyond AliExpress -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/969785408110691/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-navy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping Agent</div>
+          <div class="community-grid-count">481,000+</div>
+          <div class="community-grid-tag">Beyond AliExpress · Shopify · Factory sourcing</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- 402K — Ryan Dropship / 3PL -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/dropshipusa/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping Agent | China 3PL Supplier | Ryan Dropship</div>
+          <div class="community-grid-count">402,000+</div>
+          <div class="community-grid-tag">3PL · Shopify, eBay, Etsy, TikTok Shop, Amazon</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- 179.5K — General global -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/844800962827249/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-teal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping Agent</div>
+          <div class="community-grid-count">179,500+</div>
+          <div class="community-grid-tag">Global community · All levels · Saudi Arabia, Italy, Hong Kong</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- 174.9K — China 3PL fast shipping -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/1643563005911645/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">China Dropshipping Agent &amp; 3PL | Fast Shipping 4–9 Days</div>
+          <div class="community-grid-count">174,900+</div>
+          <div class="community-grid-tag">3PL fulfilment · Fast shipping · Shopify &amp; TikTok Shop</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- 168.6K — Direct sourcing -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/578609290466408/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-teal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping Agent</div>
+          <div class="community-grid-count">168,600+</div>
+          <div class="community-grid-tag">China sourcing · Factory pricing · US &amp; CA market focus</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- 77.9K — USA UK AU geo -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/dropshippingsuppliersuk/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-slate">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">Dropshipping Suppliers USA UK Australia</div>
+          <div class="community-grid-count">77,900+</div>
+          <div class="community-grid-tag">USA · UK · Australia · Key English-speaking markets</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- 21.8K — Q&A no-fluff -->
+      <a class="community-grid-card" href="https://www.facebook.com/groups/dropshippinghow/" target="_blank" rel="noopener">
+        <div class="community-grid-icon ci-slate">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="community-grid-body">
+          <div class="community-grid-name">DropShipping</div>
+          <div class="community-grid-count">21,800+</div>
+          <div class="community-grid-tag">No-fluff Q&amp;A · All stages · Ask anything</div>
+          <div class="community-grid-join">Join free <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
     </div>
 
     <p class="community-footer">
-      + 7 more active communities across specific markets. &nbsp;
-      <a href="https://www.facebook.com/groups/578609290466408/" target="_blank" rel="noopener">Browse all groups →</a>
+      All groups are free to join — no catch, no pitch. &nbsp;
+      <a href="contact.html">Work with RyanFulfil for direct access to Ryan in all 10 →</a>
     </p>
   </div>
 </section>
