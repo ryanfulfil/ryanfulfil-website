@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Get a Quote | RyanFulfil — Dropshipping Fulfilment from China</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="Send us your product link and get a sourcing quote within 24 hours. No setup fees. No minimum order quantity." />
+  <meta name="description" content="Send us your product link and get a sourcing quote within 24 hours. No setup fees. No MOQ for standard dropshipping." />
   <link rel="canonical" href="https://ryanfulfil.github.io/ryanfulfil-website/contact.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="RyanFulfil">
   <meta property="og:title" content="Get a Quote | RyanFulfil — Dropshipping Fulfilment from China">
-  <meta property="og:description" content="Send us your product link and get a sourcing quote within 24 hours. No setup fees. No minimum order quantity.">
+  <meta property="og:description" content="Send us your product link and get a sourcing quote within 24 hours. No setup fees. No MOQ for standard dropshipping.">
   <meta property="og:url" content="https://ryanfulfil.github.io/ryanfulfil-website/contact.html">
   <meta property="og:image" content="https://ryanfulfil.github.io/ryanfulfil-website/assets/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Get a Quote | RyanFulfil — Dropshipping Fulfilment from China">
-  <meta name="twitter:description" content="Send us your product link and get a sourcing quote within 24 hours. No setup fees. No minimum order quantity.">
+  <meta name="twitter:description" content="Send us your product link and get a sourcing quote within 24 hours. No setup fees. No MOQ for standard dropshipping.">
   <meta name="twitter:image" content="https://ryanfulfil.github.io/ryanfulfil-website/assets/og-image.jpg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": "Get a Quote — RyanFulfil",
-    "description": "Send a product link and get a factory-direct sourcing quote within 24 hours. No setup fees, no minimum order quantity.",
+    "description": "Send a product link and get a factory-direct sourcing quote within 24 hours. No setup fees. No MOQ for standard dropshipping.",
     "url": "https://ryanfulfil.github.io/ryanfulfil-website/contact.html",
     "mainEntity": {
       "@type": "Organization",
@@ -417,7 +417,6 @@
         <li><a href="why-ryanfulfil.html">Why RyanFulfil</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="games.html">Game Demos</a></li>
         <li><a href="contact.html" class="nav__cta active">Get a Quote</a></li>
       </ul>
     </div>
@@ -428,7 +427,7 @@
     <div class="container">
       <div class="hero__label">Get a Quote</div>
       <h1>Send us your first product link.</h1>
-      <p class="hero__sub">We will come back with a sourcing quote within 24 hours. No setup fees, no minimum order quantity.</p>
+      <p class="hero__sub">We will come back with a sourcing quote within 24 hours. No setup fees. No MOQ for standard dropshipping.</p>
     </div>
   </header>
 
@@ -448,43 +447,9 @@
             novalidate
           >
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Your name <span class="req">*</span></label>
-                <input type="text" id="name" name="name" placeholder="e.g. James Smith" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email address <span class="req">*</span></label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required />
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="store">Store platform</label>
-              <select id="store" name="store_platform">
-                <option value="" disabled selected>Select your platform</option>
-                <option>Shopify</option>
-                <option>WooCommerce</option>
-                <option>TikTok Shop</option>
-                <option>eBay</option>
-                <option>Etsy</option>
-                <option>Other</option>
-                <option>Not set up yet</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="market">Primary market <span class="req">*</span></label>
-              <select id="market" name="primary_market" required>
-                <option value="" disabled selected>Select your main selling market</option>
-                <option>United States</option>
-                <option>United Kingdom</option>
-                <option>Europe</option>
-                <option>Australia</option>
-                <option>Canada</option>
-                <option>Multiple regions</option>
-                <option>Other</option>
-              </select>
+              <label for="name">Your name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" placeholder="e.g. James Smith" required />
             </div>
 
             <div class="form-group">
@@ -492,31 +457,50 @@
               <textarea
                 id="product"
                 name="product_details"
-                placeholder="Paste an AliExpress or Amazon link, or describe what you want to source. Include any specific requirements (size, colour, material, quantity)."
+                placeholder="Paste an AliExpress, CJ, Alibaba, 1688, Amazon, or other product link — or describe what you want to source."
                 required
               ></textarea>
             </div>
 
             <div class="form-group">
-              <label for="monthly_orders">Estimated monthly orders</label>
-              <select id="monthly_orders" name="monthly_orders">
-                <option value="" disabled selected>Select a range (optional)</option>
-                <option>Under 50 orders</option>
-                <option>50 to 200 orders</option>
-                <option>200 to 500 orders</option>
-                <option>500 to 1,000 orders</option>
-                <option>Over 1,000 orders</option>
-              </select>
+              <label for="country">Country you are selling to <span class="req">*</span></label>
+              <input type="text" id="country" name="selling_country" placeholder="e.g. United States, Germany, Australia" required />
             </div>
 
-            <div class="form-group">
-              <label for="message">Anything else we should know?</label>
-              <textarea
-                id="message"
-                name="additional_notes"
-                placeholder="Branding requirements, urgency, questions about our service, or anything else."
-                style="min-height:80px;"
-              ></textarea>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="country_code">WhatsApp country code <span class="req">*</span></label>
+                <select id="country_code" name="country_code" required>
+                  <option value="" disabled selected>Select code</option>
+                  <option value="+1">+1 US / Canada</option>
+                  <option value="+44">+44 United Kingdom</option>
+                  <option value="+61">+61 Australia</option>
+                  <option value="+64">+64 New Zealand</option>
+                  <option value="+49">+49 Germany</option>
+                  <option value="+33">+33 France</option>
+                  <option value="+34">+34 Spain</option>
+                  <option value="+39">+39 Italy</option>
+                  <option value="+31">+31 Netherlands</option>
+                  <option value="+971">+971 UAE</option>
+                  <option value="+966">+966 Saudi Arabia</option>
+                  <option value="+65">+65 Singapore</option>
+                  <option value="+60">+60 Malaysia</option>
+                  <option value="+63">+63 Philippines</option>
+                  <option value="+852">+852 Hong Kong</option>
+                  <option value="+886">+886 Taiwan</option>
+                  <option value="+81">+81 Japan</option>
+                  <option value="+82">+82 South Korea</option>
+                  <option value="+90">+90 Turkey</option>
+                  <option value="+55">+55 Brazil</option>
+                  <option value="+52">+52 Mexico</option>
+                  <option value="+91">+91 India</option>
+                  <option value="+86">+86 China</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="whatsapp">WhatsApp number <span class="req">*</span></label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="e.g. 9123 4567" required />
+              </div>
             </div>
 
             <div>
@@ -529,7 +513,7 @@
 
             <!-- Validation error message -->
             <div id="formError" style="display:none; padding:14px 18px; background:rgba(239,68,68,0.08); border:1.5px solid rgba(239,68,68,0.25); border-radius:8px; color:#DC2626; font-size:0.9rem;">
-              Please fill in the required fields (name, market, and product details) before sending.
+              Please fill in your name, product details, selling country, and WhatsApp number before sending.
             </div>
 
           </form>
@@ -663,16 +647,14 @@
       e.preventDefault();
       errorMsg.style.display = 'none';
 
-      const name    = document.getElementById('name').value.trim();
-      const email   = document.getElementById('email').value.trim();
-      const store   = document.getElementById('store').value;
-      const market  = document.getElementById('market').value;
-      const product = document.getElementById('product').value.trim();
-      const orders  = document.getElementById('monthly_orders').value;
-      const notes   = document.getElementById('message').value.trim();
+      const name        = document.getElementById('name').value.trim();
+      const product     = document.getElementById('product').value.trim();
+      const country     = document.getElementById('country').value.trim();
+      const countryCode = document.getElementById('country_code').value;
+      const whatsapp    = document.getElementById('whatsapp').value.trim();
 
       // Validate required fields
-      if (!name || !market || !product) {
+      if (!name || !product || !country || !countryCode || !whatsapp) {
         errorMsg.style.display = 'block';
         errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
@@ -680,14 +662,10 @@
 
       // Build message
       let msg = 'Hi RyanFulfil! I would like to get a sourcing quote.\n\n';
-      msg += `Name: ${name}\n`;
-      if (email)  msg += `Email: ${email}\n`;
-      if (store)  msg += `Store platform: ${store}\n`;
-      msg += `Primary market: ${market}\n`;
-      if (orders) msg += `Monthly orders: ${orders}\n`;
-      msg += `\nProduct details:\n${product}`;
-      if (notes)  msg += `\n\nAdditional notes:\n${notes}`;
-
+      msg += 'Name: ' + name + '\n';
+      msg += 'WhatsApp: ' + countryCode + ' ' + whatsapp + '\n';
+      msg += 'Selling country: ' + country + '\n';
+      msg += '\nProduct details:\n' + product;
       const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
     });
