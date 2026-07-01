@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -233,6 +233,12 @@
       color: rgba(255,255,255,0.9);
     }
     .hero-badge svg { color: var(--accent); flex-shrink: 0; }
+    .hero-badge--featured {
+      grid-column: 1 / -1;
+      justify-content: center;
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.10);
+    }
     .hero-ctas {
       display: flex;
       gap: 14px;
@@ -805,15 +811,11 @@
     <div class="hero-badges">
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        400+ active clients
+        400+ active clients, 5,000+ daily orders
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        3.4M+ seller community
-      </div>
-      <div class="hero-badge">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        Factory-direct pricing — usually cheaper than AliExpress
+        Source cheaper, direct from factory
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -823,9 +825,9 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
         Your winning products stay confidential
       </div>
-      <div class="hero-badge">
+      <div class="hero-badge hero-badge--featured">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        5,000+ orders fulfilled daily
+        3.4M+ seller community
       </div>
     </div>
     <div class="hero-ctas">
