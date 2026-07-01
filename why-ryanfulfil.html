@@ -444,6 +444,76 @@
       padding: 3px 8px;
       margin-bottom: 10px;
     }
+    /* ── GAME DEMOS EMBED ───────────────────────────────────── */
+    .games-section { padding: 72px 0 88px; }
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .game-card {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .game-card:hover {
+      box-shadow: 0 8px 32px rgba(13,31,60,0.12);
+      transform: translateY(-2px);
+    }
+    .game-card__preview {
+      background: var(--surface);
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .game-card__icon {
+      width: 72px; height: 72px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .game-card__icon--calm { background: rgba(42,174,245,0.12); }
+    .game-card__icon--ttt  { background: rgba(13,31,60,0.08); }
+    .game-card__icon--knight {
+      background: linear-gradient(135deg, #07100D, #00F5A0);
+      color: #F8FAFC;
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      border: 1px solid rgba(0,245,160,0.3);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+    .game-card__icon--still {
+      background: linear-gradient(135deg, #E8ECE6, #F7F5F0);
+      color: #4A5A48;
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      border: 1px solid rgba(74,90,72,0.14);
+    }
+    .game-card__body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .game-card__tag { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .game-card h2 { font-size: 1.2rem; color: var(--navy); }
+    .game-card p  { font-size: 0.875rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .game-card__play {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: var(--white);
+      font-weight: 600; font-size: 0.875rem;
+      padding: 10px 20px; border-radius: 8px;
+      margin-top: 16px; width: fit-content;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .game-card__play:hover { background: #162d58; }
+    @media (max-width: 900px) {
+      .games-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
+    }
+    @media (max-width: 640px) {
+      .games-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -460,8 +530,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="why-ryanfulfil.html" class="active">Why RyanFulfil</a></li>
         <li><a href="faq.html">FAQ</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="games.html">Game Demos</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
         <li><a href="contact.html" class="nav__cta">Get a Quote</a></li>
       </ul>
     </div>
@@ -644,6 +713,99 @@
             </li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME DEMOS -->
+  <section class="games-section" aria-label="Interactive game demos">
+    <div class="container">
+      <div style="text-align:center;max-width:640px;margin:0 auto 40px;">
+        <h2>Store engagement tools we build.</h2>
+        <p style="color:var(--muted);line-height:1.6;">Lightweight interactive games your store can use for engagement, giveaways, lead capture, or product promotions. Try them, or ask us to add one to your store.</p>
+      </div>
+      <div class="games-grid">
+
+        <!-- Power Lift Challenge -->
+        <div class="game-card">
+          <div class="game-card__preview" style="background:#0A0A0B;">
+            <div class="game-card__icon" style="background:rgba(42,174,245,0.15);font-size:2.5rem;">🏋️</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Action</span>
+            <h2>Power Lift Challenge</h2>
+            <p>Built for fitness and sports gear stores. Players compete for high scores and unlock discount codes at milestones.</p>
+            <a href="fit-tech-game.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
+
+        <!-- Calm Puzzles -->
+        <div class="game-card">
+          <div class="game-card__preview">
+            <div class="game-card__icon game-card__icon--calm">🧩</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Relaxing</span>
+            <h2>Calm Puzzles</h2>
+            <p>Increases time-on-page without being intrusive. Works for wellness, home, or lifestyle stores — add a coupon trigger at completion.</p>
+            <a href="calm-puzzles.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
+
+        <!-- The Still Point -->
+        <div class="game-card">
+          <div class="game-card__preview" style="background:#F1F4EF;">
+            <div class="game-card__icon game-card__icon--still">SP</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Mindful</span>
+            <h2>The Still Point</h2>
+            <p>Six mindful mini-games in one hub — ideal for wellness, self-care, or mental health product stores.</p>
+            <a href="still-point.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
+
+        <!-- Open Knight's Tour -->
+        <div class="game-card">
+          <div class="game-card__preview" style="background:#07100D;">
+            <div class="game-card__icon game-card__icon--knight">N</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Puzzle</span>
+            <h2>Open Knight's Tour</h2>
+            <p>A logic challenge for stores selling to intellectually curious buyers. Use it as a "beat the puzzle, win a discount" giveaway.</p>
+            <a href="open-knights-tour.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
+
+        <!-- Tic Tac Toe -->
+        <div class="game-card">
+          <div class="game-card__preview">
+            <div class="game-card__icon game-card__icon--ttt">⭕</div>
+          </div>
+          <div class="game-card__body">
+            <span class="game-card__tag">Classic</span>
+            <h2>Tic Tac Toe</h2>
+            <p>Zero learning curve — works for any store niche. Embed it as a "play to unlock a deal" mechanic.</p>
+            <a href="tictactoe.html" class="game-card__play" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l7 4.5-7 4.5V3.5z"/></svg>
+              Play now
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
