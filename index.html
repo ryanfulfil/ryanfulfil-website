@@ -438,11 +438,22 @@
     }
     .journey-trigger:hover  { background: var(--surface); }
     .journey-trigger.active { background: var(--surface); }
+    .journey-label-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
     .journey-label {
       font-family: var(--font-head);
       font-weight: 700;
       font-size: 0.9375rem;
       color: var(--navy);
+    }
+    .journey-preview {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.8125rem;
+      color: var(--muted);
     }
     .journey-chevron {
       color: var(--accent);
@@ -790,7 +801,7 @@
 <section class="hero">
   <div class="container">
     <h1 class="hero-headline">Your China Fulfilment Partner Since 2018.</h1>
-    <p class="hero-sub">Think of us as your ops desk in China. We check the factory, source it, pack it, and ship direct to your customers — with a real person on WhatsApp, not a ticket system.</p>
+    <p class="hero-sub">Think of us as your ops desk in China — real people on WhatsApp who pick up when something goes wrong. We source, check, pack, and ship direct to your customers worldwide.</p>
     <div class="hero-badges">
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -798,7 +809,7 @@
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        3.4M+ community following
+        3.4M+ seller community
       </div>
       <div class="hero-badge">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1058,7 +1069,10 @@
 
       <div class="journey-item">
         <button class="journey-trigger" onclick="toggleJourney(this)">
-          <span class="journey-label">Testing a product</span>
+          <span class="journey-label-wrap">
+            <span class="journey-label">Testing a product</span>
+            <span class="journey-preview">Check factory cost, samples, and landed price before you spend on ads.</span>
+          </span>
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
@@ -1068,7 +1082,10 @@
 
       <div class="journey-item">
         <button class="journey-trigger" onclick="toggleJourney(this)">
-          <span class="journey-label">Scaling a winner</span>
+          <span class="journey-label-wrap">
+            <span class="journey-label">Scaling a winner</span>
+            <span class="journey-preview">Pre-stock inventory and lock in backup suppliers before stockouts hit.</span>
+          </span>
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
@@ -1078,7 +1095,10 @@
 
       <div class="journey-item">
         <button class="journey-trigger" onclick="toggleJourney(this)">
-          <span class="journey-label">Building a brand</span>
+          <span class="journey-label-wrap">
+            <span class="journey-label">Building a brand</span>
+            <span class="journey-preview">Custom packaging, logo stickers, and thank-you cards as you grow.</span>
+          </span>
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
@@ -1088,7 +1108,10 @@
 
       <div class="journey-item">
         <button class="journey-trigger" onclick="toggleJourney(this)">
-          <span class="journey-label">Switching from another agent</span>
+          <span class="journey-label-wrap">
+            <span class="journey-label">Switching from another agent</span>
+            <span class="journey-preview">Map your SKUs and transfer stock with minimal disruption to orders.</span>
+          </span>
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
@@ -1098,7 +1121,10 @@
 
       <div class="journey-item">
         <button class="journey-trigger" onclick="toggleJourney(this)">
-          <span class="journey-label">Managing multiple SKUs</span>
+          <span class="journey-label-wrap">
+            <span class="journey-label">Managing multiple SKUs</span>
+            <span class="journey-preview">Variants, bundles, and stock visibility organised in one workflow.</span>
+          </span>
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
@@ -1108,7 +1134,10 @@
 
       <div class="journey-item">
         <button class="journey-trigger" onclick="toggleJourney(this)">
-          <span class="journey-label">Connecting your store</span>
+          <span class="journey-label-wrap">
+            <span class="journey-label">Connecting your store</span>
+            <span class="journey-preview">Shopify or WooCommerce sync — orders flow in automatically.</span>
+          </span>
           <svg class="journey-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="journey-body">
